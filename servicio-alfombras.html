@@ -56,7 +56,7 @@
                 <img src="https://iili.io/FWZd4HJ.png" alt="Logo de Clean Click" class="header-logo w-auto">
                 <span class="hidden sm:inline ml-3 text-xl font-bold text-slate-800">Clean Click Aroma a Limpio</span>
             </a>
-            <nav class="hidden md:flex items-center space-x-6">
+            <nav class="hidden lg:flex items-center space-x-6">
                 <a href="index.html" class="text-slate-600 hover:text-brand-blue font-medium">Home</a>
                 <a href="index.html#porque-elegirnos" class="text-slate-600 hover:text-brand-blue font-medium">Beneficios</a>
                 <!-- Dropdown de Servicios para Escritorio -->
@@ -74,17 +74,17 @@
                 <a href="index.html#testimonios" class="text-slate-600 hover:text-brand-blue font-medium">Testimonios</a>
                 <a href="index.html#faq" class="text-slate-600 hover:text-brand-blue font-medium">Preguntas</a>
             </nav>
-            <button class="open-chat-popup hidden md:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center">
+            <button class="open-chat-popup hidden lg:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center">
                 <span>Contacta Aquí</span>
                 <span class="text-xs font-normal">Atención 7am - 12am</span>
             </button>
-            <div class="md:hidden">
+            <div class="lg:hidden">
                 <button id="menu-toggle" class="text-slate-800 hover:text-brand-blue"><i class="fas fa-bars text-2xl pointer-events-none"></i></button>
             </div>
         </div>
-        <!-- Mobile Menu (con enlaces a index.html) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
-             <nav class="flex flex-col p-4 space-y-2">
+        <!-- Mobile Menu Pop-up -->
+        <div id="mobile-menu" class="absolute top-full right-6 mt-2 w-72 origin-top-right rounded-xl bg-white p-2 shadow-lg ring-1 ring-slate-900/5 opacity-0 scale-95 invisible transition-all duration-200 ease-in-out z-50">
+             <nav class="flex flex-col">
                 <a href="index.html" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Home</a>
                 <a href="index.html#porque-elegirnos" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Beneficios</a>
                 <!-- Dropdown/Acordeón de Servicios para Móvil -->
@@ -125,8 +125,8 @@
 
         <!-- Rotating Phrases Banner -->
         <section class="bg-brand-blue-dark py-4">
-            <div class="max-w-5xl mx-auto px-6 text-center">
-                <div id="rotating-text-container" class="relative h-7 flex items-center justify-center overflow-hidden">
+            <div class="max-w-5xl mx-auto px-2 sm:px-6 text-center">
+                <div id="rotating-text-container" class="relative h-14 lg:h-7 flex items-center justify-center overflow-hidden">
                     <!-- Las frases rotativas se insertarán aquí con JavaScript -->
                 </div>
             </div>
@@ -135,80 +135,84 @@
         <!-- Contenido Detallado del Servicio -->
         <section class="py-20 bg-white">
             <div class="container mx-auto px-6 max-w-4xl">
-                <div class="prose lg:prose-lg max-w-none text-slate-700">
-                    <h2 class="text-3xl font-bold text-slate-800">Una Alfombra Limpia Transforma tu Espacio</h2>
-                    <p>Las alfombras no solo aportan calidez, sino que también actúan como un filtro, atrapando polvo y suciedad. Un <strong>lavado de alfombras</strong> periódico es esencial para mantener un ambiente saludable. Ofrecemos un <strong>servicio de limpieza de alfombras a domicilio</strong> en toda la <strong>Región Metropolitana</strong>, incluyendo comunas como Las Condes, Providencia, Ñuñoa y Santiago Centro.</p>
+                <div class="text-slate-700 space-y-6">
+                    <div>
+                        <h2 class="text-3xl font-bold text-slate-800">Una Alfombra Limpia Transforma tu Espacio</h2>
+                        <p class="mt-4 text-lg">Las alfombras no solo aportan calidez, sino que también actúan como un filtro, atrapando polvo y suciedad. Un <strong>lavado de alfombras</strong> periódico es esencial para mantener un ambiente saludable. Ofrecemos un <strong>servicio de limpieza de alfombras a domicilio</strong> en toda la <strong>Región Metropolitana</strong>, incluyendo comunas como Las Condes, Providencia, Ñuñoa y Santiago Centro.</p>
+                    </div>
                     
-                    <h3 class="text-2xl font-bold text-slate-800 mt-12">Nuestra Técnica: Limpieza Profunda y Cuidadosa</h3>
-                    <p>Combinamos maquinaria de última generación con productos ecológicos para garantizar una limpieza profunda. Ya sea que necesites una <strong>limpieza de alfombra muro a muro</strong> o el lavado de una <strong>alfombra decorativa</strong>, tenemos la solución.</p>
-                    
-                    <!-- Lista de técnica mejorada -->
-                    <div class="mt-8 space-y-6">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-search"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Diagnóstico Inicial en tu casa</h4>
-                                <p class="mt-1">Evaluamos el tipo de fibra y el nivel de suciedad para aplicar el tratamiento más adecuado.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-eraser"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Eliminación de Manchas</h4>
-                                <p class="mt-1">Aplicamos desmanchadores específicos para tratar y eliminar manchas difíciles, devolviendo la uniformidad al color.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-water"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Lavado y Enjuague Profundo</h4>
-                                <p class="mt-1">Nuestro sistema de inyección y extracción elimina la suciedad desde la base de la alfombra, sin dejar residuos pegajosos.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-palette"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Colores Revitalizados</h4>
-                                <p class="mt-1">Nuestro proceso reaviva los colores originales, haciendo que tu alfombra luzca como nueva.</p>
-                            </div>
-                        </div>
-                         <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-tag"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Precios Transparentes</h4>
-                                <p class="mt-1">Ofrecemos <strong>precios de lavado de alfombras</strong> claros y competitivos. Solicita tu cotización sin compromiso.</p>
-                            </div>
-                        </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-12">Nuestra Técnica: Limpieza Profunda y Cuidadosa</h3>
+                        <p class="mt-4 text-lg">Combinamos maquinaria de última generación con productos ecológicos para garantizar una limpieza profunda. Ya sea que necesites una <strong>limpieza de alfombra muro a muro</strong> o el lavado de una <strong>alfombra decorativa</strong>, tenemos la solución.</p>
+                        <ul class="mt-6 space-y-6">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Diagnóstico Inicial en tu casa</h4>
+                                    <p class="mt-1">Evaluamos el tipo de fibra y el nivel de suciedad para aplicar el tratamiento más adecuado.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-eraser"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Eliminación de Manchas</h4>
+                                    <p class="mt-1">Aplicamos desmanchadores específicos para tratar y eliminar manchas difíciles, devolviendo la uniformidad al color.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-water"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Lavado y Enjuague Profundo</h4>
+                                    <p class="mt-1">Nuestro sistema de inyección y extracción elimina la suciedad desde la base de la alfombra, sin dejar residuos pegajosos.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Colores Revitalizados</h4>
+                                    <p class="mt-1">Nuestro proceso reaviva los colores originales, haciendo que tu alfombra luzca como nueva.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-tag"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Precios Transparentes</h4>
+                                    <p class="mt-1">Ofrecemos <strong>precios de lavado de alfombras</strong> claros y competitivos. Solicita tu cotización sin compromiso.</p>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
 
-                    <h3 class="text-2xl font-bold text-slate-800 mt-12">Servicios para Todo Tipo de Alfombras</h3>
-                    <p>Nuestro equipo está capacitado para limpiar cualquier tipo de alfombra, adaptando el proceso para proteger su integridad y textura.</p>
-                     
-                     <!-- Lista de tipos de alfombras mejorada -->
-                    <div class="mt-6 grid sm:grid-cols-2 gap-x-8 gap-y-4 not-prose">
-                        <div class="flex items-center text-slate-700">
-                            <i class="fas fa-check-circle text-brand-blue mr-3"></i>
-                            <span>Limpieza de alfombras muro a muro.</span>
-                        </div>
-                        <div class="flex items-center text-slate-700">
-                            <i class="fas fa-check-circle text-brand-blue mr-3"></i>
-                            <span>Lavado de alfombras decorativas.</span>
-                        </div>
-                        <div class="flex items-center text-slate-700">
-                            <i class="fas fa-check-circle text-brand-blue mr-3"></i>
-                            <span>Limpieza de cubrepisos.</span>
-                        </div>
-                        <div class="flex items-center text-slate-700">
-                            <i class="fas fa-check-circle text-brand-blue mr-3"></i>
-                            <span>Escaleras alfombradas.</span>
-                        </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-12">Servicios para Todo Tipo de Alfombras</h3>
+                        <p class="mt-4 text-lg">Nuestro equipo está capacitado para limpiar cualquier tipo de alfombra, adaptando el proceso para proteger su integridad y textura.</p>
+                         <ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-brand-blue mr-3"></i> Limpieza de alfombras muro a muro.
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-brand-blue mr-3"></i> Lavado de alfombras decorativas.
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-brand-blue mr-3"></i> Limpieza de cubrepisos.
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-brand-blue mr-3"></i> Escaleras alfombradas.
+                            </li>
+                        </ul>
                     </div>
-
-                    <!-- Tarjeta de cierre -->
-                    <div class="mt-12 not-prose">
-                        <div class="bg-blue-50 border border-blue-200 p-8 rounded-2xl shadow-sm">
-                            <p class="text-center text-lg text-slate-800">Si buscas un servicio para <strong>lavar alfombras a domicilio</strong> eficiente y de confianza en Santiago, Clean Click es tu mejor aliado.</p>
-                        </div>
+                    <div class="!mt-12 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg shadow-sm">
+                        <p class="text-lg">Si buscas un servicio para <strong>lavar alfombras a domicilio</strong> eficiente y de confianza en Santiago, Clean Click es tu mejor aliado.</p>
                     </div>
                 </div>
             </div>
@@ -307,15 +311,48 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Lógica para menú móvil y pop-up de chat
+            
+            // --- Lógica para el menú de hamburguesa POP-UP ---
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
-            if(menuToggle && mobileMenu) {
-                menuToggle.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
+            const menuIcon = menuToggle ? menuToggle.querySelector('i') : null;
+
+            const closeMenu = () => {
+                if (mobileMenu && menuIcon) {
+                    mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            };
+
+            const openMenu = () => {
+                if (mobileMenu && menuIcon) {
+                    mobileMenu.classList.remove('opacity-0', 'scale-95', 'invisible');
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                }
+            };
+
+            if (menuToggle && mobileMenu && menuIcon) {
+                menuToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = !mobileMenu.classList.contains('invisible');
+                    if (isOpen) {
+                        closeMenu();
+                    } else {
+                        openMenu();
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    const isOpen = !mobileMenu.classList.contains('invisible');
+                    if (isOpen && !mobileMenu.contains(e.target) && e.target !== menuToggle && !menuToggle.contains(e.target)) {
+                        closeMenu();
+                    }
                 });
             }
-            
+
+            // --- Lógica para el acordeón de servicios en móvil ---
             const mobileServicesToggle = document.getElementById('mobile-services-toggle');
             if(mobileServicesToggle) {
                 const mobileServicesSubmenu = document.getElementById('mobile-services-submenu');
@@ -341,7 +378,7 @@
                 "No, me digas... ¿la fiesta ya fue?",
                 "¿Vienen los suegros de visita?",
                 "¿Tus alergias no te dejan en paz?",
-                "¿Te pidieron cuidar al 'perrhijo' de un amigo?",
+                "¿Te pidieron cuidar al 'perrihijo' de un amigo?",
                 "¿Le sacaste los pañales a tu pequeño?"
             ];
             let currentPhraseIndex = 0;
@@ -361,7 +398,7 @@
                         currentPhraseIndex = (currentPhraseIndex + 1) % rotatingPhrases.length;
                         const newElement = document.createElement('span');
                         newElement.textContent = `“ ${rotatingPhrases[currentPhraseIndex]} ”`;
-                        newElement.className = 'text-white text-base md:text-lg font-semibold absolute whitespace-nowrap slide-in';
+                        newElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
                         phraseContainer.appendChild(newElement);
                     }, 500); // Debe coincidir con la duración de la animación de salida
                 };
@@ -369,14 +406,14 @@
                 // Muestra la primera frase inmediatamente al cargar
                 const initialElement = document.createElement('span');
                 initialElement.textContent = `“ ${rotatingPhrases[0]} ”`;
-                initialElement.className = 'text-white text-base md:text-lg font-semibold absolute whitespace-nowrap slide-in';
+                initialElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
                 phraseContainer.appendChild(initialElement);
 
                 // Inicia el intervalo para cambiar las frases
                 setInterval(showNextPhrase, 4000);
             }
 
-            // Lógica para el pop-up de chat
+            // --- Lógica para el Pop-up de chat ---
             const allPopupTriggers = document.querySelectorAll('.open-chat-popup');
             const chatPopup = document.getElementById('chat-popup');
             const closePopupBtn = document.getElementById('close-popup');
@@ -399,4 +436,3 @@
     </script>
 </body>
 </html>
-
