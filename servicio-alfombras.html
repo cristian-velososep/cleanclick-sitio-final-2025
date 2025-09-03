@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavado y Limpieza de Alfombras a Domicilio | Clean Click</title>
+    <meta name="description" content="Servicio de limpieza de alfombras a domicilio en Santiago. Expertos en lavado de alfombras muro a muro y decorativas. ¡Consulta nuestros precios!">
+    
+    <!-- HEAD es idéntico al de servicio-sillones.html -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* MISMOS ESTILOS PERSONALIZADOS QUE EN INDEX.HTML */
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
+        .bg-brand-blue-dark { background-color: #0F172A; }
+        .bg-brand-blue-light { background-color: #EFF6FF; }
+        .text-brand-blue { color: #1E40AF; }
+        .btn-primary { background-color: #1E40AF; color: white; transition: background-color 0.3s ease, transform 0.2s ease; }
+        .btn-primary:hover { background-color: #1D4ED8; transform: translateY(-2px); }
+        .header-logo { height: 48px; }
+        section[id] { scroll-margin-top: 140px; }
+        @keyframes text-color-pulse { 0%, 100% { color: #FFFFFF; } 50% { color: #F97316; } }
+        .animated-banner-text { animation: text-color-pulse 3s ease-in-out infinite; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; }
+         /* Animaciones para el banner de frases rotativas */
+        @keyframes slideInFromRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOutToLeft {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+        .slide-in {
+            animation: slideInFromRight 0.5s ease-out forwards;
+        }
+        .slide-out {
+            animation: slideOutToLeft 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+    <!-- HEADER es idéntico al de servicio-sillones.html -->
+     <div class="bg-brand-blue-dark text-white text-center py-2 px-4 text-base font-medium sticky top-0 z-50">
+        <div class="animated-banner-text">
+            <p>Horario de atención: <u>7 de la mañana a 12 de la noche</u></p>
+            <p class="text-sm font-semibold">Atendemos a toda la Región Metropolitana</p>
+        </div>
+    </div>
+    <header class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-[64px] z-40">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="https://iili.io/FWZd4HJ.png" alt="Logo de Clean Click" class="header-logo w-auto">
+                <span class="hidden sm:inline ml-3 text-xl font-bold text-slate-800">Clean Click Aroma a Limpio</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="text-slate-600 hover:text-brand-blue font-medium">Home</a>
+                <a href="index.html#porque-elegirnos" class="text-slate-600 hover:text-brand-blue font-medium">Beneficios</a>
+                <!-- Dropdown de Servicios para Escritorio -->
+                <div class="relative group">
+                    <span class="text-slate-600 hover:text-brand-blue font-medium items-center inline-flex cursor-pointer">
+                        Servicios <i class="fas fa-chevron-down text-xs ml-2 transition-transform group-hover:rotate-180"></i>
+                    </span>
+                    <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-50 border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                        <a href="servicio-sillones.html" class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue">Sillones y Sofás</a>
+                        <a href="servicio-alfombras.html" class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue">Alfombras</a>
+                        <a href="servicio-colchones.html" class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue">Colchones</a>
+                    </div>
+                </div>
+                <a href="index.html#proceso" class="text-slate-600 hover:text-brand-blue font-medium">Proceso</a>
+                <a href="index.html#testimonios" class="text-slate-600 hover:text-brand-blue font-medium">Testimonios</a>
+                <a href="index.html#faq" class="text-slate-600 hover:text-brand-blue font-medium">Preguntas</a>
+            </nav>
+            <button class="open-chat-popup hidden md:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center">
+                <span>Contacta Aquí</span>
+                <span class="text-xs font-normal">Atención 7am - 12am</span>
+            </button>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-slate-800 hover:text-brand-blue"><i class="fas fa-bars text-2xl pointer-events-none"></i></button>
+            </div>
+        </div>
+        <!-- Mobile Menu (con enlaces a index.html) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
+             <nav class="flex flex-col p-4 space-y-2">
+                <a href="index.html" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Home</a>
+                <a href="index.html#porque-elegirnos" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Beneficios</a>
+                <!-- Dropdown/Acordeón de Servicios para Móvil -->
+                <div>
+                    <div class="flex items-center justify-between hover:bg-blue-50 rounded-md">
+                        <a href="index.html#servicios" class="mobile-link text-slate-700 hover:text-brand-blue p-3 font-medium flex-grow">Servicios</a>
+                        <button id="mobile-services-toggle" class="p-3 text-slate-700 hover:text-brand-blue">
+                            <i class="fas fa-chevron-down transform transition-transform pointer-events-none"></i>
+                        </button>
+                    </div>
+                    <div id="mobile-services-submenu" class="pl-4 pt-2 accordion-content">
+                        <a href="servicio-sillones.html" class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Sillones y Sofás</a>
+                        <a href="servicio-alfombras.html" class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Alfombras</a>
+                        <a href="servicio-colchones.html" class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Colchones</a>
+                    </div>
+                </div>
+                <a href="index.html#proceso" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Proceso</a>
+                <a href="index.html#testimonios" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Testimonios</a>
+                <a href="index.html#faq" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Preguntas</a>
+                <button class="open-chat-popup mt-2 w-full btn-primary font-bold py-3 px-6 rounded-full shadow-lg inline-flex flex-col items-center">
+                    <span><i class="fab fa-whatsapp pointer-events-none"></i> Contacta Aquí</span>
+                    <span class="text-xs font-normal mt-1">Atención 7am - 12am</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Sección Héroe del Servicio -->
+        <section class="bg-brand-blue-light py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-5xl font-black text-slate-900">Servicio Especializado en Limpieza de Alfombras</h1>
+                <p class="mt-4 text-xl text-slate-600 max-w-3xl mx-auto">
+                    Devolvemos la vida, el color y la suavidad a tus alfombras con nuestro <strong class="text-brand-blue">lavado profesional a domicilio</strong>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Rotating Phrases Banner -->
+        <section class="bg-brand-blue-dark py-4">
+            <div class="max-w-5xl mx-auto px-6 text-center">
+                <div id="rotating-text-container" class="relative h-7 flex items-center justify-center overflow-hidden">
+                    <!-- Las frases rotativas se insertarán aquí con JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contenido Detallado del Servicio -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="prose lg:prose-lg max-w-none text-slate-700">
+                    <h2 class="text-3xl font-bold text-slate-800">Una Alfombra Limpia Transforma tu Espacio</h2>
+                    <p>Las alfombras no solo aportan calidez, sino que también actúan como un filtro, atrapando polvo y suciedad. Un <strong>lavado de alfombras</strong> periódico es esencial para mantener un ambiente saludable. Ofrecemos un <strong>servicio de limpieza de alfombras a domicilio</strong> en toda la <strong>Región Metropolitana</strong>, incluyendo comunas como Las Condes, Providencia, Ñuñoa y Santiago Centro.</p>
+                    
+                    <h3 class="text-2xl font-bold text-slate-800 mt-12">Nuestra Técnica: Limpieza Profunda y Cuidadosa</h3>
+                    <p>Combinamos maquinaria de última generación con productos ecológicos para garantizar una limpieza profunda. Ya sea que necesites una <strong>limpieza de alfombra muro a muro</strong> o el lavado de una <strong>alfombra decorativa</strong>, tenemos la solución.</p>
+                    
+                    <!-- Lista de técnica mejorada -->
+                    <div class="mt-8 space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-search"></i></div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-slate-800">Diagnóstico Inicial en tu casa</h4>
+                                <p class="mt-1">Evaluamos el tipo de fibra y el nivel de suciedad para aplicar el tratamiento más adecuado.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-eraser"></i></div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-slate-800">Eliminación de Manchas</h4>
+                                <p class="mt-1">Aplicamos desmanchadores específicos para tratar y eliminar manchas difíciles, devolviendo la uniformidad al color.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-water"></i></div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-slate-800">Lavado y Enjuague Profundo</h4>
+                                <p class="mt-1">Nuestro sistema de inyección y extracción elimina la suciedad desde la base de la alfombra, sin dejar residuos pegajosos.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-palette"></i></div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-slate-800">Colores Revitalizados</h4>
+                                <p class="mt-1">Nuestro proceso reaviva los colores originales, haciendo que tu alfombra luzca como nueva.</p>
+                            </div>
+                        </div>
+                         <div class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-tag"></i></div>
+                            <div class="ml-4">
+                                <h4 class="font-bold text-slate-800">Precios Transparentes</h4>
+                                <p class="mt-1">Ofrecemos <strong>precios de lavado de alfombras</strong> claros y competitivos. Solicita tu cotización sin compromiso.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-slate-800 mt-12">Servicios para Todo Tipo de Alfombras</h3>
+                    <p>Nuestro equipo está capacitado para limpiar cualquier tipo de alfombra, adaptando el proceso para proteger su integridad y textura.</p>
+                     
+                     <!-- Lista de tipos de alfombras mejorada -->
+                    <div class="mt-6 grid sm:grid-cols-2 gap-x-8 gap-y-4 not-prose">
+                        <div class="flex items-center text-slate-700">
+                            <i class="fas fa-check-circle text-brand-blue mr-3"></i>
+                            <span>Limpieza de alfombras muro a muro.</span>
+                        </div>
+                        <div class="flex items-center text-slate-700">
+                            <i class="fas fa-check-circle text-brand-blue mr-3"></i>
+                            <span>Lavado de alfombras decorativas.</span>
+                        </div>
+                        <div class="flex items-center text-slate-700">
+                            <i class="fas fa-check-circle text-brand-blue mr-3"></i>
+                            <span>Limpieza de cubrepisos.</span>
+                        </div>
+                        <div class="flex items-center text-slate-700">
+                            <i class="fas fa-check-circle text-brand-blue mr-3"></i>
+                            <span>Escaleras alfombradas.</span>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta de cierre -->
+                    <div class="mt-12 not-prose">
+                        <div class="bg-blue-50 border border-blue-200 p-8 rounded-2xl shadow-sm">
+                            <p class="text-center text-lg text-slate-800">Si buscas un servicio para <strong>lavar alfombras a domicilio</strong> eficiente y de confianza en Santiago, Clean Click es tu mejor aliado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA (Idéntica) -->
+        <section class="bg-brand-blue-light">
+            <div class="container mx-auto px-6 py-20 text-center">
+                <h2 class="text-4xl font-extrabold text-slate-900">¿Listo para una alfombra como nueva?</h2>
+                <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">Recupera la belleza y frescura de tus alfombras hoy mismo. Contáctanos, uno de nuestros expertos te asesorará</p>
+                <div class="mt-8">
+                    <button class="open-chat-popup inline-flex flex-col items-center bg-white text-brand-blue text-xl font-bold py-3 px-12 rounded-full shadow-xl transform hover:scale-105 transition-transform">
+                        <span>¡Sí, Quiero Contactarme Ahora!</span>
+                        <span class="text-sm font-normal mt-1">Atención 7am - 12am</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- FOOTER Y SCRIPTS (Idénticos) -->
+    <footer class="bg-brand-blue-dark text-slate-300">
+        <div class="container mx-auto px-6 pt-16 pb-8">
+            <div class="grid md:grid-cols-3 gap-12 text-center md:text-left">
+                <!-- Columna 1: Logo y Marca -->
+                <div>
+                    <a href="index.html" class="inline-block">
+                        <img src="https://iili.io/FWZd4HJ.png" alt="Logo de Clean Click en el footer" class="h-12 w-auto mx-auto md:mx-0">
+                    </a>
+                    <p class="mt-4 font-bold text-white">Clean Click Aroma a Limpio</p>
+                    <p class="mt-2 text-sm max-w-xs mx-auto md:mx-0">
+                        Expertos en limpieza profesional de tapices y alfombras para un hogar renovado.
+                    </p>
+                    <div class="mt-6 flex justify-center md:justify-start items-center space-x-4">
+                        <span class="font-semibold">Visítanos en Instagram</span>
+                        <a href="https://www.instagram.com/cleanclick.aromaalimpio/" target="_blank" class="text-2xl hover:text-white transition-colors"><i class="fab fa-instagram pointer-events-none"></i></a>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Navegación -->
+                <div>
+                    <h3 class="font-bold text-white tracking-wider uppercase">Navegación</h3>
+                    <nav class="mt-4 flex flex-col space-y-2">
+                        <a href="index.html#porque-elegirnos" class="hover:text-white transition-colors">Beneficios</a>
+                        <a href="index.html#servicios" class="hover:text-white transition-colors">Servicios</a>
+                        <a href="index.html#proceso" class="hover:text-white transition-colors">Proceso</a>
+                        <a href="index.html#testimonios" class="hover:text-white transition-colors">Testimonios</a>
+                        <a href="index.html#faq" class="hover:text-white transition-colors">Preguntas Frecuentes</a>
+                    </nav>
+                </div>
+
+                <!-- Columna 3: Contacto -->
+                <div>
+                    <h3 class="font-bold text-white tracking-wider uppercase">Contáctanos</h3>
+                     <div class="mt-4 border border-slate-700 rounded-lg p-4">
+                        <p class="text-sm">
+                            Uno de nuestro expertos se encuentra disponible para atenderte. Recuerda que nuestro horario de atención de 7 de la mañana a las 12 de la noche.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-8 border-slate-700/50">
+            <!-- Barra Inferior -->
+            <div class="text-center text-slate-400 text-sm">
+                 <p>&copy; 2025 Clean Click. Todos los derechos reservados.</p>
+                 <p class="mt-1">Diseñado por <a href="https://lumina-lab.io/" target="_blank" rel="noopener noreferrer" class="font-semibold hover:text-white">Lumina Labs</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón Flotante y Pop-up de Chat (Idéntico a index.html) -->
+    <button id="cta-flotante" class="open-chat-popup fixed bottom-5 right-5 bg-[#1E40AF] hover:bg-[#1D4ED8] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50">
+        <i class="fas fa-comment-dots text-4xl pointer-events-none"></i>
+    </button>
+
+    <div id="chat-popup" class="fixed bottom-24 right-5 max-w-sm w-[calc(100%-2.5rem)] bg-white rounded-2xl shadow-xl text-left opacity-0 transform translate-y-4 pointer-events-none transition-all duration-300 ease-in-out z-40 overflow-hidden">
+        <div class="flex justify-between items-center p-4 bg-slate-50 border-b border-slate-200">
+            <div class="flex items-center">
+                <img src="https://iili.io/FWZd4HJ.png" alt="Avatar de Clean Click" class="w-10 h-10 rounded-full mr-3 object-contain">
+                <span class="font-bold text-slate-800">Clean Click Aroma a Limpio</span>
+            </div>
+            <button id="close-popup" class="text-slate-400 hover:text-slate-800 text-3xl font-light leading-none">&times;</button>
+        </div>
+        <div class="p-6">
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                <p class="text-slate-600 mb-4">Gracias por estar aquí.</p>
+                <p class="text-slate-600 mb-4">Nuestro horario de atención es ininterrumpido de <strong>7 de la mañana a 12 de la noche</strong>.</p>
+                <p class="text-slate-600">Fuera de ese horario, déjanos tu mensaje con toda confianza y al día siguiente te escribiremos 😉.</p>
+                <div class="mt-6 text-center">
+                    <a href="https://wa.me/+56957079910?text=Hola,%20me%20gustar%C3%ADa%20cotizar%20la%20limpieza%20de%20mi%20alfombra." target="_blank" id="cta-popup" class="inline-block btn-primary font-bold py-2 px-8 rounded-full shadow-md">Escríbenos</a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-[-10px] right-6 w-0 h-0 border-x-transparent border-x-[10px] border-t-[10px] border-t-white"></div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lógica para menú móvil y pop-up de chat
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            const mobileServicesToggle = document.getElementById('mobile-services-toggle');
+            if(mobileServicesToggle) {
+                const mobileServicesSubmenu = document.getElementById('mobile-services-submenu');
+                const mobileServicesIcon = mobileServicesToggle.querySelector('i');
+                mobileServicesToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isActive = mobileServicesSubmenu.style.maxHeight && mobileServicesSubmenu.style.maxHeight !== '0px';
+                    if (!isActive) {
+                        mobileServicesSubmenu.style.maxHeight = mobileServicesSubmenu.scrollHeight + 'px';
+                        if(mobileServicesIcon) mobileServicesIcon.style.transform = 'rotate(180deg)';
+                    } else {
+                        mobileServicesSubmenu.style.maxHeight = '0px';
+                        if(mobileServicesIcon) mobileServicesIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+
+             // --- Lógica para el banner de frases rotativas ---
+            const rotatingPhrases = [
+                "¿Esa mancha de vino no quiere salir?",
+                "¿Te estás cambiando de casa?, se vería linda con todo limpio.",
+                "¿Harás una fiesta en tu casa?",
+                "No, me digas... ¿la fiesta ya fue?",
+                "¿Vienen los suegros de visita?",
+                "¿Tus alergias no te dejan en paz?",
+                "¿Te pidieron cuidar al 'perrhijo' de un amigo?",
+                "¿Le sacaste los pañales a tu pequeño?"
+            ];
+            let currentPhraseIndex = 0;
+            const phraseContainer = document.getElementById('rotating-text-container');
+
+            if (phraseContainer) {
+                const showNextPhrase = () => {
+                    const currentElement = phraseContainer.querySelector('span');
+                    if (currentElement) {
+                        currentElement.classList.add('slide-out');
+                    }
+
+                    setTimeout(() => {
+                        if (currentElement) {
+                            phraseContainer.innerHTML = ''; // Limpia el contenedor
+                        }
+                        currentPhraseIndex = (currentPhraseIndex + 1) % rotatingPhrases.length;
+                        const newElement = document.createElement('span');
+                        newElement.textContent = `“ ${rotatingPhrases[currentPhraseIndex]} ”`;
+                        newElement.className = 'text-white text-base md:text-lg font-semibold absolute whitespace-nowrap slide-in';
+                        phraseContainer.appendChild(newElement);
+                    }, 500); // Debe coincidir con la duración de la animación de salida
+                };
+
+                // Muestra la primera frase inmediatamente al cargar
+                const initialElement = document.createElement('span');
+                initialElement.textContent = `“ ${rotatingPhrases[0]} ”`;
+                initialElement.className = 'text-white text-base md:text-lg font-semibold absolute whitespace-nowrap slide-in';
+                phraseContainer.appendChild(initialElement);
+
+                // Inicia el intervalo para cambiar las frases
+                setInterval(showNextPhrase, 4000);
+            }
+
+            // Lógica para el pop-up de chat
+            const allPopupTriggers = document.querySelectorAll('.open-chat-popup');
+            const chatPopup = document.getElementById('chat-popup');
+            const closePopupBtn = document.getElementById('close-popup');
+            if(allPopupTriggers.length > 0 && chatPopup && closePopupBtn) {
+                const togglePopup = () => {
+                    chatPopup.classList.toggle('opacity-0');
+                    chatPopup.classList.toggle('translate-y-4');
+                    chatPopup.classList.toggle('pointer-events-none');
+                };
+                allPopupTriggers.forEach(button => button.addEventListener('click', (e) => { e.stopPropagation(); togglePopup(); }));
+                closePopupBtn.addEventListener('click', (e) => { e.stopPropagation(); togglePopup(); });
+                 document.addEventListener('click', (e) => {
+                    const isPopupOpen = !chatPopup.classList.contains('opacity-0');
+                    if (isPopupOpen && !chatPopup.contains(e.target) && !e.target.closest('.open-chat-popup')) {
+                        togglePopup();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

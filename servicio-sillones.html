@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean Click | Limpieza Profesional de Sillones a Vapor</title>
+    <meta name="description" content="Servicio experto de limpieza de sillones, alfombras y colchones a vapor. Eliminamos manchas, ácaros y olores. ¡Cotiza tu servicio a domicilio hoy!">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Estilos personalizados */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC;
+            scroll-behavior: smooth;
+        }
+        .bg-brand-blue-dark { background-color: #0F172A; }
+        .bg-brand-blue-light { background-color: #EFF6FF; }
+        .text-brand-blue { color: #1E40AF; }
+        .text-brand-cyan { color: #06B6D4; }
+        
+        .btn-primary {
+            background-color: #1E40AF;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: #1D4ED8;
+            transform: translateY(-2px);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+        }
+        .header-logo { height: 48px; }
+        .hero-image-container {
+            position: relative;
+            min-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .hero-image-container { min-height: 600px; }
+        }
+        section[id] { scroll-margin-top: 140px; }
+
+        @keyframes text-color-pulse {
+            0%, 100% { color: #FFFFFF; }
+            50% { color: #F97316; }
+        }
+        .animated-banner-text { animation: text-color-pulse 3s ease-in-out infinite; }
+
+        /* Animaciones para el banner de frases rotativas */
+        @keyframes slideInFromRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOutToLeft {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+        .slide-in {
+            animation: slideInFromRight 0.5s ease-out forwards;
+        }
+        .slide-out {
+            animation: slideOutToLeft 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TNPJND5D"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Banner de Horario de Atención -->
+    <div class="bg-brand-blue-dark text-white text-center py-2 px-4 text-base font-medium sticky top-0 z-50">
+        <div class="animated-banner-text">
+            <p>Horario de atención: <u>7 de la mañana a 12 de la noche</u></p>
+            <p class="text-sm font-semibold">Atendemos a toda la Región Metropolitana</p>
+        </div>
+    </div>
+    <!-- Fin del Banner -->
+
+    <!-- Header -->
+    <header class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-[64px] z-40">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="https://iili.io/FWZd4HJ.png" alt="Logo de Clean Click" class="header-logo w-auto">
+                <span class="hidden sm:inline ml-3 text-xl font-bold text-slate-800">Clean Click Aroma a Limpio</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="text-slate-600 hover:text-brand-blue font-medium">Home</a>
+                <a href="#porque-elegirnos" class="text-slate-600 hover:text-brand-blue font-medium">Beneficios</a>
+                <!-- Dropdown de Servicios para Escritorio -->
+                <div class="relative group">
+                    <a href="#servicios" class="text-slate-600 hover:text-brand-blue font-medium items-center inline-flex cursor-pointer">
+                        Servicios <i class="fas fa-chevron-down text-xs ml-2 transition-transform group-hover:rotate-180"></i>
+                    </a>
+                    <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-50 border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                        <a href="servicio-sillones.html" class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue">Sillones y Sofás</a>
+                        <a href="servicio-alfombras.html" class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue">Alfombras</a>
+                        <a href="servicio-colchones.html" class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue">Colchones</a>
+                    </div>
+                </div>
+                <a href="#proceso" class="text-slate-600 hover:text-brand-blue font-medium">Proceso</a>
+                <a href="#testimonios" class="text-slate-600 hover:text-brand-blue font-medium">Testimonios</a>
+                <a href="#faq" class="text-slate-600 hover:text-brand-blue font-medium">Preguntas</a>
+            </nav>
+            <button id="cta-header" class="open-chat-popup hidden md:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center">
+                <span>Contacta Aquí</span>
+                <span class="text-xs font-normal">Atención 7am - 12am</span>
+            </button>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-slate-800 hover:text-brand-blue"><i class="fas fa-bars text-2xl pointer-events-none"></i></button>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
+            <nav class="flex flex-col p-4 space-y-2">
+                <a href="index.html" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Home</a>
+                <a href="#porque-elegirnos" id="nav-mobile-beneficios" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Beneficios</a>
+                <!-- Dropdown/Acordeón de Servicios para Móvil -->
+                <div>
+                    <div class="flex items-center justify-between hover:bg-blue-50 rounded-md">
+                        <a href="#servicios" id="nav-mobile-servicios" class="mobile-link text-slate-700 hover:text-brand-blue p-3 font-medium flex-grow">Servicios</a>
+                        <button id="mobile-services-toggle" class="p-3 text-slate-700 hover:text-brand-blue">
+                            <i class="fas fa-chevron-down transform transition-transform pointer-events-none"></i>
+                        </button>
+                    </div>
+                    <div id="mobile-services-submenu" class="pl-4 pt-2 accordion-content">
+                        <a href="servicio-sillones.html" class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Sillones y Sofás</a>
+                        <a href="servicio-alfombras.html" class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Alfombras</a>
+                        <a href="servicio-colchones.html" class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Colchones</a>
+                    </div>
+                </div>
+                <a href="#proceso" id="nav-mobile-proceso" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Proceso</a>
+                <a href="#testimonios" id="nav-mobile-testimonios" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Testimonios</a>
+                <a href="#faq" id="nav-mobile-preguntas" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Preguntas</a>
+                <button id="cta-mobile-menu" class="open-chat-popup mt-2 w-full btn-primary font-bold py-3 px-6 rounded-full shadow-lg inline-flex flex-col items-center">
+                    <span><i class="fab fa-whatsapp pointer-events-none"></i> Contacta Aquí</span>
+                    <span class="text-xs font-normal mt-1">Atención 7am - 12am</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="relative bg-brand-blue-light">
+            <div>
+                <!-- Columna de Texto -->
+                <div class="container mx-auto">
+                    <div class="px-6 py-16 md:py-24 text-center md:text-left md:w-1/2">
+                        <h1 class="text-3xl md:text-4xl font-black text-slate-900 leading-tight">
+                            Renueva tus Sillones, Sofás, Alfombras y Colchones con 
+                            <span class="text-brand-blue">Limpieza a Vapor Profesional</span>
+                        </h1>
+                        <p class="mt-4 text-lg text-slate-600">
+                            Eliminamos suciedad profunda, manchas, ácaros y olores. Servicio a domicilio rápido y garantizado.
+                        </p>
+                        <p class="mt-2 text-lg text-slate-600 font-medium">
+                            Somos <strong class="text-brand-blue">Clean Click</strong>, expertos en limpieza para tu hogar.
+                        </p>
+                        <div class="mt-8">
+                            <button id="cta-hero" class="open-chat-popup inline-flex flex-col items-center btn-primary text-lg font-bold py-3 px-10 rounded-full shadow-xl transform hover:scale-105 transition-transform">
+                                <span>Contáctanos Aquí</span>
+                                <span class="text-sm font-normal mt-1">Atención 7am - 12am</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Columna de Imagen -->
+                <div class="md:absolute md:top-0 md:right-0 md:w-1/2 md:h-full">
+                    <div class="hero-image-container h-full">
+                        <img src="https://iili.io/FXcFfTX.png" 
+                             alt="Primer plano de una máquina profesional limpiando un sillón a vapor" 
+                             class="absolute inset-0 w-full h-full object-cover object-top"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/EFF6FF/1E40AF?text=Limpieza+Profesional';">
+                        <!-- Elemento Destacado (Badge) -->
+                        <div class="absolute bottom-4 left-4 bg-white p-3 rounded-2xl shadow-lg flex items-center space-x-3 animate-pulse">
+                            <div class="bg-blue-100 p-2 rounded-full">
+                                <i class="fas fa-shield-alt text-brand-blue"></i>
+                            </div>
+                            <p class="text-sm font-semibold text-slate-800">Eliminamos el 99.9% de los ácaros</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rotating Phrases Banner -->
+        <section class="bg-brand-blue-dark py-4 relative z-20">
+            <div class="max-w-5xl mx-auto px-6 text-center">
+                <div id="rotating-text-container" class="relative h-7 flex items-center justify-center overflow-hidden">
+                    <!-- Las frases rotativas se insertarán aquí con JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats / Authority Section -->
+        <section class="bg-white py-12">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="md:border-r md:border-slate-200 px-4">
+                        <i class="fas fa-users text-4xl text-brand-blue mb-3"></i>
+                        <p class="text-4xl font-black text-brand-blue">+700</p>
+                        <p class="mt-1 text-slate-500 text-lg">Clientes por año</p>
+                    </div>
+                    <div class="md:border-r md:border-slate-200 px-4">
+                        <i class="fas fa-check-circle text-4xl text-brand-blue mb-3"></i>
+                        <p class="text-4xl font-black text-brand-blue">+1000</p>
+                        <p class="mt-1 text-slate-500 text-lg">Servicios por año</p>
+                    </div>
+                    <div class="px-4">
+                        <i class="fab fa-instagram text-4xl text-brand-blue mb-3"></i>
+                        <p class="text-4xl font-black text-brand-blue">+37 mil</p>
+                        <p class="mt-1 text-slate-500 text-lg">Seguidores en Instagram</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Por qué elegirnos Section -->
+        <section id="porque-elegirnos" class="py-16 bg-brand-blue-light">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3 class="mt-4 text-lg font-bold text-slate-800">Satisfacción Garantizada</h3>
+                        <p class="mt-1 text-slate-500">Garantía de 7 días en todos nuestros servicios.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="mt-4 text-lg font-bold text-slate-800">Productos Ecológicos</h3>
+                        <p class="mt-1 text-slate-500">Seguros para tu familia, mascotas y el planeta.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="mt-4 text-lg font-bold text-slate-800">Servicio Rápido</h3>
+                        <p class="mt-1 text-slate-500">Agendamos tu visita en tiempo récord.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h3 class="mt-4 text-lg font-bold text-slate-800">Técnicos Expertos</h3>
+                        <p class="mt-1 text-slate-500">Personal calificado y de total confianza.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Beneficios Section -->
+        <section id="beneficios" class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-slate-900">Resultados que transforman tu hogar</h2>
+                <p class="mt-2 text-slate-600 max-w-2xl mx-auto">Más que una limpieza, es una renovación completa para tus espacios.</p>
+                <div class="mt-12 grid md:grid-cols-3 gap-8">
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 text-center transform hover:-translate-y-2 transition-transform">
+                        <i class="fas fa-palette text-4xl text-brand-cyan"></i>
+                        <h3 class="text-xl font-bold mt-4 text-slate-800">Colores más Vivos</h3>
+                        <p class="mt-2 text-slate-600">El vapor de alta potencia reaviva los colores originales de la tela, dejándola como nueva.</p>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 text-center transform hover:-translate-y-2 transition-transform">
+                        <i class="fas fa-shield-virus text-4xl text-brand-cyan"></i>
+                        <h3 class="text-xl font-bold mt-4 text-slate-800">Hogar Desinfectado</h3>
+                        <p class="mt-2 text-slate-600">Elimina el 99.9% de virus, bacterias y ácaros, creando un ambiente más saludable.</p>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 text-center transform hover:-translate-y-2 transition-transform">
+                        <i class="fas fa-wind text-4xl text-brand-cyan"></i>
+                        <h3 class="text-xl font-bold mt-4 text-slate-800">Adiós a los Malos Olores</h3>
+                        <p class="mt-2 text-slate-600">Neutralizamos olores de raíz, dejando una sensación de frescura y limpieza duradera.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nuestros Servicios Section -->
+        <section id="servicios" class="py-20 bg-brand-blue-light">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-slate-900">Nuestros Servicios Especializados</h2>
+                <p class="mt-2 text-slate-600 max-w-2xl mx-auto">Utilizamos la misma tecnología de vapor profesional para renovar cada rincón de tu hogar.</p>
+                <div class="mt-12 grid md:grid-cols-3 gap-8 text-left">
+                    <!-- Servicio 1: Sillones -->
+                    <a href="servicio-sillones.html" class="block bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-brand-blue hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col">
+                        <div class="flex-shrink-0 w-16 h-16 mx-auto flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-3xl">
+                            <i class="fas fa-couch"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mt-6 text-slate-800 text-center">Limpieza de Sillones y Sofás</h3>
+                        <p class="mt-2 text-slate-600 text-center">Devolvemos la vida a tus muebles, eliminando manchas, polvo y alérgenos.</p>
+                        <div class="mt-4 text-slate-600 flex-grow">
+                            <p class="font-semibold text-slate-700">Nos ocupamos de tus:</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li>Sillones y sofás de todo tipo</li>
+                                <li>Sillas de comedor tapizadas</li>
+                                <li>Banqueta y sitiales</li>
+                            </ul>
+                        </div>
+                    </a>
+                    <!-- Servicio 2: Alfombras -->
+                    <a href="servicio-alfombras.html" class="block bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-brand-blue hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col">
+                        <div class="flex-shrink-0 w-16 h-16 mx-auto flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-3xl">
+                           <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mt-6 text-slate-800 text-center">Limpieza de Alfombras</h3>
+                        <p class="mt-2 text-slate-600 text-center">Reavivamos los colores y la textura de tus alfombras, eliminando suciedad y olores.</p>
+                        <div class="mt-4 text-slate-600 flex-grow">
+                            <p class="font-semibold text-slate-700">Disfrutamos limpiando tus:</p>
+                             <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li>Alfombras decorativas (persa, modernas, etc.)</li>
+                                <li>Alfombras muro a muro</li>
+                                <li>Cubrepisos</li>
+                            </ul>
+                        </div>
+                    </a>
+                    <!-- Servicio 3: Colchones -->
+                    <a href="servicio-colchones.html" class="block bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-brand-blue hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col">
+                         <div class="flex-shrink-0 w-16 h-16 mx-auto flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-3xl">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mt-6 text-slate-800 text-center">Limpieza de Colchones</h3>
+                        <p class="mt-2 text-slate-600 text-center">Higienizamos tu colchón para un descanso saludable y libre de alérgenos.</p>
+                        <div class="mt-4 text-slate-600 flex-grow">
+                            <p class="font-semibold text-slate-700">Ideal para tu descanso:</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li>Colchones de todo tamaño</li>
+                                <li>Respaldos de cama tapizados</li>
+                                <li>Bases de cama tapizadas</li>
+                            </ul>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Cómo Funciona (Proceso) -->
+        <section id="proceso" class="bg-white py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-slate-900">Nuestro Proceso en 3 Simples Pasos</h2>
+                <div class="mt-16 grid md:grid-cols-3 gap-8 relative">
+                    <!-- Línea de conexión con marcadores -->
+                    <div class="hidden md:block absolute top-10 left-0 w-full">
+                        <svg width="100%" height="20" class="overflow-visible">
+                            <line x1="16.66%" y1="10" x2="83.33%" y2="10" stroke="#94A3B8" stroke-width="2" stroke-dasharray="8 8"/>
+                            <circle cx="16.66%" cy="10" r="8" fill="#1E40AF"/>
+                            <circle cx="50%" cy="10" r="8" fill="#1E40AF"/>
+                            <circle cx="83.33%" cy="10" r="8" fill="#1E40AF"/>
+                        </svg>
+                    </div>
+                    <div class="relative flex flex-col items-center">
+                        <div class="h-20"></div> <!-- Spacer -->
+                        <h3 class="text-xl font-bold mt-4">¡Escríbenos!</h3>
+                        <p class="mt-2 text-slate-600">Cuéntanos que necesitas limpiar y te entregaremos un presuesto apropiado para ti.</p>
+                    </div>
+                    <div class="relative flex flex-col items-center">
+                        <div class="h-20"></div> <!-- Spacer -->
+                        <h3 class="text-xl font-bold mt-4">Agenda tu Cita</h3>
+                        <p class="mt-2 text-slate-600">Coordinamos el día y la hora que más te acomode.</p>
+                    </div>
+                    <div class="relative flex flex-col items-center">
+                        <div class="h-20"></div> <!-- Spacer -->
+                        <h3 class="text-xl font-bold mt-4">Disfruta el Resultado</h3>
+                        <p class="mt-2 text-slate-600">Llegamos a tu domicilio y dejamos tu sillón, alfombra y colchón como nuevos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonios -->
+        <section id="testimonios" class="bg-brand-blue-light py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-slate-900">Clientes Satisfechos con Nuestro Trabajo</h2>
+                <p class="mt-2 text-slate-600">La confianza de nuestros clientes es nuestro mejor aval.</p>
+                
+                <!-- Carrusel de Testimonios en Imagen -->
+                <div class="mt-12 relative max-w-4xl mx-auto" id="testimonial-carousel">
+                    <div class="overflow-hidden rounded-2xl shadow-lg">
+                        <div class="flex transition-transform duration-500 ease-in-out" id="carousel-track">
+                            <!-- Slide 1 -->
+                            <div class="min-w-full flex-shrink-0 bg-white flex items-center justify-center p-4 h-64">
+                                <img src="https://iili.io/KqbHSKN.png" alt="Testimonio de cliente 1" class="w-auto h-full object-contain">
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="min-w-full flex-shrink-0 bg-white flex items-center justify-center p-4 h-64">
+                                <img src="https://iili.io/KqbHUlI.png" alt="Testimonio de cliente 2" class="w-auto h-full object-contain">
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="min-w-full flex-shrink-0 bg-white flex items-center justify-center p-4 h-64">
+                                <img src="https://iili.io/KqbHgSt.png" alt="Testimonio de cliente 3" class="w-auto h-full object-contain">
+                            </div>
+                            <!-- Slide 4 -->
+                            <div class="min-w-full flex-shrink-0 bg-white flex items-center justify-center p-4 h-64">
+                                <img src="https://iili.io/KqbH4HX.png" alt="Testimonio de cliente 4" class="w-auto h-full object-contain">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Botones de Navegación -->
+                    <button id="carousel-prev" class="absolute top-1/2 left-0 sm:left-4 -translate-y-1/2 bg-white/60 hover:bg-white text-brand-blue rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center shadow-md transition-colors z-10">
+                        <i class="fas fa-chevron-left pointer-events-none"></i>
+                    </button>
+                    <button id="carousel-next" class="absolute top-1/2 right-0 sm:right-4 -translate-y-1/2 bg-white/60 hover:bg-white text-brand-blue rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center shadow-md transition-colors z-10">
+                        <i class="fas fa-chevron-right pointer-events-none"></i>
+                    </button>
+                </div>
+
+                <div class="mt-12 grid md:grid-cols-3 gap-8">
+                    <div class="rounded-2xl shadow-lg overflow-hidden aspect-video"><div id="player1"></div></div>
+                    <div class="rounded-2xl shadow-lg overflow-hidden aspect-video"><div id="player2"></div></div>
+                    <div class="rounded-2xl shadow-lg overflow-hidden aspect-video"><div id="player3"></div></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ Section -->
+        <section id="faq" class="bg-white py-20">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-slate-900">Resolvemos tus Dudas</h2>
+                <div class="mt-12 max-w-4xl mx-auto grid md:grid-cols-2 gap-x-8 gap-y-4">
+                    <!-- Columna Izquierda -->
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg">
+                            <button id="faq-1" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿Cuál es el área de cobertura?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Actualmente cubrimos la Región Metropolitana completamente. Adicionalmente, llegamos a Algarrobo, El Quisco, Papudo y Zapallar.</p></div>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg">
+                            <button id="faq-2" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿Cuánto demora la limpieza?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">En promedio, la limpieza de un sillón puede tardar 45 minutos.</p></div>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg">
+                            <button id="faq-3" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿Qué tan rápido puedo agendar?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Nuestro equipo de atención está siempre disponible. El tiempo de respuesta promedio para coordinar tu servicio es de solo 5 minutos.</p></div>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg">
+                            <button id="faq-4" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">Si escribo hoy, ¿cuándo pueden venir?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Normalmente agendamos con dos días hábiles de anticipación. Si agendas hoy, lo más probable es que te visitemos pasado mañana.</p></div>
+                        </div>
+                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
+                            <button id="faq-5" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿Se eliminan todas las manchas?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">No todas las manchas logran salir, ya que el resultado depende de la antigüedad y del tipo de mancha. Damos nuestro mejor esfuerzo, pero algunas son muy difíciles de eliminar por completo.</p></div>
+                        </div>
+                    </div>
+                    <!-- Columna Derecha -->
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg">
+                            <button id="faq-6" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿El servicio tiene garantía?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Sí, nuestra garantía se aplica hasta por 7 días después de realizado el servicio. En caso de ser necesario, agendaremos una nueva visita dentro de los siguientes 7 días para revisar el trabajo.</p></div>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg">
+                            <button id="faq-7" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿Cuáles son los tiempos de secado?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Los tiempos promedio son: sillones y sofás, 7 horas; colchones, 5 horas; y alfombras, 12 horas.</p></div>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg">
+                            <button id="faq-8" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿Qué otros tapices limpian?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Además de sillones, nos especializamos en alfombras y colchones. Para colchones, recomendamos agendar el servicio temprano para asegurar un secado eficiente durante el día.</p></div>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-200 rounded-lg">
+                            <button id="faq-9" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿Cómo puedo pagar?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Aceptamos todos los medios de pago: efectivo, transferencia, débito y tarjeta de crédito.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="bg-brand-blue-light">
+            <div class="container mx-auto px-6 py-20 text-center">
+                <h2 class="text-4xl font-extrabold text-slate-900">¿Listo para renovar tus espacios?</h2>
+                <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">Dale a tus tapices y muebles el cuidado profesional que merecen. Contáctanos y recibe tu cotización sin compromiso.</p>
+                <div class="mt-8">
+                    <button id="cta-final" class="open-chat-popup inline-flex flex-col items-center bg-white text-brand-blue text-xl font-bold py-3 px-12 rounded-full shadow-xl transform hover:scale-105 transition-transform">
+                        <span>¡Sí, Quiero Contactarme Ahora!</span>
+                        <span class="text-sm font-normal mt-1">Atención 7am - 12am</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!-- Footer -->
+    <footer class="bg-brand-blue-dark text-slate-300">
+        <div class="container mx-auto px-6 pt-16 pb-8">
+            <div class="grid md:grid-cols-3 gap-12 text-center md:text-left">
+                <!-- Columna 1: Logo y Marca -->
+                <div>
+                    <a href="index.html" class="inline-block">
+                        <img src="https://iili.io/FWZd4HJ.png" alt="Logo de Clean Click en el footer" class="h-12 w-auto mx-auto md:mx-0">
+                    </a>
+                    <p class="mt-4 font-bold text-white">Clean Click Aroma a Limpio</p>
+                    <p class="mt-2 text-sm max-w-xs mx-auto md:mx-0">
+                        Expertos en limpieza profesional de tapices y alfombras para un hogar renovado.
+                    </p>
+                    <div class="mt-6 flex justify-center md:justify-start items-center space-x-4">
+                        <span class="font-semibold">Visítanos en Instagram</span>
+                        <a href="https://www.instagram.com/cleanclick.aromaalimpio/" target="_blank" id="cta-instagram-footer" class="text-2xl hover:text-white transition-colors"><i class="fab fa-instagram pointer-events-none"></i></a>
+                    </div>
+                </div>
+
+                <!-- Columna 2: Navegación -->
+                <div>
+                    <h3 class="font-bold text-white tracking-wider uppercase">Navegación</h3>
+                    <nav class="mt-4 flex flex-col space-y-2">
+                        <a href="#porque-elegirnos" class="hover:text-white transition-colors">Beneficios</a>
+                        <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
+                        <a href="#proceso" class="hover:text-white transition-colors">Proceso</a>
+                        <a href="#testimonios" class="hover:text-white transition-colors">Testimonios</a>
+                        <a href="#faq" class="hover:text-white transition-colors">Preguntas Frecuentes</a>
+                    </nav>
+                </div>
+
+                <!-- Columna 3: Contacto -->
+                <div>
+                    <h3 class="font-bold text-white tracking-wider uppercase">Contáctanos</h3>
+                    <div class="mt-4 border border-slate-700 rounded-lg p-4">
+                        <p class="text-sm">
+                            Uno de nuestro expertos se encuentra disponible para atenderte. Recuerda que nuestro horario de atención de 7 de la mañana a las 12 de la noche.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-8 border-slate-700/50">
+            <!-- Barra Inferior -->
+            <div class="text-center text-slate-400 text-sm">
+                 <p>&copy; 2025 Clean Click. Todos los derechos reservados.</p>
+                 <p class="mt-1">Diseñado por <a href="https://lumina-lab.io/" target="_blank" rel="noopener noreferrer" class="font-semibold hover:text-white">Lumina Labs</a></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Floating Chat Button -->
+    <button 
+        id="cta-flotante"
+        class="open-chat-popup fixed bottom-5 right-5 bg-[#1E40AF] hover:bg-[#1D4ED8] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50">
+        <i class="fas fa-comment-dots text-4xl pointer-events-none"></i>
+    </button>
+
+    <!-- Pop-up de Chat -->
+    <div id="chat-popup" class="fixed bottom-24 right-5 max-w-sm w-[calc(100%-2.5rem)] bg-white rounded-2xl shadow-xl text-left opacity-0 transform translate-y-4 pointer-events-none transition-all duration-300 ease-in-out z-40 overflow-hidden">
+        <!-- Header del Pop-up -->
+        <div class="flex justify-between items-center p-4 bg-slate-50 border-b border-slate-200">
+            <div class="flex items-center">
+                <img src="https://iili.io/FWZd4HJ.png" alt="Avatar de Clean Click" class="w-10 h-10 rounded-full mr-3 object-contain">
+                <span class="font-bold text-slate-800">Clean Click Aroma a Limpio</span>
+            </div>
+            <button id="close-popup" class="text-slate-400 hover:text-slate-800 text-3xl font-light leading-none">&times;</button>
+        </div>
+        <!-- Contenido del Mensaje -->
+        <div class="p-6">
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+                <p class="text-slate-600 mb-4">
+                    Gracias por estar aquí.
+                </p>
+                <p class="text-slate-600 mb-4">
+                    Nuestro horario de atención es ininterrumpido de <strong>7 de la mañana a 12 de la noche</strong>.
+                </p>
+                <p class="text-slate-600">
+                    Fuera de ese horario, déjanos tu mensaje con toda confianza y al día siguiente te escribiremos 😉.
+                </p>
+                <div class="mt-6 text-center">
+                    <a href="https://wa.me/+56957079910?text=Hola,%20me%20gustar%C3%ADa%20cotizar%20la%20limpieza%20de%20mi%20sill%C3%B3n." target="_blank" id="cta-popup" class="inline-block btn-primary font-bold py-2 px-8 rounded-full shadow-md">
+                        Escríbenos
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Cola de la burbuja de chat -->
+        <div class="absolute bottom-[-10px] right-6 w-0 h-0 border-x-transparent border-x-[10px] border-t-[10px] border-t-white"></div>
+    </div>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- Lógica para el menú de hamburguesa ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if(menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // --- Lógica para el desplazamiento suave y cierre del menú móvil ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Cierra el menú móvil si está abierto
+                if (anchor.closest('#mobile-menu') && !mobileMenu.classList.contains('hidden')) {
+                    // Cierra el menú principal, no solo el submenú de servicios
+                    if(!this.closest('#mobile-services-submenu')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+
+                const href = this.getAttribute('href');
+                if (href && href.length > 1) {
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        e.preventDefault(); // Previene el salto brusco
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // --- Lógica para el acordeón de servicios en móvil ---
+        const mobileServicesToggle = document.getElementById('mobile-services-toggle');
+        if(mobileServicesToggle) {
+            const mobileServicesSubmenu = document.getElementById('mobile-services-submenu');
+            const mobileServicesIcon = mobileServicesToggle.querySelector('i');
+            mobileServicesToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isActive = mobileServicesSubmenu.style.maxHeight && mobileServicesSubmenu.style.maxHeight !== '0px';
+                if (!isActive) {
+                    mobileServicesSubmenu.style.maxHeight = mobileServicesSubmenu.scrollHeight + 'px';
+                    if(mobileServicesIcon) mobileServicesIcon.style.transform = 'rotate(180deg)';
+                } else {
+                    mobileServicesSubmenu.style.maxHeight = '0px';
+                    if(mobileServicesIcon) mobileServicesIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+        
+        // --- Lógica para el banner de frases rotativas ---
+        const rotatingPhrases = [
+            "¿Esa mancha de vino no quiere salir?",
+            "¿Te estás cambiando de casa?, se vería linda con todo limpio.",
+            "¿Harás una fiesta en tu casa?",
+            "No, me digas... ¿la fiesta ya fue?",
+            "¿Vienen los suegros de visita?",
+            "¿Tus alergias no te dejan en paz?",
+            "¿Te pidieron cuidar al 'perrihijo' de un amigo?",
+            "¿Le sacaste los pañales a tu pequeño?"
+        ];
+        let currentPhraseIndex = 0;
+        const phraseContainer = document.getElementById('rotating-text-container');
+
+        if (phraseContainer) {
+            const showNextPhrase = () => {
+                const currentElement = phraseContainer.querySelector('span');
+                if (currentElement) {
+                    currentElement.classList.add('slide-out');
+                }
+
+                setTimeout(() => {
+                    if (currentElement) {
+                        phraseContainer.innerHTML = ''; // Limpia el contenedor
+                    }
+                    currentPhraseIndex = (currentPhraseIndex + 1) % rotatingPhrases.length;
+                    const newElement = document.createElement('span');
+                    newElement.textContent = `“ ${rotatingPhrases[currentPhraseIndex]} ”`;
+                    newElement.className = 'text-white text-base md:text-lg font-semibold absolute whitespace-nowrap slide-in';
+                    phraseContainer.appendChild(newElement);
+                }, 500); // Debe coincidir con la duración de la animación de salida
+            };
+
+            // Muestra la primera frase inmediatamente al cargar
+            const initialElement = document.createElement('span');
+            initialElement.textContent = `“ ${rotatingPhrases[0]} ”`;
+            initialElement.className = 'text-white text-base md:text-lg font-semibold absolute whitespace-nowrap slide-in';
+            phraseContainer.appendChild(initialElement);
+
+            // Inicia el intervalo para cambiar las frases
+            setInterval(showNextPhrase, 4000);
+        }
+
+        // --- Lógica para el acordeón de FAQ ---
+        const faqToggles = document.querySelectorAll('.accordion-toggle');
+        faqToggles.forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionContent = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                const isActive = accordionContent.style.maxHeight && accordionContent.style.maxHeight !== '0px';
+
+                if (!isActive) {
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
+                    icon.classList.remove('fa-plus'); icon.classList.add('fa-minus');
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    accordionContent.style.maxHeight = '0px';
+                    icon.classList.remove('fa-minus'); icon.classList.add('fa-plus');
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+
+        // --- Lógica para el Carrusel de Testimonios ---
+        const carouselTrack = document.getElementById('carousel-track');
+        if (carouselTrack) {
+            const prevButton = document.getElementById('carousel-prev');
+            const nextButton = document.getElementById('carousel-next');
+            const slides = Array.from(carouselTrack.children);
+            const slideCount = slides.length;
+            let currentIndex = 0;
+
+            const updateCarouselPosition = () => {
+                if(slides.length > 0) {
+                    const slideWidth = slides[0].getBoundingClientRect().width;
+                    carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+                }
+            };
+            if(nextButton) nextButton.addEventListener('click', () => { currentIndex = (currentIndex + 1) % slideCount; updateCarouselPosition(); });
+            if(prevButton) prevButton.addEventListener('click', () => { currentIndex = (currentIndex - 1 + slideCount) % slideCount; updateCarouselPosition(); });
+            window.addEventListener('resize', updateCarouselPosition);
+            setTimeout(updateCarouselPosition, 100);
+        }
+        
+        // --- Lógica para el Pop-up de chat (con funcionalidad de toggle) ---
+        const allPopupTriggers = document.querySelectorAll('.open-chat-popup');
+        const chatPopup = document.getElementById('chat-popup');
+        const closePopupBtn = document.getElementById('close-popup');
+
+        const togglePopup = () => {
+            if(chatPopup) {
+                chatPopup.classList.toggle('opacity-0');
+                chatPopup.classList.toggle('translate-y-4');
+                chatPopup.classList.toggle('pointer-events-none');
+            }
+        };
+        
+        if (allPopupTriggers.length > 0 && chatPopup && closePopupBtn) {
+            allPopupTriggers.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    togglePopup();
+                });
+            });
+
+            closePopupBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (!chatPopup.classList.contains('opacity-0')) {
+                    togglePopup();
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                const isPopupOpen = !chatPopup.classList.contains('opacity-0');
+                if (isPopupOpen && !chatPopup.contains(e.target) && !e.target.closest('.open-chat-popup')) {
+                    togglePopup();
+                }
+            });
+        }
+    });
+    </script>
+
+    <!-- YouTube IFrame API -->
+    <script>
+        // Carga la API de IFrame Player de YouTube de forma asíncrona.
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player1, player2, player3;
+        var videoPlayed1 = false, videoPlayed2 = false, videoPlayed3 = false;
+
+        // Esta función se llama automáticamente cuando la API está lista.
+        function onYouTubeIframeAPIReady() {
+            player1 = new YT.Player('player1', {
+                height: '100%',
+                width: '100%',
+                videoId: 'pHdzZYcw5Gc', // ID Video 1
+                playerVars: { 'playsinline': 1 },
+                events: { 'onStateChange': onPlayerStateChange1 }
+            });
+            player2 = new YT.Player('player2', {
+                height: '100%',
+                width: '100%',
+                videoId: 'Yx4lKEeCwss', // ID Video 2
+                playerVars: { 'playsinline': 1 },
+                events: { 'onStateChange': onPlayerStateChange2 }
+            });
+            player3 = new YT.Player('player3', {
+                height: '100%',
+                width: '100%',
+                videoId: 'gtggraD_N_w', // ID Video 3
+                playerVars: { 'playsinline': 1 },
+                events: { 'onStateChange': onPlayerStateChange3 }
+            });
+        }
+
+        // Estas funciones envían el evento a GTM cuando un video se reproduce por primera vez.
+        function onPlayerStateChange1(event) {
+            if (event.data == YT.PlayerState.PLAYING && !videoPlayed1) {
+                videoPlayed1 = true;
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'youtube_play',
+                    'video_title': 'Testimonio 1'
+                });
+            }
+        }
+        function onPlayerStateChange2(event) {
+            if (event.data == YT.PlayerState.PLAYING && !videoPlayed2) {
+                videoPlayed2 = true;
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'youtube_play',
+                    'video_title': 'Testimonio 2'
+                });
+            }
+        }
+        function onPlayerStateChange3(event) {
+            if (event.data == YT.PlayerState.PLAYING && !videoPlayed3) {
+                videoPlayed3 = true;
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'youtube_play',
+                    'video_title': 'Testimonio 3'
+                });
+            }
+        }
+    </script>
+</body>
+</html>
