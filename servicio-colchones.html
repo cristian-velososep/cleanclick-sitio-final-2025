@@ -56,7 +56,7 @@
                 <img src="https://iili.io/FWZd4HJ.png" alt="Logo de Clean Click" class="header-logo w-auto">
                 <span class="hidden sm:inline ml-3 text-xl font-bold text-slate-800">Clean Click Aroma a Limpio</span>
             </a>
-            <nav class="hidden md:flex items-center space-x-6">
+            <nav class="hidden lg:flex items-center space-x-6">
                 <a href="index.html" class="text-slate-600 hover:text-brand-blue font-medium">Home</a>
                 <a href="index.html#porque-elegirnos" class="text-slate-600 hover:text-brand-blue font-medium">Beneficios</a>
                 <!-- Dropdown de Servicios para Escritorio -->
@@ -74,17 +74,17 @@
                 <a href="index.html#testimonios" class="text-slate-600 hover:text-brand-blue font-medium">Testimonios</a>
                 <a href="index.html#faq" class="text-slate-600 hover:text-brand-blue font-medium">Preguntas</a>
             </nav>
-            <button class="open-chat-popup hidden md:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center">
+            <button class="open-chat-popup hidden lg:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center">
                 <span>Contacta Aquí</span>
                 <span class="text-xs font-normal">Atención 7am - 12am</span>
             </button>
-            <div class="md:hidden">
+            <div class="lg:hidden">
                 <button id="menu-toggle" class="text-slate-800 hover:text-brand-blue"><i class="fas fa-bars text-2xl pointer-events-none"></i></button>
             </div>
         </div>
-        <!-- Mobile Menu (con enlaces a index.html) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
-             <nav class="flex flex-col p-4 space-y-2">
+        <!-- Mobile Menu Pop-up -->
+        <div id="mobile-menu" class="absolute top-full right-6 mt-2 w-72 origin-top-right rounded-xl bg-white p-2 shadow-lg ring-1 ring-slate-900/5 opacity-0 scale-95 invisible transition-all duration-200 ease-in-out z-50">
+             <nav class="flex flex-col">
                 <a href="index.html" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Home</a>
                 <a href="index.html#porque-elegirnos" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Beneficios</a>
                 <!-- Dropdown/Acordeón de Servicios para Móvil -->
@@ -125,8 +125,8 @@
 
         <!-- Rotating Phrases Banner -->
         <section class="bg-brand-blue-dark py-4">
-            <div class="max-w-5xl mx-auto px-6 text-center">
-                <div id="rotating-text-container" class="relative h-7 flex items-center justify-center overflow-hidden">
+            <div class="max-w-5xl mx-auto px-2 sm:px-6 text-center">
+                <div id="rotating-text-container" class="relative h-14 lg:h-7 flex items-center justify-center overflow-hidden">
                     <!-- Las frases rotativas se insertarán aquí con JavaScript -->
                 </div>
             </div>
@@ -135,103 +135,106 @@
         <!-- Contenido Detallado del Servicio -->
         <section class="py-20 bg-white">
             <div class="container mx-auto px-6 max-w-4xl">
-                <div class="prose lg:prose-lg max-w-none text-slate-700">
-                    <h2 class="text-3xl font-bold text-slate-800">Duerme en un Entorno Limpio y Saludable</h2>
-                    <p>Pasamos un tercio de nuestra vida en la cama. Sin embargo, los colchones son un caldo de cultivo para ácaros, bacterias, células muertas y otros alérgenos que pueden afectar nuestra salud respiratoria y calidad de sueño. Nuestro servicio de <strong>limpieza de colchones a vapor</strong> está diseñado para higienizar tu cama en profundidad, garantizando un entorno de descanso verdaderamente limpio.</p>
+                <div class="text-slate-700 space-y-6">
+                    <div>
+                        <h2 class="text-3xl font-bold text-slate-800">Duerme en un Entorno Limpio y Saludable</h2>
+                        <p class="mt-4 text-lg">Pasamos un tercio de nuestra vida en la cama. Sin embargo, los colchones son un caldo de cultivo para ácaros, bacterias, células muertas y otros alérgenos que pueden afectar nuestra salud respiratoria y calidad de sueño. Nuestro servicio de <strong>limpieza de colchones a vapor</strong> está diseñado para higienizar tu cama en profundidad, garantizando un entorno de descanso verdaderamente limpio.</p>
+                    </div>
                     
-                    <h3 class="text-2xl font-bold text-slate-800 mt-12">¿Por Qué es Crucial Limpiar tu Colchón?</h3>
-                    <p>Una limpieza profesional va más allá de lo visible, ofreciendo beneficios directos para tu salud y bienestar.</p>
-                    
-                    <!-- Lista de beneficios de colchón mejorada -->
-                    <div class="mt-8 space-y-6">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-bug"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Eliminación Total de Ácaros</h4>
-                                <p class="mt-1">El vapor a alta temperatura es el método más eficaz para erradicar los ácaros del polvo y sus alérgenos, principales causantes de asma y rinitis.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-bacteria"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Desinfección Profunda</h4>
-                                <p class="mt-1">Eliminamos bacterias, virus y moho que pueden haberse acumulado debido a la humedad y el sudor.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-tint-slash"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Remoción de Manchas y Olores</h4>
-                                <p class="mt-1">Tratamos eficazmente manchas orgánicas y neutralizamos cualquier olor desagradable. Recuerda que la efectividad de nuestra limpieza depende del tipo de mancha y del tiempo que ha pasado desde que se manchó.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-lungs"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Mejora la Calidad del Aire</h4>
-                                <p class="mt-1">Al eliminar los alérgenos de tu colchón, contribuyes a un aire más puro en tu dormitorio.</p>
-                            </div>
-                        </div>
-                         <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-calendar-check"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Prolonga la Vida Útil</h4>
-                                <p class="mt-1">Una limpieza regular ayuda a mantener los materiales de tu colchón en óptimas condiciones, extendiendo su durabilidad.</p>
-                            </div>
-                        </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-12">¿Por Qué es Crucial Limpiar tu Colchón?</h3>
+                        <p class="mt-4 text-lg">Una limpieza profesional va más allá de lo visible, ofreciendo beneficios directos para tu salud y bienestar.</p>
+                        <ul class="mt-6 space-y-6">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-bug-slash"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Eliminación Total de Ácaros</h4>
+                                    <p class="mt-1">El vapor a alta temperatura es el método más eficaz para erradicar los ácaros del polvo y sus alérgenos, principales causantes de asma y rinitis.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-shield-virus"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Desinfección Profunda</h4>
+                                    <p class="mt-1">Eliminamos bacterias, virus y moho que pueden haberse acumulado debido a la humedad y el sudor.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-eye-slash"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Remoción de Manchas y Olores</h4>
+                                    <p class="mt-1">Tratamos eficazmente manchas orgánicas y neutralizamos cualquier olor desagradable. Recuerda que la efectividad de nuestra limpieza depende del tipo de mancha y del tiempo que ha pasado desde que se manchó.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-lungs"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Mejora la Calidad del Aire</h4>
+                                    <p class="mt-1">Al eliminar los alérgenos de tu colchón, contribuyes a un aire más puro en tu dormitorio.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Prolonga la Vida Útil</h4>
+                                    <p class="mt-1">Una limpieza regular ayuda a mantener los materiales de tu colchón en óptimas condiciones, extendiendo su durabilidad.</p>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
 
-                    <h3 class="text-2xl font-bold text-slate-800 mt-12">Nuestro Proceso de Higienización</h3>
-                    <p>Realizamos un servicio completo a domicilio, asegurando la máxima comodidad para ti. También limpiamos respaldos de cama tapizados y bases.</p>
-                     
-                    <!-- Proceso de higienización mejorado visualmente -->
-                    <div class="mt-16 grid md:grid-cols-4 gap-8 relative not-prose">
-                        <!-- Línea de conexión -->
-                        <div class="hidden md:block absolute top-8 left-0 w-full">
-                            <svg width="100%" height="20" class="overflow-visible">
-                                <line x1="12.5%" y1="10" x2="87.5%" y2="10" stroke="#94A3B8" stroke-width="2" stroke-dasharray="8 8"/>
-                            </svg>
-                        </div>
-                        
-                        <!-- Paso 1 -->
-                        <div class="relative flex flex-col items-center text-center">
-                            <div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-2xl z-10">
-                                <i class="fas fa-spray-can"></i>
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-12">Nuestro Proceso de Higienización</h3>
+                        <p class="mt-4 text-lg">Realizamos un servicio completo a domicilio, asegurando la máxima comodidad para ti. También limpiamos respaldos de cama tapizados y bases.</p>
+                        <div class="mt-8 grid md:grid-cols-4 gap-8 text-center relative">
+                             <!-- Línea de conexión con marcadores -->
+                            <div class="hidden md:block absolute top-6 left-0 w-full">
+                                <svg width="100%" height="20" class="overflow-visible">
+                                    <line x1="12.5%" y1="10" x2="87.5%" y2="10" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="6 6"/>
+                                </svg>
                             </div>
-                            <h4 class="font-bold text-slate-800 mt-4">Aspirado de Alta Potencia</h4>
-                            <p class="mt-1 text-slate-700 text-sm">Removemos polvo y partículas con un sistema de aspirado especializado.</p>
-                        </div>
-                        <!-- Paso 2 -->
-                        <div class="relative flex flex-col items-center text-center">
-                            <div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-2xl z-10">
-                                <i class="fas fa-search-plus"></i>
+                            <div class="relative flex flex-col items-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-xl shadow z-10">
+                                    <i class="fas fa-spray-can"></i>
+                                </div>
+                                <h4 class="text-lg font-bold mt-4 text-slate-800">Aspirado</h4>
+                                <p class="mt-1 text-sm">Removemos polvo y partículas superficiales.</p>
                             </div>
-                            <h4 class="font-bold text-slate-800 mt-4">Tratamiento de Manchas</h4>
-                            <p class="mt-1 text-slate-700 text-sm">Aplicamos soluciones seguras para tratar las manchas sin dañar el tejido.</p>
-                        </div>
-                        <!-- Paso 3 -->
-                        <div class="relative flex flex-col items-center text-center">
-                            <div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-2xl z-10">
-                                <i class="fas fa-steam"></i>
+                            <div class="relative flex flex-col items-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-xl shadow z-10">
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                                <h4 class="text-lg font-bold mt-4 text-slate-800">Desmanchado</h4>
+                                <p class="mt-1 text-sm">Aplicamos soluciones específicas para cada mancha.</p>
                             </div>
-                            <h4 class="font-bold text-slate-800 mt-4">Limpieza con Vapor</h4>
-                            <p class="mt-1 text-slate-700 text-sm">Utilizamos vapor para desinfectar y limpiar cada centímetro de tu colchón.</p>
-                        </div>
-                        <!-- Paso 4 -->
-                        <div class="relative flex flex-col items-center text-center">
-                            <div class="w-16 h-16 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-2xl z-10">
-                               <i class="fas fa-wind"></i>
+                            <div class="relative flex flex-col items-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-xl shadow z-10">
+                                    <i class="fas fa-steam"></i>
+                                </div>
+                                <h4 class="text-lg font-bold mt-4 text-slate-800">Limpieza a Vapor</h4>
+                                <p class="mt-1 text-sm">Desinfectamos y limpiamos a fondo con vapor.</p>
                             </div>
-                            <h4 class="font-bold text-slate-800 mt-4">Extracción y Secado</h4>
-                            <p class="mt-1 text-slate-700 text-sm">Extraemos la humedad para un secado rápido de aproximadamente 5 horas.</p>
+                            <div class="relative flex flex-col items-center">
+                                <div class="w-12 h-12 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-xl shadow z-10">
+                                    <i class="fas fa-wind"></i>
+                                </div>
+                                <h4 class="text-lg font-bold mt-4 text-slate-800">Extracción</h4>
+                                <p class="mt-1 text-sm">Retiramos la humedad para un secado rápido.</p>
+                            </div>
                         </div>
                     </div>
-                     
-                    <!-- Tarjeta de cierre -->
-                    <div class="mt-12 not-prose">
-                        <div class="bg-blue-50 border border-blue-200 p-8 rounded-2xl shadow-sm">
-                            <p class="text-center text-lg text-slate-800"><strong>Invierte en tu salud</strong> y en la de tu familia. ¡Agenda hoy mismo la limpieza de tu colchón y siente el placer de dormir en un espacio <strong>completamente higienizado</strong>!</p>
-                        </div>
+                    <div class="!mt-12 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg shadow-sm">
+                        <p class="text-lg">Invierte en tu salud y en la de tu familia. ¡Agenda hoy mismo la <strong>limpieza de tu colchón</strong> y siente el placer de dormir en un espacio completamente higienizado!</p>
                     </div>
                 </div>
             </div>
@@ -330,15 +333,48 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Lógica para menú móvil y pop-up de chat
+            
+            // --- Lógica para el menú de hamburguesa POP-UP ---
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
-            if(menuToggle && mobileMenu) {
-                menuToggle.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
+            const menuIcon = menuToggle ? menuToggle.querySelector('i') : null;
+
+            const closeMenu = () => {
+                if (mobileMenu && menuIcon) {
+                    mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            };
+
+            const openMenu = () => {
+                if (mobileMenu && menuIcon) {
+                    mobileMenu.classList.remove('opacity-0', 'scale-95', 'invisible');
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                }
+            };
+
+            if (menuToggle && mobileMenu && menuIcon) {
+                menuToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = !mobileMenu.classList.contains('invisible');
+                    if (isOpen) {
+                        closeMenu();
+                    } else {
+                        openMenu();
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    const isOpen = !mobileMenu.classList.contains('invisible');
+                    if (isOpen && !mobileMenu.contains(e.target) && e.target !== menuToggle && !menuToggle.contains(e.target)) {
+                        closeMenu();
+                    }
                 });
             }
-            
+
+            // --- Lógica para el acordeón de servicios en móvil ---
             const mobileServicesToggle = document.getElementById('mobile-services-toggle');
             if(mobileServicesToggle) {
                 const mobileServicesSubmenu = document.getElementById('mobile-services-submenu');
@@ -364,7 +400,7 @@
                 "No, me digas... ¿la fiesta ya fue?",
                 "¿Vienen los suegros de visita?",
                 "¿Tus alergias no te dejan en paz?",
-                "¿Te pidieron cuidar al 'perrhijo' de un amigo?",
+                "¿Te pidieron cuidar al 'perrihijo' de un amigo?",
                 "¿Le sacaste los pañales a tu pequeño?"
             ];
             let currentPhraseIndex = 0;
@@ -384,7 +420,7 @@
                         currentPhraseIndex = (currentPhraseIndex + 1) % rotatingPhrases.length;
                         const newElement = document.createElement('span');
                         newElement.textContent = `“ ${rotatingPhrases[currentPhraseIndex]} ”`;
-                        newElement.className = 'text-white text-base md:text-lg font-semibold absolute whitespace-nowrap slide-in';
+                        newElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
                         phraseContainer.appendChild(newElement);
                     }, 500); // Debe coincidir con la duración de la animación de salida
                 };
@@ -392,14 +428,14 @@
                 // Muestra la primera frase inmediatamente al cargar
                 const initialElement = document.createElement('span');
                 initialElement.textContent = `“ ${rotatingPhrases[0]} ”`;
-                initialElement.className = 'text-white text-base md:text-lg font-semibold absolute whitespace-nowrap slide-in';
+                initialElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
                 phraseContainer.appendChild(initialElement);
 
                 // Inicia el intervalo para cambiar las frases
                 setInterval(showNextPhrase, 4000);
             }
 
-            // Lógica para el pop-up de chat
+            // --- Lógica para el Pop-up de chat ---
             const allPopupTriggers = document.querySelectorAll('.open-chat-popup');
             const chatPopup = document.getElementById('chat-popup');
             const closePopupBtn = document.getElementById('close-popup');
