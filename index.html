@@ -92,7 +92,7 @@
                 <img src="https://iili.io/FWZd4HJ.png" alt="Logo de Clean Click" class="header-logo w-auto">
                 <span class="hidden sm:inline ml-3 text-xl font-bold text-slate-800">Clean Click Aroma a Limpio</span>
             </a>
-            <nav class="hidden md:flex items-center space-x-6">
+            <nav class="hidden lg:flex items-center space-x-6">
                 <a href="index.html" class="text-slate-600 hover:text-brand-blue font-medium">Home</a>
                 <a href="#porque-elegirnos" class="text-slate-600 hover:text-brand-blue font-medium">Beneficios</a>
                 <!-- Dropdown de Servicios para Escritorio -->
@@ -110,16 +110,16 @@
                 <a href="#testimonios" class="text-slate-600 hover:text-brand-blue font-medium">Testimonios</a>
                 <a href="#faq" class="text-slate-600 hover:text-brand-blue font-medium">Preguntas</a>
             </nav>
-            <button id="cta-header" class="open-chat-popup hidden md:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center">
+            <button id="cta-header" class="open-chat-popup hidden lg:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center">
                 <span>Contacta Aquí</span>
                 <span class="text-xs font-normal">Atención 7am - 12am</span>
             </button>
-            <div class="md:hidden">
+            <div class="lg:hidden">
                 <button id="menu-toggle" class="text-slate-800 hover:text-brand-blue"><i class="fas fa-bars text-2xl pointer-events-none"></i></button>
             </div>
         </div>
         <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-200">
             <nav class="flex flex-col p-4 space-y-2">
                 <a href="index.html" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Home</a>
                 <a href="#porque-elegirnos" id="nav-mobile-beneficios" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Beneficios</a>
@@ -154,7 +154,7 @@
             <div class="container mx-auto px-6 py-16">
                 <div class="grid lg:grid-cols-2 gap-8 items-center">
                     <!-- Columna de Texto -->
-                    <div class="text-center lg:text-left order-2 lg:order-1">
+                    <div class="text-center lg:text-left order-1 lg:order-1">
                         <h1 class="text-3xl md:text-4xl font-black text-slate-900 leading-tight">
                             Renueva tus Sillones, Sofás, Alfombras y Colchones con 
                             <span class="text-brand-blue">Limpieza a Vapor Profesional</span>
@@ -173,7 +173,7 @@
                         </div>
                     </div>
                     <!-- Columna de Imagen -->
-                    <div class="relative order-1 lg:order-2">
+                    <div class="relative order-2 lg:order-2">
                          <img src="https://iili.io/KBSsYwg.png" 
                              alt="Primer plano de una máquina profesional limpiando un sillón a vapor" 
                              class="w-full h-auto rounded-xl shadow-lg"
@@ -192,8 +192,8 @@
 
         <!-- Rotating Phrases Banner -->
         <section class="bg-brand-blue-dark py-4">
-            <div class="max-w-5xl mx-auto px-6 text-center">
-                <div id="rotating-text-container" class="relative h-7 flex items-center justify-center overflow-hidden">
+            <div class="max-w-5xl mx-auto px-2 sm:px-6 text-center">
+                <div id="rotating-text-container" class="relative h-14 lg:h-7 flex items-center justify-center overflow-hidden">
                     <!-- Las frases rotativas se insertarán aquí con JavaScript -->
                 </div>
             </div>
@@ -664,7 +664,7 @@
                     currentPhraseIndex = (currentPhraseIndex + 1) % rotatingPhrases.length;
                     const newElement = document.createElement('span');
                     newElement.textContent = `“ ${rotatingPhrases[currentPhraseIndex]} ”`;
-                    newElement.className = 'text-white text-base md:text-lg font-semibold absolute whitespace-nowrap slide-in';
+                    newElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
                     phraseContainer.appendChild(newElement);
                 }, 500); // Debe coincidir con la duración de la animación de salida
             };
@@ -672,7 +672,7 @@
             // Muestra la primera frase inmediatamente al cargar
             const initialElement = document.createElement('span');
             initialElement.textContent = `“ ${rotatingPhrases[0]} ”`;
-            initialElement.className = 'text-white text-base md:text-lg font-semibold absolute whitespace-nowrap slide-in';
+            initialElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
             phraseContainer.appendChild(initialElement);
 
             // Inicia el intervalo para cambiar las frases
@@ -828,4 +828,5 @@
     </script>
 </body>
 </html>
+
 
