@@ -118,9 +118,9 @@
                 <button id="menu-toggle" class="text-slate-800 hover:text-brand-blue"><i class="fas fa-bars text-2xl pointer-events-none"></i></button>
             </div>
         </div>
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-200">
-            <nav class="flex flex-col p-4 space-y-2">
+        <!-- Mobile Menu Pop-up -->
+        <div id="mobile-menu" class="absolute top-full right-6 mt-2 w-72 origin-top-right rounded-xl bg-white p-2 shadow-lg ring-1 ring-slate-900/5 opacity-0 scale-95 invisible transition-all duration-200 ease-in-out z-50">
+            <nav class="flex flex-col">
                 <a href="index.html" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Home</a>
                 <a href="#porque-elegirnos" id="nav-mobile-beneficios" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Beneficios</a>
                 <!-- Dropdown/Acordeón de Servicios para Móvil -->
@@ -576,44 +576,67 @@
         <div class="absolute bottom-[-10px] right-6 w-0 h-0 border-x-transparent border-x-[10px] border-t-[10px] border-t-white"></div>
     </div>
 
-
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         
-        // --- Lógica para el menú de hamburguesa ---
+        // --- Lógica para el menú de hamburguesa POP-UP ---
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-        if(menuToggle && mobileMenu) {
+        const menuIcon = menuToggle ? menuToggle.querySelector('i') : null;
+
+        const closeMenu = () => {
+            if (mobileMenu && menuIcon) {
+                mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        };
+
+        const openMenu = () => {
+            if (mobileMenu && menuIcon) {
+                mobileMenu.classList.remove('opacity-0', 'scale-95', 'invisible');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            }
+        };
+
+        if (menuToggle && mobileMenu && menuIcon) {
             menuToggle.addEventListener('click', (e) => {
                 e.stopPropagation();
-                mobileMenu.classList.toggle('hidden');
+                const isOpen = !mobileMenu.classList.contains('invisible');
+                if (isOpen) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                const isOpen = !mobileMenu.classList.contains('invisible');
+                if (isOpen && !mobileMenu.contains(e.target) && e.target !== menuToggle && !menuToggle.contains(e.target)) {
+                    closeMenu();
+                }
             });
         }
 
-        // --- Lógica para el desplazamiento suave y cierre del menú móvil ---
-        // SELECCIÓN MÁS ESPECÍFICA: Solo se aplica a enlaces que empiezan con #
+        // --- Lógica para el desplazamiento suave Y CIERRE DE MENÚ ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault(); // Prevenir el comportamiento por defecto del ancla
-                const href = this.getAttribute('href');
-
-                // Cierra el menú móvil si está abierto
-                if (anchor.closest('#mobile-menu') && mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                    if(!this.closest('#mobile-services-submenu')) {
-                        mobileMenu.classList.add('hidden');
-                    }
+                // Cierra el menú móvil si está abierto y se hace clic en un enlace de ancla
+                if (mobileMenu && !mobileMenu.classList.contains('invisible')) {
+                    closeMenu();
                 }
 
-                try {
+                const href = this.getAttribute('href');
+                if (href.length > 1) {
                     const targetElement = document.querySelector(href);
                     if (targetElement) {
+                        e.preventDefault();
                         targetElement.scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
                         });
                     }
-                } catch (error) {
-                    console.warn('Selector de scroll suave no válido:', href);
                 }
             });
         });
@@ -720,7 +743,7 @@
             setTimeout(updateCarouselPosition, 100);
         }
         
-        // --- Lógica para el Pop-up de chat (con funcionalidad de toggle) ---
+        // --- Lógica para el Pop-up de chat ---
         const allPopupTriggers = document.querySelectorAll('.open-chat-popup');
         const chatPopup = document.getElementById('chat-popup');
         const closePopupBtn = document.getElementById('close-popup');
@@ -828,5 +851,3 @@
     </script>
 </body>
 </html>
-
-
