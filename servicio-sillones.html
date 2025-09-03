@@ -56,7 +56,7 @@
                 <img src="https://iili.io/FWZd4HJ.png" alt="Logo de Clean Click" class="header-logo w-auto">
                 <span class="hidden sm:inline ml-3 text-xl font-bold text-slate-800">Clean Click Aroma a Limpio</span>
             </a>
-            <nav class="hidden md:flex items-center space-x-6">
+            <nav class="hidden lg:flex items-center space-x-6">
                 <a href="index.html" class="text-slate-600 hover:text-brand-blue font-medium">Home</a>
                 <a href="index.html#porque-elegirnos" class="text-slate-600 hover:text-brand-blue font-medium">Beneficios</a>
                 <!-- Dropdown de Servicios para Escritorio -->
@@ -74,17 +74,17 @@
                 <a href="index.html#testimonios" class="text-slate-600 hover:text-brand-blue font-medium">Testimonios</a>
                 <a href="index.html#faq" class="text-slate-600 hover:text-brand-blue font-medium">Preguntas</a>
             </nav>
-            <button class="open-chat-popup hidden md:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center">
+            <button class="open-chat-popup hidden lg:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center">
                 <span>Contacta Aquí</span>
                 <span class="text-xs font-normal">Atención 7am - 12am</span>
             </button>
-            <div class="md:hidden">
+            <div class="lg:hidden">
                 <button id="menu-toggle" class="text-slate-800 hover:text-brand-blue"><i class="fas fa-bars text-2xl pointer-events-none"></i></button>
             </div>
         </div>
-        <!-- Mobile Menu (con enlaces a index.html) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
-             <nav class="flex flex-col p-4 space-y-2">
+        <!-- Mobile Menu Pop-up -->
+        <div id="mobile-menu" class="absolute top-full right-6 mt-2 w-72 origin-top-right rounded-xl bg-white p-2 shadow-lg ring-1 ring-slate-900/5 opacity-0 scale-95 invisible transition-all duration-200 ease-in-out z-50">
+             <nav class="flex flex-col">
                 <a href="index.html" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Home</a>
                 <a href="index.html#porque-elegirnos" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Beneficios</a>
                 <!-- Dropdown/Acordeón de Servicios para Móvil -->
@@ -125,8 +125,8 @@
 
         <!-- Rotating Phrases Banner -->
         <section class="bg-brand-blue-dark py-4">
-            <div class="max-w-5xl mx-auto px-6 text-center">
-                <div id="rotating-text-container" class="relative h-7 flex items-center justify-center overflow-hidden">
+            <div class="max-w-5xl mx-auto px-2 sm:px-6 text-center">
+                <div id="rotating-text-container" class="relative h-14 lg:h-7 flex items-center justify-center overflow-hidden">
                     <!-- Las frases rotativas se insertarán aquí con JavaScript -->
                 </div>
             </div>
@@ -135,82 +135,85 @@
         <!-- Contenido Detallado del Servicio -->
         <section class="py-20 bg-white">
             <div class="container mx-auto px-6 max-w-4xl">
-                <div class="prose lg:prose-lg max-w-none text-slate-700">
-                    <h2 class="text-3xl font-bold text-slate-800">Renueva el Corazón de tu Living</h2>
-                    <p>Tus sillones son más que un mueble; son el centro de reunión, descanso y confort de tu hogar. Con el tiempo, acumulan polvo, manchas y alérgenos que opacan su apariencia y pueden afectar la salud de tu familia. Nuestro servicio de <strong>limpieza de sillones a domicilio</strong> está diseñado para revitalizar completamente tus tapices, dejándolos impecables, desinfectados y con un aroma a limpio.</p>
+                <div class="text-slate-700 space-y-6">
+                    <div>
+                        <h2 class="text-3xl font-bold text-slate-800">Renueva el Corazón de tu Living</h2>
+                        <p class="mt-4 text-lg">Tus sillones son más que un mueble; son el centro de reunión, descanso y confort de tu hogar. Con el tiempo, acumulan polvo, manchas y alérgenos que opacan su apariencia y pueden afectar la salud de tu familia. Nuestro servicio de <strong>limpieza de sillones a domicilio</strong> está diseñado para revitalizar completamente tus tapices, dejándolos impecables, desinfectados y con un aroma a limpio.</p>
+                    </div>
                     
-                    <h3 class="text-2xl font-bold text-slate-800 mt-12">Beneficios de Nuestra Limpieza a Vapor</h3>
-                    <p>Utilizamos un método de <strong>limpieza a vapor</strong> de alta tecnología que ofrece resultados superiores sin dañar las delicadas fibras de tus muebles. Este proceso no solo es un simple <strong>lavado de sillones</strong>, es un tratamiento completo.</p>
-                    
-                    <!-- Lista de beneficios mejorada -->
-                    <div class="mt-8 space-y-6">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-soap"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Eliminación Profunda de Suciedad</h4>
-                                <p class="mt-1">El vapor penetra en el tejido, disolviendo y extrayendo la suciedad, grasa y polvo acumulados que los métodos tradicionales no pueden alcanzar.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-shield-virus"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Desinfección Garantizada</h4>
-                                <p class="mt-1">Las altas temperaturas del vapor eliminan el 99.9% de ácaros, bacterias y otros alérgenos, creando un ambiente más saludable. Ideal para familias con niños, mascotas o personas alérgicas.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-paint-roller"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Tratamiento Efectivo de Manchas</h4>
-                                <p class="mt-1">Nos especializamos en la <strong>limpieza de sillones de tela</strong>, tratando manchas de vino, café, comida y mascotas. Recuerda que la efectividad de la limpieza depende del tipo de mancha y el tiempo que ha pasado.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-wind"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Neutralización de Olores</h4>
-                                <p class="mt-1">No enmascaramos los malos olores, los eliminamos de raíz, dejando tu sofá con una frescura duradera.</p>
-                            </div>
-                        </div>
-                         <div class="flex items-start">
-                            <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue"><i class="fas fa-clock"></i></div>
-                            <div class="ml-4">
-                                <h4 class="font-bold text-slate-800">Secado Rápido</h4>
-                                <p class="mt-1">Nuestro proceso optimizado asegura un tiempo de secado rápido para que puedas volver a disfrutar de tus muebles en pocas horas.</p>
-                            </div>
-                        </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-12">Beneficios de Nuestra Limpieza a Vapor</h3>
+                        <p class="mt-4 text-lg">Utilizamos un método de <strong>limpieza a vapor</strong> de alta tecnología que ofrece resultados superiores sin dañar las delicadas fibras de tus muebles. Este proceso no solo es un simple <strong>lavado de sillones</strong>, es un tratamiento completo.</p>
+                        <ul class="mt-6 space-y-6">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-soap"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Eliminación Profunda de Suciedad</h4>
+                                    <p class="mt-1">El vapor penetra en el tejido, disolviendo y extrayendo la suciedad, grasa y polvo acumulados que los métodos tradicionales no pueden alcanzar.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-shield-virus"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Desinfección Garantizada</h4>
+                                    <p class="mt-1">Las altas temperaturas del vapor eliminan el 99.9% de ácaros, bacterias y otros alérgenos, creando un ambiente más saludable. Ideal para familias con niños, mascotas o personas alérgicas.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-spray-can-sparkles"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Tratamiento Efectivo de Manchas</h4>
+                                    <p class="mt-1">Nos especializamos en la <strong>limpieza de sillones de tela</strong>, tratando manchas de vino, café, comida y mascotas. Recuerda que la efectividad de la limpieza depende del tipo de mancha y el tiempo que ha pasado.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-wind"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Neutralización de Olores</h4>
+                                    <p class="mt-1">No enmascaramos los malos olores, los eliminamos de raíz, dejando tu sofá con una frescura duradera.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg">
+                                    <i class="fas fa-stopwatch"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-bold text-slate-800">Secado Rápido</h4>
+                                    <p class="mt-1">Nuestro proceso optimizado asegura un tiempo de secado rápido para que puedas volver a disfrutar de tus muebles en pocas horas.</p>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
 
-                    <h3 class="text-2xl font-bold text-slate-800 mt-12">Tipos de Tapices que Limpiamos</h3>
-                    <p>Nuestro equipo tiene la experiencia para manejar una amplia variedad de muebles y tapices. Si necesitas <strong>limpiar tu sofá</strong>, sillas o cualquier otro mueble tapizado, somos tu mejor opción.</p>
-                     
-                    <!-- Lista de tapices mejorada -->
-                    <div class="mt-6 grid sm:grid-cols-2 gap-x-8 gap-y-4 not-prose">
-                        <div class="flex items-center text-slate-700">
-                            <i class="fas fa-check-circle text-brand-blue mr-3"></i>
-                            <span>Sofás y seccionales de todos los tamaños.</span>
-                        </div>
-                        <div class="flex items-center text-slate-700">
-                            <i class="fas fa-check-circle text-brand-blue mr-3"></i>
-                            <span>Sillones individuales y bergères.</span>
-                        </div>
-                        <div class="flex items-center text-slate-700">
-                            <i class="fas fa-check-circle text-brand-blue mr-3"></i>
-                            <span>Sillas de comedor y de oficina tapizadas.</span>
-                        </div>
-                        <div class="flex items-center text-slate-700">
-                            <i class="fas fa-check-circle text-brand-blue mr-3"></i>
-                            <span>Banqueta, sitiales y reposapiés.</span>
-                        </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-12">Tipos de Tapices que Limpiamos</h3>
+                        <p class="mt-4 text-lg">Nuestro equipo tiene la experiencia para manejar una amplia variedad de muebles y tapices. Si necesitas <strong>limpiar tu sofá</strong>, sillas o cualquier otro mueble tapizado, somos tu mejor opción.</p>
+                         <ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-brand-blue mr-3"></i> Sofás y seccionales de todos los tamaños.
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-brand-blue mr-3"></i> Sillones individuales y bergères.
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-brand-blue mr-3"></i> Sillas de comedor y de oficina tapizadas.
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-brand-blue mr-3"></i> Banqueta, sitiales y reposapiés.
+                            </li>
+                        </ul>
                     </div>
-                    
-                    <!-- Tarjeta de cierre -->
-                    <div class="mt-12 not-prose">
-                        <div class="bg-blue-50 border border-blue-200 p-8 rounded-2xl shadow-sm">
-                            <p class="text-center text-lg text-slate-800">Si buscas un servicio de <strong>limpieza de sofás a domicilio</strong> con precios competitivos y <strong>resultados garantizados</strong>, has llegado al lugar correcto. ¡Contáctanos y dale a tus muebles el cuidado que merecen!</p>
-                        </div>
+                    <div class="!mt-12 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg shadow-sm">
+                        <p class="text-lg">Si buscas un servicio de <strong>limpieza de sofás a domicilio</strong> con precios competitivos y <strong>resultados garantizados</strong>, has llegado al lugar correcto. ¡Contáctanos y dale a tus muebles el cuidado que merecen!</p>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -309,15 +312,48 @@
     <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Lógica para menú móvil y pop-up de chat
+            
+            // --- Lógica para el menú de hamburguesa POP-UP ---
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
-            if(menuToggle && mobileMenu) {
-                menuToggle.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
+            const menuIcon = menuToggle ? menuToggle.querySelector('i') : null;
+
+            const closeMenu = () => {
+                if (mobileMenu && menuIcon) {
+                    mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            };
+
+            const openMenu = () => {
+                if (mobileMenu && menuIcon) {
+                    mobileMenu.classList.remove('opacity-0', 'scale-95', 'invisible');
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                }
+            };
+
+            if (menuToggle && mobileMenu && menuIcon) {
+                menuToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = !mobileMenu.classList.contains('invisible');
+                    if (isOpen) {
+                        closeMenu();
+                    } else {
+                        openMenu();
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    const isOpen = !mobileMenu.classList.contains('invisible');
+                    if (isOpen && !mobileMenu.contains(e.target) && e.target !== menuToggle && !menuToggle.contains(e.target)) {
+                        closeMenu();
+                    }
                 });
             }
-            
+
+            // --- Lógica para el acordeón de servicios en móvil ---
             const mobileServicesToggle = document.getElementById('mobile-services-toggle');
             if(mobileServicesToggle) {
                 const mobileServicesSubmenu = document.getElementById('mobile-services-submenu');
@@ -343,7 +379,7 @@
                 "No, me digas... ¿la fiesta ya fue?",
                 "¿Vienen los suegros de visita?",
                 "¿Tus alergias no te dejan en paz?",
-                "¿Te pidieron cuidar al 'perrhijo' de un amigo?",
+                "¿Te pidieron cuidar al 'perrihijo' de un amigo?",
                 "¿Le sacaste los pañales a tu pequeño?"
             ];
             let currentPhraseIndex = 0;
@@ -363,7 +399,7 @@
                         currentPhraseIndex = (currentPhraseIndex + 1) % rotatingPhrases.length;
                         const newElement = document.createElement('span');
                         newElement.textContent = `“ ${rotatingPhrases[currentPhraseIndex]} ”`;
-                        newElement.className = 'text-white text-base md:text-lg font-semibold absolute whitespace-nowrap slide-in';
+                        newElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
                         phraseContainer.appendChild(newElement);
                     }, 500); // Debe coincidir con la duración de la animación de salida
                 };
@@ -371,14 +407,14 @@
                 // Muestra la primera frase inmediatamente al cargar
                 const initialElement = document.createElement('span');
                 initialElement.textContent = `“ ${rotatingPhrases[0]} ”`;
-                initialElement.className = 'text-white text-base md:text-lg font-semibold absolute whitespace-nowrap slide-in';
+                initialElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
                 phraseContainer.appendChild(initialElement);
 
                 // Inicia el intervalo para cambiar las frases
                 setInterval(showNextPhrase, 4000);
             }
 
-            // Lógica para el pop-up de chat
+            // --- Lógica para el Pop-up de chat ---
             const allPopupTriggers = document.querySelectorAll('.open-chat-popup');
             const chatPopup = document.getElementById('chat-popup');
             const closePopupBtn = document.getElementById('close-popup');
@@ -401,3 +437,4 @@
     </script>
 </body>
 </html>
+
