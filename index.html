@@ -599,25 +599,31 @@
         }
 
         // --- Lógica para el desplazamiento suave y cierre del menú móvil ---
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                // Cierra el menú móvil si está abierto
-                if (anchor.closest('#mobile-menu') && !mobileMenu.classList.contains('hidden')) {
-                    // Cierra el menú principal, no solo el submenú de servicios
-                    if(!this.closest('#mobile-services-submenu')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                }
-
                 const href = this.getAttribute('href');
-                if (href && href.length > 1) {
-                    const targetElement = document.querySelector(href);
-                    if (targetElement) {
-                        e.preventDefault(); // Previene el salto brusco
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+
+                // SOLUCIÓN: Ejecutar el scroll suave SÓLO para enlaces internos (que contienen #)
+                if (href && href.includes('#') && href.length > 1) {
+                    // Cierra el menú móvil si está abierto
+                    if (anchor.closest('#mobile-menu') && !mobileMenu.classList.contains('hidden')) {
+                        if(!this.closest('#mobile-services-submenu')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+
+                    try {
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            e.preventDefault(); // Previene el salto brusco
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    } catch (error) {
+                        // Si el selector no es válido (ej. href="#?"), no hacemos nada y dejamos que el navegador lo maneje.
+                        console.warn('Selector de scroll suave no válido:', href);
                     }
                 }
             });
