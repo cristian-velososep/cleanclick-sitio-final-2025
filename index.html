@@ -404,37 +404,24 @@
                 <h2 class="text-3xl font-bold text-slate-900">Clientes Satisfechos con Nuestro Trabajo</h2>
                 <p class="mt-2 text-slate-600">La confianza de nuestros clientes es nuestro mejor aval.</p>
                 
-                <!-- Carrusel de Testimonios en Imagen -->
-                <div class="mt-12 relative max-w-4xl mx-auto" id="testimonial-carousel">
-                    <div class="overflow-hidden rounded-2xl shadow-lg bg-white">
-                        <div class="flex transition-transform duration-500 ease-in-out" id="carousel-track">
-                            
-                            <!-- Slide 1 -->
-                            <div class="min-w-full flex-shrink-0">
-                                <img src="img/testimonio-01.png" alt="Testimonio de cliente 1" class="w-full h-auto">
-                            </div>
-                            <!-- Slide 2 -->
-                            <div class="min-w-full flex-shrink-0">
-                                <img src="img/testimonio-02.png" alt="Testimonio de cliente 2" class="w-full h-auto">
-                            </div>
-                            <!-- Slide 3 -->
-                            <div class="min-w-full flex-shrink-0">
-                                <img src="img/testimonio-03.png" alt="Testimonio de cliente 3" class="w-full h-auto">
-                            </div>
-                            <!-- Slide 4 -->
-                            <div class="min-w-full flex-shrink-0">
-                                <img src="img/testimonio-04.png" alt="Testimonio de cliente 4" class="w-full h-auto">
-                            </div>
-
-                        </div>
+                <!-- Grilla de Testimonios (Reemplaza el carrusel) -->
+                <div class="mt-12 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Testimonio 1 -->
+                    <div>
+                        <img src="https://iili.io/KCIhDUF.png" alt="Testimonio de cliente 1" class="w-full h-auto rounded-2xl shadow-lg">
                     </div>
-                    <!-- Botones de Navegación -->
-                    <button id="carousel-prev" class="absolute top-1/2 left-0 sm:left-4 -translate-y-1/2 bg-white/60 hover:bg-white text-brand-blue rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center shadow-md transition-colors z-10">
-                        <i class="fas fa-chevron-left pointer-events-none"></i>
-                    </button>
-                    <button id="carousel-next" class="absolute top-1/2 right-0 sm:right-4 -translate-y-1/2 bg-white/60 hover:bg-white text-brand-blue rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center shadow-md transition-colors z-10">
-                        <i class="fas fa-chevron-right pointer-events-none"></i>
-                    </button>
+                    <!-- Testimonio 2 -->
+                    <div>
+                        <img src="https://iili.io/KCIhtl1.png" alt="Testimonio de cliente 2" class="w-full h-auto rounded-2xl shadow-lg">
+                    </div>
+                    <!-- Testimonio 3 -->
+                    <div>
+                        <img src="https://iili.io/KCIhLiB.png" alt="Testimonio de cliente 3" class="w-full h-auto rounded-2xl shadow-lg">
+                    </div>
+                    <!-- Testimonio 4 -->
+                    <div>
+                        <img src="https://iili.io/KCIhmHg.png" alt="Testimonio de cliente 4" class="w-full h-auto rounded-2xl shadow-lg">
+                    </div>
                 </div>
 
                 <div class="mt-12 grid md:grid-cols-3 gap-8">
@@ -747,27 +734,6 @@
                 }
             });
         });
-
-        // --- Lógica para el Carrusel de Testimonios ---
-        const carouselTrack = document.getElementById('carousel-track');
-        if (carouselTrack) {
-            const prevButton = document.getElementById('carousel-prev');
-            const nextButton = document.getElementById('carousel-next');
-            const slides = Array.from(carouselTrack.children);
-            const slideCount = slides.length;
-            let currentIndex = 0;
-
-            const updateCarouselPosition = () => {
-                if(slides.length > 0) {
-                    const slideWidth = slides[0].getBoundingClientRect().width;
-                    carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-                }
-            };
-            if(nextButton) nextButton.addEventListener('click', () => { currentIndex = (currentIndex + 1) % slideCount; updateCarouselPosition(); });
-            if(prevButton) prevButton.addEventListener('click', () => { currentIndex = (currentIndex - 1 + slideCount) % slideCount; updateCarouselPosition(); });
-            window.addEventListener('resize', updateCarouselPosition);
-            setTimeout(updateCarouselPosition, 100);
-        }
         
         // --- Lógica para el Pop-up de chat ---
         const allPopupTriggers = document.querySelectorAll('.open-chat-popup');
