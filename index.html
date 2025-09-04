@@ -156,8 +156,8 @@
         <section class="bg-brand-blue-light">
             <div class="container mx-auto px-6 py-16">
                 <div class="grid lg:grid-cols-2 gap-8 items-center">
-                    <!-- Columna de Texto -->
-                    <div class="text-center lg:text-left order-1 lg:order-1">
+                    <!-- Columna de Texto (Ahora primero en el código para orden móvil) -->
+                    <div class="text-center lg:text-left">
                         <h1 class="text-3xl md:text-4xl font-black text-slate-900 leading-tight">
                             Renueva tus Sillones, Sofás, Alfombras y Colchones con 
                             <span class="text-brand-blue">Limpieza a Vapor Profesional</span>
@@ -175,8 +175,8 @@
                             </button>
                         </div>
                     </div>
-                    <!-- Columna de Imagen -->
-                    <div class="relative order-2 lg:order-2">
+                    <!-- Columna de Imagen (Ahora segundo en el código para orden móvil) -->
+                    <div class="relative">
                          <img src="https://iili.io/KBSsYwg.png" 
                              alt="Primer plano de una máquina profesional limpiando un sillón a vapor" 
                              class="w-full h-auto rounded-xl shadow-lg"
@@ -408,11 +408,22 @@
                 <div class="mt-12 relative max-w-4xl mx-auto" id="testimonial-carousel">
                     <div class="overflow-hidden rounded-2xl shadow-lg">
                         <div class="flex transition-transform duration-500 ease-in-out bg-white" id="carousel-track">
-                            <!-- Slides se generan dinámicamente -->
-                            <div class="min-w-full flex-shrink-0"><img src="https://iili.io/KqbHSKN.png" alt="Testimonio de cliente 1" class="w-full h-64 object-contain p-4"></div>
-                            <div class="min-w-full flex-shrink-0"><img src="https://iili.io/KqbHUlI.png" alt="Testimonio de cliente 2" class="w-full h-64 object-contain p-4"></div>
-                            <div class="min-w-full flex-shrink-0"><img src="https://iili.io/KqbHgSt.png" alt="Testimonio de cliente 3" class="w-full h-64 object-contain p-4"></div>
-                            <div class="min-w-full flex-shrink-0"><img src="https://iili.io/KqbH4HX.png" alt="Testimonio de cliente 4" class="w-full h-64 object-contain p-4"></div>
+                            <!-- Slide 1 -->
+                            <div class="min-w-full flex-shrink-0 h-64 flex items-center justify-center p-4">
+                                <img src="https://iili.io/KqbHSKN.png" alt="Testimonio de cliente 1" class="max-w-full max-h-full object-contain">
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="min-w-full flex-shrink-0 h-64 flex items-center justify-center p-4">
+                                <img src="https://iili.io/KqbHUlI.png" alt="Testimonio de cliente 2" class="max-w-full max-h-full object-contain">
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="min-w-full flex-shrink-0 h-64 flex items-center justify-center p-4">
+                                <img src="https://iili.io/KqbHgSt.png" alt="Testimonio de cliente 3" class="max-w-full max-h-full object-contain">
+                            </div>
+                            <!-- Slide 4 -->
+                            <div class="min-w-full flex-shrink-0 h-64 flex items-center justify-center p-4">
+                                <img src="https://iili.io/KqbH4HX.png" alt="Testimonio de cliente 4" class="max-w-full max-h-full object-contain">
+                            </div>
                         </div>
                     </div>
                     <!-- Botones de Navegación -->
@@ -864,3 +875,6 @@
     </script>
 </body>
 </html>
+
+
+
