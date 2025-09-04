@@ -76,77 +76,80 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Banner de Horario de Atención -->
-    <div class="bg-brand-blue-dark text-white text-center py-2 px-4 text-base font-medium sticky top-0 z-50">
-        <div class="animated-banner-text">
-            <p>Horario de atención: <u>7 de la mañana a 12 de la noche</u></p>
-            <p class="text-sm font-semibold">Atendemos a toda la Región Metropolitana</p>
-        </div>
-    </div>
-    <!-- Fin del Banner -->
-
-    <!-- Header -->
-    <header class="bg-white/95 backdrop-blur-sm shadow-sm sticky top-[64px] z-40">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="index.html" class="flex items-center">
-                <img src="https://iili.io/FWZd4HJ.png" alt="Logo de Clean Click" class="header-logo w-auto">
-                <span class="hidden sm:inline ml-3 text-xl font-bold text-slate-800">Clean Click Aroma a Limpio</span>
-            </a>
-            <nav class="hidden lg:flex items-center space-x-6">
-                <a href="index.html" class="text-slate-600 hover:text-brand-blue font-medium">Home</a>
-                <a href="#porque-elegirnos" class="text-slate-600 hover:text-brand-blue font-medium">Beneficios</a>
-                <!-- Dropdown de Servicios para Escritorio -->
-                <div class="relative group">
-                    <a href="#servicios" class="text-slate-600 hover:text-brand-blue font-medium items-center inline-flex cursor-pointer">
-                        Servicios <i class="fas fa-chevron-down text-xs ml-2 transition-transform group-hover:rotate-180"></i>
-                    </a>
-                    <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-50 border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                        <a href="servicio-sillones.html" class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue">Sillones y Sofás</a>
-                        <a href="servicio-alfombras.html" class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue">Alfombras</a>
-                        <a href="servicio-colchones.html" class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue">Colchones</a>
-                    </div>
-                </div>
-                <a href="#proceso" class="text-slate-600 hover:text-brand-blue font-medium">Proceso</a>
-                <a href="#testimonios" class="text-slate-600 hover:text-brand-blue font-medium">Testimonios</a>
-                <a href="#faq" class="text-slate-600 hover:text-brand-blue font-medium">Preguntas</a>
-            </nav>
-            <button id="cta-header" class="open-chat-popup hidden lg:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center">
-                <span>Contacta Aquí</span>
-                <span class="text-xs font-normal">Atención 7am - 12am</span>
-            </button>
-            <div class="lg:hidden">
-                <button id="menu-toggle" class="text-slate-800 hover:text-brand-blue"><i class="fas fa-bars text-2xl pointer-events-none"></i></button>
+    <!-- Contenedor Sticky para Banner y Header -->
+    <div class="sticky top-0 z-50">
+        <!-- Banner de Horario de Atención -->
+        <div class="bg-brand-blue-dark text-white text-center py-2 px-4 text-base font-medium">
+            <div class="animated-banner-text">
+                <p>Horario de atención: <u>7 de la mañana a 12 de la noche</u></p>
+                <p class="text-sm font-semibold">Atendemos a toda la Región Metropolitana</p>
             </div>
         </div>
-        <!-- Mobile Menu Pop-up -->
-        <div id="mobile-menu" class="absolute top-full right-6 mt-2 w-72 origin-top-right rounded-xl bg-white p-2 shadow-lg ring-1 ring-slate-900/5 opacity-0 scale-95 invisible transition-all duration-200 ease-in-out z-50">
-            <nav class="flex flex-col">
-                <a href="index.html" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Home</a>
-                <a href="#porque-elegirnos" id="nav-mobile-beneficios" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Beneficios</a>
-                <!-- Dropdown/Acordeón de Servicios para Móvil -->
-                <div>
-                    <div class="flex items-center justify-between hover:bg-blue-50 rounded-md">
-                        <a href="#servicios" id="nav-mobile-servicios" class="mobile-link text-slate-700 hover:text-brand-blue p-3 font-medium flex-grow">Servicios</a>
-                        <button id="mobile-services-toggle" class="p-3 text-slate-700 hover:text-brand-blue">
-                            <i class="fas fa-chevron-down transform transition-transform pointer-events-none"></i>
-                        </button>
+        <!-- Fin del Banner -->
+
+        <!-- Header -->
+        <header class="bg-white/95 backdrop-blur-sm shadow-sm">
+            <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+                <a href="index.html" class="flex items-center">
+                    <img src="https://iili.io/FWZd4HJ.png" alt="Logo de Clean Click" class="header-logo w-auto">
+                    <span class="ml-2 text-base font-bold text-slate-800 leading-tight">Clean Click<br class="sm:hidden">Aroma a Limpio</span>
+                </a>
+                <nav class="hidden lg:flex items-center space-x-6">
+                    <a href="index.html" class="text-slate-600 hover:text-brand-blue font-medium">Home</a>
+                    <a href="#porque-elegirnos" class="text-slate-600 hover:text-brand-blue font-medium">Beneficios</a>
+                    <!-- Dropdown de Servicios para Escritorio -->
+                    <div class="relative group">
+                        <a href="#servicios" class="text-slate-600 hover:text-brand-blue font-medium items-center inline-flex cursor-pointer">
+                            Servicios <i class="fas fa-chevron-down text-xs ml-2 transition-transform group-hover:rotate-180"></i>
+                        </a>
+                        <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-50 border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <a href="servicio-sillones.html" class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue">Sillones y Sofás</a>
+                            <a href="servicio-alfombras.html" class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue">Alfombras</a>
+                            <a href="servicio-colchones.html" class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue">Colchones</a>
+                        </div>
                     </div>
-                    <div id="mobile-services-submenu" class="pl-4 pt-2 accordion-content">
-                        <a href="servicio-sillones.html" class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Sillones y Sofás</a>
-                        <a href="servicio-alfombras.html" class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Alfombras</a>
-                        <a href="servicio-colchones.html" class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Colchones</a>
-                    </div>
-                </div>
-                <a href="#proceso" id="nav-mobile-proceso" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Proceso</a>
-                <a href="#testimonios" id="nav-mobile-testimonios" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Testimonios</a>
-                <a href="#faq" id="nav-mobile-preguntas" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Preguntas</a>
-                <button id="cta-mobile-menu" class="open-chat-popup mt-2 w-full btn-primary font-bold py-3 px-6 rounded-full shadow-lg inline-flex flex-col items-center">
-                    <span><i class="fab fa-whatsapp pointer-events-none"></i> Contacta Aquí</span>
-                    <span class="text-xs font-normal mt-1">Atención 7am - 12am</span>
+                    <a href="#proceso" class="text-slate-600 hover:text-brand-blue font-medium">Proceso</a>
+                    <a href="#testimonios" class="text-slate-600 hover:text-brand-blue font-medium">Testimonios</a>
+                    <a href="#faq" class="text-slate-600 hover:text-brand-blue font-medium">Preguntas</a>
+                </nav>
+                <button id="cta-header" class="open-chat-popup hidden lg:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center">
+                    <span>Contacta Aquí</span>
+                    <span class="text-xs font-normal">Atención 7am - 12am</span>
                 </button>
-            </nav>
-        </div>
-    </header>
+                <div class="lg:hidden">
+                    <button id="menu-toggle" class="text-slate-800 hover:text-brand-blue"><i class="fas fa-bars text-2xl pointer-events-none"></i></button>
+                </div>
+            </div>
+            <!-- Mobile Menu Pop-up -->
+            <div id="mobile-menu" class="absolute top-full right-6 mt-2 w-72 origin-top-right rounded-xl bg-white p-2 shadow-lg ring-1 ring-slate-900/5 opacity-0 scale-95 invisible transition-all duration-200 ease-in-out z-50">
+                <nav class="flex flex-col">
+                    <a href="index.html" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Home</a>
+                    <a href="#porque-elegirnos" id="nav-mobile-beneficios" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Beneficios</a>
+                    <!-- Dropdown/Acordeón de Servicios para Móvil -->
+                    <div>
+                        <div class="flex items-center justify-between hover:bg-blue-50 rounded-md">
+                            <a href="#servicios" id="nav-mobile-servicios" class="mobile-link text-slate-700 hover:text-brand-blue p-3 font-medium flex-grow">Servicios</a>
+                            <button id="mobile-services-toggle" class="p-3 text-slate-700 hover:text-brand-blue">
+                                <i class="fas fa-chevron-down transform transition-transform pointer-events-none"></i>
+                            </button>
+                        </div>
+                        <div id="mobile-services-submenu" class="pl-4 pt-2 accordion-content">
+                            <a href="servicio-sillones.html" class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Sillones y Sofás</a>
+                            <a href="servicio-alfombras.html" class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Alfombras</a>
+                            <a href="servicio-colchones.html" class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Colchones</a>
+                        </div>
+                    </div>
+                    <a href="#proceso" id="nav-mobile-proceso" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Proceso</a>
+                    <a href="#testimonios" id="nav-mobile-testimonios" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Testimonios</a>
+                    <a href="#faq" id="nav-mobile-preguntas" class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium">Preguntas</a>
+                    <button id="cta-mobile-menu" class="open-chat-popup mt-2 w-full btn-primary font-bold py-3 px-6 rounded-full shadow-lg inline-flex flex-col items-center">
+                        <span>Contacta Aquí</span>
+                        <span class="text-xs font-normal mt-1">Atención 7am - 12am</span>
+                    </button>
+                </nav>
+            </div>
+        </header>
+    </div>
 
     <!-- Hero Section -->
     <main>
@@ -154,7 +157,7 @@
             <div class="container mx-auto px-6 py-16">
                 <div class="grid lg:grid-cols-2 gap-8 items-center">
                     <!-- Columna de Texto -->
-                    <div class="text-center lg:text-left order-1 lg:order-1">
+                    <div class="text-center lg:text-left order-2 lg:order-1">
                         <h1 class="text-3xl md:text-4xl font-black text-slate-900 leading-tight">
                             Renueva tus Sillones, Sofás, Alfombras y Colchones con 
                             <span class="text-brand-blue">Limpieza a Vapor Profesional</span>
@@ -173,7 +176,7 @@
                         </div>
                     </div>
                     <!-- Columna de Imagen -->
-                    <div class="relative order-2 lg:order-2">
+                    <div class="relative order-1 lg:order-2">
                          <img src="https://iili.io/KBSsYwg.png" 
                              alt="Primer plano de una máquina profesional limpiando un sillón a vapor" 
                              class="w-full h-auto rounded-xl shadow-lg"
@@ -345,9 +348,10 @@
         <section id="proceso" class="bg-white py-20">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl font-bold text-slate-900">Nuestro Proceso en 3 Simples Pasos</h2>
-                <div class="mt-16 grid md:grid-cols-3 gap-8 relative">
-                    <!-- Línea de conexión con marcadores -->
-                    <div class="hidden md:block absolute top-10 left-0 w-full">
+                
+                <!-- Desktop Process -->
+                <div class="mt-16 hidden md:grid md:grid-cols-3 gap-8 relative">
+                    <div class="absolute top-10 left-0 w-full">
                         <svg width="100%" height="20" class="overflow-visible">
                             <line x1="16.66%" y1="10" x2="83.33%" y2="10" stroke="#94A3B8" stroke-width="2" stroke-dasharray="8 8"/>
                             <circle cx="16.66%" cy="10" r="8" fill="#1E40AF"/>
@@ -356,19 +360,39 @@
                         </svg>
                     </div>
                     <div class="relative flex flex-col items-center">
-                        <div class="h-20"></div> <!-- Spacer -->
+                        <div class="h-20"></div>
                         <h3 class="text-xl font-bold mt-4">¡Escríbenos!</h3>
                         <p class="mt-2 text-slate-600">Cuéntanos que necesitas limpiar y te entregaremos un presuesto apropiado para ti.</p>
                     </div>
                     <div class="relative flex flex-col items-center">
-                        <div class="h-20"></div> <!-- Spacer -->
+                        <div class="h-20"></div>
                         <h3 class="text-xl font-bold mt-4">Agenda tu Cita</h3>
                         <p class="mt-2 text-slate-600">Coordinamos el día y la hora que más te acomode.</p>
                     </div>
                     <div class="relative flex flex-col items-center">
-                        <div class="h-20"></div> <!-- Spacer -->
+                        <div class="h-20"></div>
                         <h3 class="text-xl font-bold mt-4">Disfruta el Resultado</h3>
                         <p class="mt-2 text-slate-600">Llegamos a tu domicilio y dejamos tu sillón, alfombra y colchón como nuevos.</p>
+                    </div>
+                </div>
+
+                <!-- Mobile Process -->
+                <div class="mt-12 md:hidden relative flex flex-col items-start max-w-sm mx-auto">
+                    <div class="absolute left-5 top-2 bottom-2 w-0.5 bg-slate-200"></div>
+                    <div class="relative w-full pl-14 pb-12">
+                        <div class="absolute left-0 top-0 w-10 h-10 flex items-center justify-center bg-brand-blue text-white rounded-full font-bold text-lg z-10">1</div>
+                        <h3 class="text-xl font-bold text-left">¡Escríbenos!</h3>
+                        <p class="mt-1 text-slate-600 text-left">Cuéntanos que necesitas limpiar y te entregaremos un presuesto apropiado para ti.</p>
+                    </div>
+                    <div class="relative w-full pl-14 pb-12">
+                        <div class="absolute left-0 top-0 w-10 h-10 flex items-center justify-center bg-brand-blue text-white rounded-full font-bold text-lg z-10">2</div>
+                        <h3 class="text-xl font-bold text-left">Agenda tu Cita</h3>
+                        <p class="mt-1 text-slate-600 text-left">Coordinamos el día y la hora que más te acomode.</p>
+                    </div>
+                    <div class="relative w-full pl-14">
+                        <div class="absolute left-0 top-0 w-10 h-10 flex items-center justify-center bg-brand-blue text-white rounded-full font-bold text-lg z-10">3</div>
+                        <h3 class="text-xl font-bold text-left">Disfruta el Resultado</h3>
+                        <p class="mt-1 text-slate-600 text-left">Llegamos a tu domicilio y dejamos tu sillón, alfombra y colchón como nuevos.</p>
                     </div>
                 </div>
             </div>
@@ -386,19 +410,19 @@
                         <div class="flex transition-transform duration-500 ease-in-out" id="carousel-track">
                             <!-- Slide 1 -->
                             <div class="min-w-full flex-shrink-0 bg-white flex items-center justify-center p-4 h-64">
-                                <img src="https://iili.io/KqbHSKN.png" alt="Testimonio de cliente 1" class="w-auto h-full object-contain">
+                                <img src="https://iili.io/KqbHSKN.png" alt="Testimonio de cliente 1" class="max-w-full h-full object-contain">
                             </div>
                             <!-- Slide 2 -->
                             <div class="min-w-full flex-shrink-0 bg-white flex items-center justify-center p-4 h-64">
-                                <img src="https://iili.io/KqbHUlI.png" alt="Testimonio de cliente 2" class="w-auto h-full object-contain">
+                                <img src="https://iili.io/KqbHUlI.png" alt="Testimonio de cliente 2" class="max-w-full h-full object-contain">
                             </div>
                             <!-- Slide 3 -->
                             <div class="min-w-full flex-shrink-0 bg-white flex items-center justify-center p-4 h-64">
-                                <img src="https://iili.io/KqbHgSt.png" alt="Testimonio de cliente 3" class="w-auto h-full object-contain">
+                                <img src="https://iili.io/KqbHgSt.png" alt="Testimonio de cliente 3" class="max-w-full h-full object-contain">
                             </div>
                             <!-- Slide 4 -->
                             <div class="min-w-full flex-shrink-0 bg-white flex items-center justify-center p-4 h-64">
-                                <img src="https://iili.io/KqbH4HX.png" alt="Testimonio de cliente 4" class="w-auto h-full object-contain">
+                                <img src="https://iili.io/KqbH4HX.png" alt="Testimonio de cliente 4" class="max-w-full h-full object-contain">
                             </div>
                         </div>
                     </div>
@@ -492,7 +516,7 @@
                 <!-- Columna 1: Logo y Marca -->
                 <div>
                     <a href="index.html" class="inline-block">
-                        <img src="https://iili.io/FWZd4HJ.png" alt="Logo de Clean Click en el footer" class="h-12 w-auto mx-auto md:mx-0">
+                        <img src="https://iili.io/FWZd4HJ.png" alt="Logo de Clean Click en el footer" class="h-12 w-auto mx-auto md:mx-0 rounded-full">
                     </a>
                     <p class="mt-4 font-bold text-white">Clean Click Aroma a Limpio</p>
                     <p class="mt-2 text-sm max-w-xs mx-auto md:mx-0">
@@ -521,7 +545,7 @@
                     <h3 class="font-bold text-white tracking-wider uppercase">Contáctanos</h3>
                     <div class="mt-4 border border-slate-700 rounded-lg p-4">
                         <p class="text-sm">
-                            Uno de nuestro expertos se encuentra disponible para atenderte. Recuerda que nuestro horario de atención de 7 de la mañana a las 12 de la noche.
+                            Uno de nuestros expertos se encuentra disponible para ti. Recuerda que nuestro horario de atención de 7 de la mañana a las 12 de la noche. Después de ese horario siempre nos puedes dejar un mensaje.
                         </p>
                     </div>
                 </div>
@@ -664,10 +688,10 @@
             "¿Esa mancha de vino no quiere salir?",
             "¿Te estás cambiando de casa?, se vería linda con todo limpio.",
             "¿Harás una fiesta en tu casa?",
-            "No, me digas... ¿la fiesta ya fue?",
+            "No me digas... ¿la fiesta ya fue?",
             "¿Vienen los suegros de visita?",
             "¿Tus alergias no te dejan en paz?",
-            "¿Te pidieron cuidar al 'perrihijo' de un amigo?",
+            "¿Te pidieron cuidar al perrihijo de un amigo?",
             "¿Le sacaste los pañales a tu pequeño?"
         ];
         let currentPhraseIndex = 0;
