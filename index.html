@@ -592,11 +592,28 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         
-        // --- Lógica para el menú de hamburguesa POP-UP ---
+        // --- Elementos del DOM ---
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = menuToggle ? menuToggle.querySelector('i') : null;
+        const allPopupTriggers = document.querySelectorAll('.open-chat-popup');
+        const chatPopup = document.getElementById('chat-popup');
+        const closePopupBtn = document.getElementById('close-popup');
 
+        // --- Funciones de estado para el Pop-up de Chat ---
+        const openPopup = () => {
+            if(chatPopup) {
+                chatPopup.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            }
+        };
+
+        const closePopup = () => {
+             if(chatPopup) {
+                chatPopup.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+            }
+        };
+
+        // --- Funciones de estado para el Menú Móvil ---
         const closeMenu = () => {
             if (mobileMenu && menuIcon) {
                 mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
@@ -606,6 +623,8 @@
         };
 
         const openMenu = () => {
+            // LÓGICA CLAVE: Si el pop-up está abierto, ciérralo antes de abrir el menú.
+            closePopup(); 
             if (mobileMenu && menuIcon) {
                 mobileMenu.classList.remove('opacity-0', 'scale-95', 'invisible');
                 menuIcon.classList.remove('fa-bars');
@@ -613,33 +632,82 @@
             }
         };
 
-        if (menuToggle && mobileMenu && menuIcon) {
+        // --- Asignación de Event Listeners ---
+
+        // 1. Listener para el botón del menú de hamburguesa
+        if (menuToggle) {
             menuToggle.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const isOpen = !mobileMenu.classList.contains('invisible');
-                if (isOpen) {
+                const isMenuOpen = !mobileMenu.classList.contains('invisible');
+                if (isMenuOpen) {
                     closeMenu();
                 } else {
-                    openMenu();
-                }
-            });
-
-            document.addEventListener('click', (e) => {
-                const isOpen = !mobileMenu.classList.contains('invisible');
-                if (isOpen && !mobileMenu.contains(e.target) && e.target !== menuToggle && !menuToggle.contains(e.target)) {
-                    closeMenu();
+                    openMenu(); // openMenu ahora tiene la lógica para cerrar el popup
                 }
             });
         }
+        
+        // 2. Listeners para todos los botones que abren/cierran el pop-up de chat
+        if (allPopupTriggers.length > 0) {
+            allPopupTriggers.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isPopupOpen = chatPopup && !chatPopup.classList.contains('opacity-0');
+                    const isMenuOpen = mobileMenu && !mobileMenu.classList.contains('invisible');
 
-        // --- Lógica para el desplazamiento suave Y CIERRE DE MENÚ ---
+                    // LÓGICA CLAVE: Si el botón presionado es el flotante, actúa como un interruptor (toggle).
+                    if (button.id === 'cta-flotante') {
+                        if (isPopupOpen) {
+                            closePopup();
+                        } else {
+                            // Antes de abrir, asegúrate de que el menú principal esté cerrado.
+                            if (isMenuOpen) {
+                                closeMenu();
+                            }
+                            openPopup();
+                        }
+                    } else {
+                        // Para todos los demás CTAs, siempre intentan abrir el pop-up.
+                        // Asegúrate de que el menú principal esté cerrado primero.
+                        if (isMenuOpen) {
+                            closeMenu();
+                        }
+                        openPopup();
+                    }
+                });
+            });
+        }
+        
+        // 3. Listener para el botón de cerrar el pop-up
+        if (closePopupBtn) {
+            closePopupBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closePopup();
+            });
+        }
+
+        // 4. Listeners para cerrar los menús al hacer clic fuera de ellos
+        document.addEventListener('click', (e) => {
+            // Cerrar menú móvil si se hace clic afuera
+            const isMenuOpen = mobileMenu && !mobileMenu.classList.contains('invisible');
+            if (isMenuOpen && !mobileMenu.contains(e.target) && e.target !== menuToggle && !menuToggle.contains(e.target)) {
+                closeMenu();
+            }
+
+            // Cerrar pop-up de chat si se hace clic afuera
+            const isPopupOpen = chatPopup && !chatPopup.classList.contains('opacity-0');
+            if (isPopupOpen && !chatPopup.contains(e.target) && !e.target.closest('.open-chat-popup')) {
+                closePopup();
+            }
+        });
+
+
+        // --- Lógica para el desplazamiento suave Y CIERRE DE MENÚ (Sin cambios) ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                // Cierra el menú móvil si está abierto y se hace clic en un enlace de ancla
                 if (mobileMenu && !mobileMenu.classList.contains('invisible')) {
                     closeMenu();
                 }
-
                 const href = this.getAttribute('href');
                 if (href.length > 1) {
                     const targetElement = document.querySelector(href);
@@ -654,7 +722,7 @@
             });
         });
 
-        // --- Lógica para el acordeón de servicios en móvil ---
+        // --- Lógica para el acordeón de servicios en móvil (Sin cambios) ---
         const mobileServicesToggle = document.getElementById('mobile-services-toggle');
         if(mobileServicesToggle) {
             const mobileServicesSubmenu = document.getElementById('mobile-services-submenu');
@@ -672,7 +740,7 @@
             });
         }
         
-        // --- Lógica para el banner de frases rotativas ---
+        // --- Lógica para el banner de frases rotativas (Sin cambios) ---
         const rotatingPhrases = [
             "¿Esa mancha de vino no quiere salir?",
             "¿Te estás cambiando de casa?, se vería linda con todo limpio.",
@@ -715,7 +783,7 @@
             setInterval(showNextPhrase, 4000);
         }
 
-        // --- Lógica para el acordeón de FAQ ---
+        // --- Lógica para el acordeón de FAQ (Sin cambios) ---
         const faqToggles = document.querySelectorAll('.accordion-toggle');
         faqToggles.forEach(button => {
             button.addEventListener('click', () => {
@@ -734,42 +802,6 @@
                 }
             });
         });
-        
-        // --- Lógica para el Pop-up de chat ---
-        const allPopupTriggers = document.querySelectorAll('.open-chat-popup');
-        const chatPopup = document.getElementById('chat-popup');
-        const closePopupBtn = document.getElementById('close-popup');
-
-        const togglePopup = () => {
-            if(chatPopup) {
-                chatPopup.classList.toggle('opacity-0');
-                chatPopup.classList.toggle('translate-y-4');
-                chatPopup.classList.toggle('pointer-events-none');
-            }
-        };
-        
-        if (allPopupTriggers.length > 0 && chatPopup && closePopupBtn) {
-            allPopupTriggers.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    togglePopup();
-                });
-            });
-
-            closePopupBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (!chatPopup.classList.contains('opacity-0')) {
-                    togglePopup();
-                }
-            });
-
-            document.addEventListener('click', (e) => {
-                const isPopupOpen = !chatPopup.classList.contains('opacity-0');
-                if (isPopupOpen && !chatPopup.contains(e.target) && !e.target.closest('.open-chat-popup')) {
-                    togglePopup();
-                }
-            });
-        }
     });
     </script>
 
