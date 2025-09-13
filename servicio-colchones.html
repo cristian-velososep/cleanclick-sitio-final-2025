@@ -6,12 +6,20 @@
     <title>Limpieza y Desinfección de Colchones a Domicilio | Clean Click</title>
     <meta name="description" content="Servicio de limpieza y desinfección profunda de colchones. Eliminamos ácaros, bacterias, manchas y olores para un descanso saludable.">
     
-    <!-- HEAD es idéntico al de servicio-sillones.html -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Preconnect to required origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Asynchronously load CSS -->
+    <!-- Google Fonts: Inter -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap"></noscript>
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
     <style>
         /* MISMOS ESTILOS PERSONALIZADOS QUE EN INDEX.HTML */
         body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; }
@@ -337,6 +345,8 @@
         <div class="absolute bottom-[-10px] right-6 w-0 h-0 border-x-transparent border-x-[10px] border-t-[10px] border-t-white"></div>
     </div>
     
+    <!-- Move scripts to the end of the body for faster rendering -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
@@ -464,4 +474,3 @@
     </script>
 </body>
 </html>
-
