@@ -10,67 +10,52 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://i.ytimg.com">
 
-    <!-- Asynchronously load CSS -->
-    <!-- Google Fonts: Inter -->
+    <!-- Asynchronously load non-critical CSS -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap"></noscript>
-    
-    <!-- Font Awesome for Icons -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
     <style>
-        /* Estilos personalizados */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F8FAFC;
-            scroll-behavior: smooth;
-        }
-        .bg-brand-blue-dark { background-color: #0F172A; }
+        /* Critical CSS for Above-the-Fold Content & FOUT Prevention */
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; color: #334155; line-height: 1.6; scroll-behavior: smooth; opacity: 0; transition: opacity 0.4s ease-in; }
+        .header-logo { height: 48px; width: 48px; }
+        .sticky { position: sticky; top: 0; z-index: 50; }
+        .container { width: 100%; margin-left: auto; margin-right: auto; padding-left: 1.5rem; padding-right: 1.5rem; }
+        @media (min-width: 1024px) { .container { max-width: 1024px; } }
+        .font-black { font-weight: 900; }
+        .text-3xl { font-size: 1.875rem; }
+        .md\:text-4xl { font-size: 2.25rem; }
+        .leading-tight { line-height: 1.25; }
         .bg-brand-blue-light { background-color: #EFF6FF; }
         .text-brand-blue { color: #1E40AF; }
+        .bg-brand-blue-dark { background-color: #0F172A; }
         .text-brand-cyan { color: #06B6D4; }
         
-        .btn-primary {
-            background-color: #1E40AF;
-            color: white;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        .btn-primary:hover {
-            background-color: #1D4ED8;
-            transform: translateY(-2px);
-        }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-in-out;
-        }
-        .header-logo { height: 48px; }
+        .btn-primary { background-color: #1E40AF; color: white; transition: background-color 0.3s ease, transform 0.2s ease; }
+        .btn-primary:hover { background-color: #1D4ED8; transform: translateY(-2px); }
         
-        section[id] { scroll-margin-top: 140px; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; }
 
-        @keyframes text-color-pulse {
-            0%, 100% { color: #FFFFFF; }
-            50% { color: #F97316; }
-        }
+        @keyframes text-color-pulse { 0%, 100% { color: #FFFFFF; } 50% { color: #F97316; } }
         .animated-banner-text { animation: text-color-pulse 3s ease-in-out infinite; }
 
-        /* Animaciones para el banner de frases rotativas */
-        @keyframes slideInFromRight {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes slideOutToLeft {
-            from { transform: translateX(0); opacity: 1; }
-            to { transform: translateX(-100%); opacity: 0; }
-        }
-        .slide-in {
-            animation: slideInFromRight 0.5s ease-out forwards;
-        }
-        .slide-out {
-            animation: slideOutToLeft 0.5s ease-out forwards;
-        }
+        @keyframes slideInFromRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideOutToLeft { from { transform: translateX(0); opacity: 1; } to { transform: translateX(-100%); opacity: 0; } }
+        .slide-in { animation: slideInFromRight 0.5s ease-out forwards; }
+        .slide-out { animation: slideOutToLeft 0.5s ease-out forwards; }
+
+        /* Styles for YouTube Facade */
+        .youtube-fachada { position: relative; cursor: pointer; overflow: hidden; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); background-color: #e0e0e0; }
+        .youtube-fachada img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; border:0; }
+        .youtube-fachada:hover img { transform: scale(1.05); }
+        .youtube-fachada::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70px; height: 50px; background-color: rgba(0, 0, 0, 0.6); border-radius: 10px; transition: background-color 0.3s ease; }
+        .youtube-fachada::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-40%, -50%); width: 0; height: 0; border-style: solid; border-width: 15px 0 15px 26px; border-color: transparent transparent transparent white; }
+        .youtube-fachada:hover::before { background-color: rgba(255, 0, 0, 0.8); }
+        .youtube-fachada.video-loaded::before, .youtube-fachada.video-loaded::after { display: none; }
+        .youtube-fachada iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     </style>
 </head>
 <body class="text-slate-700">
@@ -94,7 +79,7 @@
         <header class="bg-white/95 backdrop-blur-sm shadow-sm">
             <div class="container mx-auto px-6 py-3 flex justify-between items-center">
                 <a href="index.html" class="flex items-center">
-                    <img src="https://i.postimg.cc/52X9SGD3/clean-click-logo-120.webp" alt="Logo de Clean Click" class="header-logo w-auto">
+                    <img src="https://i.postimg.cc/52X9SGD3/clean-click-logo-120.webp" alt="Logo de Clean Click" class="header-logo" width="48" height="48">
                     <span class="ml-2 text-base font-bold text-slate-800 leading-tight">Clean Click<br class="sm:hidden">Aroma a Limpio</span>
                 </a>
                 <nav class="hidden lg:flex items-center space-x-6">
@@ -159,7 +144,7 @@
         <section class="bg-brand-blue-light">
             <div class="container mx-auto px-6 py-16">
                 <div class="grid lg:grid-cols-2 gap-8 items-center">
-                    <!-- Columna de Texto (Ahora primero en el código para orden móvil) -->
+                    <!-- Columna de Texto -->
                     <div class="text-center lg:text-left">
                         <h1 class="text-3xl md:text-4xl font-black text-slate-900 leading-tight">
                             Renueva tus Sillones, Sofás, Alfombras y Colchones con 
@@ -178,7 +163,7 @@
                             </button>
                         </div>
                     </div>
-                    <!-- Columna de Imagen (Ahora segundo en el código para orden móvil) -->
+                    <!-- Columna de Imagen -->
                     <div class="relative">
                          <picture>
                             <source media="(max-width: 639px)" srcset="https://i.postimg.cc/s2SVtWjG/clean-click-hero-400.webp">
@@ -186,10 +171,10 @@
                             <img src="https://i.postimg.cc/1tQ9PzXC/clean-click-hero-500.webp" 
                                  alt="Primer plano de una máquina profesional limpiando un sillón a vapor" 
                                  class="w-full h-auto rounded-xl shadow-lg"
+                                 width="500" height="333"
                                  fetchpriority="high" loading="eager" decoding="async"
                                  onerror="this.onerror=null;this.src='https://placehold.co/500x333/EFF6FF/1E40AF?text=Limpieza+Profesional';">
                          </picture>
-                        <!-- Elemento Destacado (Badge) -->
                         <div class="absolute bottom-4 right-4 bg-white p-2 sm:p-3 rounded-2xl shadow-lg flex items-center space-x-2 sm:space-x-3 animate-pulse">
                             <div class="bg-blue-100 p-1 sm:p-2 rounded-full">
                                 <i class="fas fa-shield-alt text-brand-blue"></i>
@@ -205,7 +190,6 @@
         <section class="bg-brand-blue-dark py-4">
             <div class="max-w-5xl mx-auto px-2 sm:px-6 text-center">
                 <div id="rotating-text-container" class="relative h-14 lg:h-7 flex items-center justify-center overflow-hidden">
-                    <!-- Las frases rotativas se insertarán aquí con JavaScript -->
                 </div>
             </div>
         </section>
@@ -412,46 +396,49 @@
                 <h2 class="text-3xl font-bold text-slate-900">Clientes Satisfechos con Nuestro Trabajo</h2>
                 <p class="mt-2 text-slate-600">La confianza de nuestros clientes es nuestro mejor aval.</p>
                 
-                <!-- Grilla de Testimonios -->
+                <!-- Grilla de Testimonios (Imágenes) -->
                 <div class="mt-12 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Testimonio 1 -->
                     <div>
                         <picture>
                             <source media="(max-width: 639px)" srcset="https://i.postimg.cc/Vk2fGg8c/clean-click-testimonio-01-400.webp">
                             <source media="(min-width: 640px)" srcset="https://i.postimg.cc/0j5PMHp7/clean-click-testimonio-01-450.webp">
-                            <img src="https://i.postimg.cc/0j5PMHp7/clean-click-testimonio-01-450.webp" alt="Testimonio de cliente 1" class="w-full h-auto rounded-2xl shadow-lg" loading="lazy" decoding="async">
+                            <img src="https://i.postimg.cc/0j5PMHp7/clean-click-testimonio-01-450.webp" alt="Testimonio de cliente 1" class="w-full h-auto rounded-2xl shadow-lg" loading="lazy" decoding="async" width="450" height="800">
                         </picture>
                     </div>
-                    <!-- Testimonio 2 -->
                     <div>
                         <picture>
                             <source media="(max-width: 639px)" srcset="https://i.postimg.cc/C1swKVfF/clean-click-testimonio-02-400.webp">
                             <source media="(min-width: 640px)" srcset="https://i.postimg.cc/SRZqW7r3/clean-click-testimonio-02-450.webp">
-                            <img src="https://i.postimg.cc/SRZqW7r3/clean-click-testimonio-02-450.webp" alt="Testimonio de cliente 2" class="w-full h-auto rounded-2xl shadow-lg" loading="lazy" decoding="async">
+                            <img src="https://i.postimg.cc/SRZqW7r3/clean-click-testimonio-02-450.webp" alt="Testimonio de cliente 2" class="w-full h-auto rounded-2xl shadow-lg" loading="lazy" decoding="async" width="450" height="800">
                         </picture>
                     </div>
-                    <!-- Testimonio 3 -->
                     <div>
                         <picture>
                             <source media="(max-width: 639px)" srcset="https://i.postimg.cc/RCGM54Bd/clean-click-testimonio-03-400.webp">
                             <source media="(min-width: 640px)" srcset="https://i.postimg.cc/htQgdm7Z/clean-click-testimonio-03-450.webp">
-                            <img src="https://i.postimg.cc/htQgdm7Z/clean-click-testimonio-03-450.webp" alt="Testimonio de cliente 3" class="w-full h-auto rounded-2xl shadow-lg" loading="lazy" decoding="async">
+                            <img src="https://i.postimg.cc/htQgdm7Z/clean-click-testimonio-03-450.webp" alt="Testimonio de cliente 3" class="w-full h-auto rounded-2xl shadow-lg" loading="lazy" decoding="async" width="450" height="800">
                         </picture>
                     </div>
-                    <!-- Testimonio 4 -->
                     <div>
                         <picture>
                             <source media="(max-width: 639px)" srcset="https://i.postimg.cc/MKTzzNZS/clean-click-testimonio-04-400.webp">
                             <source media="(min-width: 640px)" srcset="https://i.postimg.cc/yYbsxjWS/clean-click-testimonio-04-450.webp">
-                            <img src="https://i.postimg.cc/yYbsxjWS/clean-click-testimonio-04-450.webp" alt="Testimonio de cliente 4" class="w-full h-auto rounded-2xl shadow-lg" loading="lazy" decoding="async">
+                            <img src="https://i.postimg.cc/yYbsxjWS/clean-click-testimonio-04-450.webp" alt="Testimonio de cliente 4" class="w-full h-auto rounded-2xl shadow-lg" loading="lazy" decoding="async" width="450" height="800">
                         </picture>
                     </div>
                 </div>
 
+                <!-- Grilla de Testimonios (Videos con Fachada) -->
                 <div class="mt-12 grid md:grid-cols-3 gap-8">
-                    <div class="rounded-2xl shadow-lg overflow-hidden aspect-video"><div id="player1"></div></div>
-                    <div class="rounded-2xl shadow-lg overflow-hidden aspect-video"><div id="player2"></div></div>
-                    <div class="rounded-2xl shadow-lg overflow-hidden aspect-video"><div id="player3"></div></div>
+                    <div class="youtube-fachada aspect-video" data-videoid="pHdzZYcw5Gc" aria-label="Reproducir testimonio en video 1">
+                        <img src="https://i.ytimg.com/vi/pHdzZYcw5Gc/hqdefault.jpg" alt="Miniatura del testimonio 1" loading="lazy" width="480" height="360">
+                    </div>
+                    <div class="youtube-fachada aspect-video" data-videoid="Yx4lKEeCwss" aria-label="Reproducir testimonio en video 2">
+                        <img src="https://i.ytimg.com/vi/Yx4lKEeCwss/hqdefault.jpg" alt="Miniatura del testimonio 2" loading="lazy" width="480" height="360">
+                    </div>
+                    <div class="youtube-fachada aspect-video" data-videoid="gtggraD_N_w" aria-label="Reproducir testimonio en video 3">
+                        <img src="https://i.ytimg.com/vi/gtggraD_N_w/hqdefault.jpg" alt="Miniatura del testimonio 3" loading="lazy" width="480" height="360">
+                    </div>
                 </div>
             </div>
         </section>
@@ -529,7 +516,7 @@
                 <!-- Columna 1: Logo y Marca -->
                 <div>
                     <a href="index.html" class="inline-block">
-                        <img src="https://i.postimg.cc/52X9SGD3/clean-click-logo-120.webp" alt="Logo de Clean Click en el footer" class="h-12 w-auto mx-auto md:mx-0 rounded-full">
+                        <img src="https://i.postimg.cc/52X9SGD3/clean-click-logo-120.webp" alt="Logo de Clean Click en el footer" class="h-12 w-auto mx-auto md:mx-0 rounded-full" width="48" height="48">
                     </a>
                     <p class="mt-4 font-bold text-white">Clean Click Aroma a Limpio</p>
                     <p class="mt-2 text-sm max-w-xs mx-auto md:mx-0">
@@ -572,11 +559,8 @@
         </div>
     </footer>
 
-
     <!-- Floating Chat Button -->
-    <button 
-        id="cta-flotante"
-        class="open-chat-popup fixed bottom-5 right-5 bg-[#1E40AF] hover:bg-[#1D4ED8] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50">
+    <button id="cta-flotante" class="open-chat-popup fixed bottom-5 right-5 bg-[#1E40AF] hover:bg-[#1D4ED8] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50">
         <i class="fas fa-comment-dots text-4xl pointer-events-none"></i>
     </button>
 
@@ -585,7 +569,7 @@
         <!-- Header del Pop-up -->
         <div class="flex justify-between items-center p-4 bg-slate-50 border-b border-slate-200">
             <div class="flex items-center">
-                <img src="https://i.postimg.cc/52X9SGD3/clean-click-logo-120.webp" alt="Avatar de Clean Click" class="w-10 h-10 rounded-full mr-3 object-contain">
+                <img src="https://i.postimg.cc/52X9SGD3/clean-click-logo-120.webp" alt="Avatar de Clean Click" class="w-10 h-10 rounded-full mr-3 object-contain" width="40" height="40">
                 <span class="font-bold text-slate-800">Clean Click Aroma a Limpio</span>
             </div>
             <button id="close-popup" class="text-slate-400 hover:text-slate-800 text-3xl font-light leading-none">&times;</button>
@@ -613,12 +597,12 @@
         <div class="absolute bottom-[-10px] right-6 w-0 h-0 border-x-transparent border-x-[10px] border-t-[10px] border-t-white"></div>
     </div>
 
-    <!-- Move scripts to the end of the body for faster rendering -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Scripts at the end of the body -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        
-        // --- Elementos del DOM ---
+        document.body.style.opacity = '1';
+
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = menuToggle ? menuToggle.querySelector('i') : null;
@@ -626,279 +610,120 @@
         const chatPopup = document.getElementById('chat-popup');
         const closePopupBtn = document.getElementById('close-popup');
 
-        // --- Funciones de estado para el Pop-up de Chat ---
-        const openPopup = () => {
-            if(chatPopup) {
-                chatPopup.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
-            }
-        };
+        const openPopup = () => { if(chatPopup) { chatPopup.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none'); } };
+        const closePopup = () => { if(chatPopup) { chatPopup.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none'); } };
+        const closeMenu = () => { if (mobileMenu && menuIcon) { mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible'); menuIcon.classList.remove('fa-times'); menuIcon.classList.add('fa-bars'); } };
+        const openMenu = () => { closePopup(); if (mobileMenu && menuIcon) { mobileMenu.classList.remove('opacity-0', 'scale-95', 'invisible'); menuIcon.classList.remove('fa-bars'); menuIcon.classList.add('fa-times'); } };
 
-        const closePopup = () => {
-             if(chatPopup) {
-                chatPopup.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
-            }
-        };
-
-        // --- Funciones de estado para el Menú Móvil ---
-        const closeMenu = () => {
-            if (mobileMenu && menuIcon) {
-                mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            }
-        };
-
-        const openMenu = () => {
-            // LÓGICA CLAVE: Si el pop-up está abierto, ciérralo antes de abrir el menú.
-            closePopup(); 
-            if (mobileMenu && menuIcon) {
-                mobileMenu.classList.remove('opacity-0', 'scale-95', 'invisible');
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
-            }
-        };
-
-        // --- Asignación de Event Listeners ---
-
-        // 1. Listener para el botón del menú de hamburguesa
         if (menuToggle) {
             menuToggle.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const isMenuOpen = !mobileMenu.classList.contains('invisible');
-                if (isMenuOpen) {
-                    closeMenu();
-                } else {
-                    openMenu(); // openMenu ahora tiene la lógica para cerrar el popup
-                }
+                if (isMenuOpen) { closeMenu(); } else { openMenu(); }
             });
         }
         
-        // 2. Listeners para todos los botones que abren/cierran el pop-up de chat
         if (allPopupTriggers.length > 0) {
             allPopupTriggers.forEach(button => {
                 button.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const isPopupOpen = chatPopup && !chatPopup.classList.contains('opacity-0');
-                    const isMenuOpen = mobileMenu && !mobileMenu.classList.contains('invisible');
-
-                    // LÓGICA CLAVE: Si el botón presionado es el flotante, actúa como un interruptor (toggle).
                     if (button.id === 'cta-flotante') {
-                        if (isPopupOpen) {
-                            closePopup();
-                        } else {
-                            // Antes de abrir, asegúrate de que el menú principal esté cerrado.
-                            if (isMenuOpen) {
-                                closeMenu();
-                            }
+                        if (isPopupOpen) { closePopup(); } 
+                        else {
+                            if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
                             openPopup();
                         }
                     } else {
-                        // Para todos los demás CTAs, siempre intentan abrir el pop-up.
-                        // Asegúrate de que el menú principal esté cerrado primero.
-                        if (isMenuOpen) {
-                            closeMenu();
-                        }
+                        if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
                         openPopup();
                     }
                 });
             });
         }
         
-        // 3. Listener para el botón de cerrar el pop-up
-        if (closePopupBtn) {
-            closePopupBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                closePopup();
-            });
-        }
+        if (closePopupBtn) { closePopupBtn.addEventListener('click', (e) => { e.stopPropagation(); closePopup(); }); }
 
-        // 4. Listeners para cerrar los menús al hacer clic fuera de ellos
         document.addEventListener('click', (e) => {
-            // Cerrar menú móvil si se hace clic afuera
-            const isMenuOpen = mobileMenu && !mobileMenu.classList.contains('invisible');
-            if (isMenuOpen && !mobileMenu.contains(e.target) && e.target !== menuToggle && !menuToggle.contains(e.target)) {
-                closeMenu();
-            }
-
-            // Cerrar pop-up de chat si se hace clic afuera
-            const isPopupOpen = chatPopup && !chatPopup.classList.contains('opacity-0');
-            if (isPopupOpen && !chatPopup.contains(e.target) && !e.target.closest('.open-chat-popup')) {
-                closePopup();
-            }
+            if (mobileMenu && !mobileMenu.classList.contains('invisible') && !mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) { closeMenu(); }
+            if (chatPopup && !chatPopup.classList.contains('opacity-0') && !chatPopup.contains(e.target) && !e.target.closest('.open-chat-popup')) { closePopup(); }
         });
 
-
-        // --- Lógica para el desplazamiento suave Y CIERRE DE MENÚ (Sin cambios) ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                if (mobileMenu && !mobileMenu.classList.contains('invisible')) {
-                    closeMenu();
-                }
-                const href = this.getAttribute('href');
-                if (href.length > 1) {
-                    const targetElement = document.querySelector(href);
-                    if (targetElement) {
-                        e.preventDefault();
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
+                if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
             });
         });
 
-        // --- Lógica para el acordeón de servicios en móvil (Sin cambios) ---
         const mobileServicesToggle = document.getElementById('mobile-services-toggle');
         if(mobileServicesToggle) {
-            const mobileServicesSubmenu = document.getElementById('mobile-services-submenu');
-            const mobileServicesIcon = mobileServicesToggle.querySelector('i');
             mobileServicesToggle.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const isActive = mobileServicesSubmenu.style.maxHeight && mobileServicesSubmenu.style.maxHeight !== '0px';
-                if (!isActive) {
-                    mobileServicesSubmenu.style.maxHeight = mobileServicesSubmenu.scrollHeight + 'px';
-                    if(mobileServicesIcon) mobileServicesIcon.style.transform = 'rotate(180deg)';
-                } else {
-                    mobileServicesSubmenu.style.maxHeight = '0px';
-                    if(mobileServicesIcon) mobileServicesIcon.style.transform = 'rotate(0deg)';
-                }
+                const submenu = document.getElementById('mobile-services-submenu');
+                const icon = mobileServicesToggle.querySelector('i');
+                const isActive = submenu.style.maxHeight && submenu.style.maxHeight !== '0px';
+                submenu.style.maxHeight = isActive ? '0px' : submenu.scrollHeight + 'px';
+                if(icon) icon.style.transform = isActive ? 'rotate(0deg)' : 'rotate(180deg)';
             });
         }
         
-        // --- Lógica para el banner de frases rotativas (Sin cambios) ---
-        const rotatingPhrases = [
-            "¿Esa mancha de vino no quiere salir?",
-            "¿Te estás cambiando de casa?, se vería linda con todo limpio.",
-            "¿Harás una fiesta en tu casa?",
-            "No me digas... ¿la fiesta ya fue?",
-            "¿Vienen los suegros de visita?",
-            "¿Tus alergias no te dejan en paz?",
-            "¿Te pidieron cuidar al perrihijo de un amigo?",
-            "¿Le sacaste los pañales a tu pequeño?"
-        ];
+        const rotatingPhrases = ["¿Esa mancha de vino no quiere salir?", "¿Te estás cambiando de casa?, se vería linda con todo limpio.", "¿Harás una fiesta en tu casa?", "No me digas... ¿la fiesta ya fue?", "¿Vienen los suegros de visita?", "¿Tus alergias no te dejan en paz?", "¿Te pidieron cuidar al perrihijo de un amigo?", "¿Le sacaste los pañales a tu pequeño?"];
         let currentPhraseIndex = 0;
         const phraseContainer = document.getElementById('rotating-text-container');
 
         if (phraseContainer) {
             const showNextPhrase = () => {
                 const currentElement = phraseContainer.querySelector('span');
-                if (currentElement) {
-                    currentElement.classList.add('slide-out');
-                }
-
+                if (currentElement) { currentElement.classList.add('slide-out'); }
                 setTimeout(() => {
-                    if (currentElement) {
-                        phraseContainer.innerHTML = ''; // Limpia el contenedor
-                    }
+                    if (currentElement) { phraseContainer.innerHTML = ''; }
                     currentPhraseIndex = (currentPhraseIndex + 1) % rotatingPhrases.length;
                     const newElement = document.createElement('span');
                     newElement.textContent = `“ ${rotatingPhrases[currentPhraseIndex]} ”`;
                     newElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
                     phraseContainer.appendChild(newElement);
-                }, 500); // Debe coincidir con la duración de la animación de salida
+                }, 500);
             };
-
-            // Muestra la primera frase inmediatamente al cargar
             const initialElement = document.createElement('span');
             initialElement.textContent = `“ ${rotatingPhrases[0]} ”`;
             initialElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
             phraseContainer.appendChild(initialElement);
-
-            // Inicia el intervalo para cambiar las frases
             setInterval(showNextPhrase, 4000);
         }
 
-        // --- Lógica para el acordeón de FAQ (Sin cambios) ---
         const faqToggles = document.querySelectorAll('.accordion-toggle');
         faqToggles.forEach(button => {
             button.addEventListener('click', () => {
                 const accordionContent = button.nextElementSibling;
                 const icon = button.querySelector('i');
                 const isActive = accordionContent.style.maxHeight && accordionContent.style.maxHeight !== '0px';
-
-                if (!isActive) {
-                    accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
-                    icon.classList.remove('fa-plus'); icon.classList.add('fa-minus');
-                    icon.style.transform = 'rotate(180deg)';
-                } else {
-                    accordionContent.style.maxHeight = '0px';
-                    icon.classList.remove('fa-minus'); icon.classList.add('fa-plus');
-                    icon.style.transform = 'rotate(0deg)';
-                }
+                accordionContent.style.maxHeight = isActive ? '0px' : accordionContent.scrollHeight + 'px';
+                if(icon) { icon.classList.toggle('fa-plus', isActive); icon.classList.toggle('fa-minus', !isActive); icon.style.transform = isActive ? 'rotate(0deg)' : 'rotate(180deg)'; }
             });
         });
+
+        function initYouTubeFacades() {
+            const facades = document.querySelectorAll('.youtube-fachada');
+            facades.forEach(facade => {
+                facade.addEventListener('click', () => {
+                    const videoId = facade.dataset.videoid;
+                    const iframe = document.createElement('iframe');
+                    iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`);
+                    iframe.setAttribute('frameborder', '0');
+                    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                    iframe.setAttribute('allowfullscreen', '');
+                    iframe.setAttribute('title', 'Reproductor de video de YouTube');
+                    facade.innerHTML = '';
+                    facade.appendChild(iframe);
+                    facade.classList.add('video-loaded');
+                }, { once: true });
+            });
+        }
+        initYouTubeFacades();
     });
-    </script>
-
-    <!-- YouTube IFrame API -->
-    <script>
-        // Carga la API de IFrame Player de YouTube de forma asíncrona.
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player1, player2, player3;
-        var videoPlayed1 = false, videoPlayed2 = false, videoPlayed3 = false;
-
-        // Esta función se llama automáticamente cuando la API está lista.
-        function onYouTubeIframeAPIReady() {
-            player1 = new YT.Player('player1', {
-                height: '100%',
-                width: '100%',
-                videoId: 'pHdzZYcw5Gc', // ID Video 1
-                playerVars: { 'playsinline': 1 },
-                events: { 'onStateChange': onPlayerStateChange1 }
-            });
-            player2 = new YT.Player('player2', {
-                height: '100%',
-                width: '100%',
-                videoId: 'Yx4lKEeCwss', // ID Video 2
-                playerVars: { 'playsinline': 1 },
-                events: { 'onStateChange': onPlayerStateChange2 }
-            });
-            player3 = new YT.Player('player3', {
-                height: '100%',
-                width: '100%',
-                videoId: 'gtggraD_N_w', // ID Video 3
-                playerVars: { 'playsinline': 1 },
-                events: { 'onStateChange': onPlayerStateChange3 }
-            });
-        }
-
-        // Estas funciones envían el evento a GTM cuando un video se reproduce por primera vez.
-        function onPlayerStateChange1(event) {
-            if (event.data == YT.PlayerState.PLAYING && !videoPlayed1) {
-                videoPlayed1 = true;
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                    'event': 'youtube_play',
-                    'video_title': 'Testimonio 1'
-                });
-            }
-        }
-        function onPlayerStateChange2(event) {
-            if (event.data == YT.PlayerState.PLAYING && !videoPlayed2) {
-                videoPlayed2 = true;
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                    'event': 'youtube_play',
-                    'video_title': 'Testimonio 2'
-                });
-            }
-        }
-        function onPlayerStateChange3(event) {
-            if (event.data == YT.PlayerState.PLAYING && !videoPlayed3) {
-                videoPlayed3 = true;
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                    'event': 'youtube_play',
-                    'video_title': 'Testimonio 3'
-                });
-            }
-        }
     </script>
 </body>
 </html>
+
+
 
