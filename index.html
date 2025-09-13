@@ -9,19 +9,19 @@
     <!-- Preconnect to required origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://i.ytimg.com">
 
     <!-- Asynchronously load non-critical CSS -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap"></noscript>
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-
+    
     <style>
         /* Critical CSS for Above-the-Fold Content & FOUT Prevention */
         body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; color: #334155; line-height: 1.6; scroll-behavior: smooth; opacity: 0; transition: opacity 0.4s ease-in; }
-        .header-logo { height: 48px; width: 48px; }
+        .header-logo { height: 48px; width: 77px; }
+        section[id] { scroll-margin-top: 150px; }
         .sticky { position: sticky; top: 0; z-index: 50; }
         .container { width: 100%; margin-left: auto; margin-right: auto; padding-left: 1.5rem; padding-right: 1.5rem; }
         @media (min-width: 1024px) { .container { max-width: 1024px; } }
@@ -79,7 +79,7 @@
         <header class="bg-white/95 backdrop-blur-sm shadow-sm">
             <div class="container mx-auto px-6 py-3 flex justify-between items-center">
                 <a href="index.html" class="flex items-center">
-                    <img src="https://i.postimg.cc/52X9SGD3/clean-click-logo-120.webp" alt="Logo de Clean Click" class="header-logo" width="48" height="48">
+                    <img src="https://i.postimg.cc/52X9SGD3/clean-click-logo-120.webp" alt="Logo de Clean Click" class="header-logo" width="77" height="48">
                     <span class="ml-2 text-base font-bold text-slate-800 leading-tight">Clean Click<br class="sm:hidden">Aroma a Limpio</span>
                 </a>
                 <nav class="hidden lg:flex items-center space-x-6">
@@ -88,7 +88,8 @@
                     <!-- Dropdown de Servicios para Escritorio -->
                     <div class="relative group">
                         <a href="#servicios" class="text-slate-600 hover:text-brand-blue font-medium items-center inline-flex cursor-pointer">
-                            Servicios <i class="fas fa-chevron-down text-xs ml-2 transition-transform group-hover:rotate-180"></i>
+                            Servicios 
+                            <i class="fas fa-chevron-down text-xs ml-2 transition-transform group-hover:rotate-180"></i>
                         </a>
                         <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-50 border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                             <a href="servicio-sillones.html" class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue">Sillones y Sofás</a>
@@ -105,7 +106,9 @@
                     <span class="text-xs font-normal">Atención 7am - 12am</span>
                 </button>
                 <div class="lg:hidden">
-                    <button id="menu-toggle" class="text-slate-800 hover:text-brand-blue"><i class="fas fa-bars text-2xl pointer-events-none"></i></button>
+                    <button id="menu-toggle" class="text-slate-800 hover:text-brand-blue" aria-label="Abrir menú de navegación">
+                        <i class="fas fa-bars text-2xl pointer-events-none"></i>
+                    </button>
                 </div>
             </div>
             <!-- Mobile Menu Pop-up -->
@@ -201,17 +204,17 @@
                     <div class="md:border-r md:border-slate-200 px-4">
                         <i class="fas fa-users text-4xl text-brand-blue mb-3"></i>
                         <p class="text-4xl font-black text-brand-blue">+700</p>
-                        <p class="mt-1 text-slate-500 text-lg">Clientes por año</p>
+                        <p class="mt-1 text-slate-600 text-lg">Clientes por año</p>
                     </div>
                     <div class="md:border-r md:border-slate-200 px-4">
                         <i class="fas fa-check-circle text-4xl text-brand-blue mb-3"></i>
                         <p class="text-4xl font-black text-brand-blue">+1000</p>
-                        <p class="mt-1 text-slate-500 text-lg">Servicios por año</p>
+                        <p class="mt-1 text-slate-600 text-lg">Servicios por año</p>
                     </div>
                     <div class="px-4">
                         <i class="fab fa-instagram text-4xl text-brand-blue mb-3"></i>
                         <p class="text-4xl font-black text-brand-blue">+37 mil</p>
-                        <p class="mt-1 text-slate-500 text-lg">Seguidores en Instagram</p>
+                        <p class="mt-1 text-slate-600 text-lg">Seguidores en Instagram</p>
                     </div>
                 </div>
             </div>
@@ -219,35 +222,37 @@
 
         <!-- Por qué elegirnos Section -->
         <section id="porque-elegirnos" class="py-16 bg-brand-blue-light">
-            <div class="container mx-auto px-6">
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-slate-900">¿Por qué Elegirnos?</h2>
+                <p class="mt-2 text-slate-600 max-w-2xl mx-auto">Te ofrecemos un servicio de confianza, con resultados garantizados y un equipo profesional comprometido con la limpieza de tu hogar.</p>
+                <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div class="flex flex-col items-center">
                         <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow">
                             <i class="fas fa-award"></i>
                         </div>
                         <h3 class="mt-4 text-lg font-bold text-slate-800">Satisfacción Garantizada</h3>
-                        <p class="mt-1 text-slate-500">Garantía de 7 días en todos nuestros servicios.</p>
+                        <p class="mt-1 text-slate-600">Garantía de 7 días en todos nuestros servicios.</p>
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow">
-                            <i class="fas fa-leaf"></i>
+                           <i class="fas fa-leaf"></i>
                         </div>
                         <h3 class="mt-4 text-lg font-bold text-slate-800">Productos Ecológicos</h3>
-                        <p class="mt-1 text-slate-500">Seguros para tu familia, mascotas y el planeta.</p>
+                        <p class="mt-1 text-slate-600">Seguros para tu familia, mascotas y el planeta.</p>
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow">
-                            <i class="fas fa-bolt"></i>
+                           <i class="fas fa-bolt"></i>
                         </div>
                         <h3 class="mt-4 text-lg font-bold text-slate-800">Servicio Rápido</h3>
-                        <p class="mt-1 text-slate-500">Agendamos tu visita en tiempo récord.</p>
+                        <p class="mt-1 text-slate-600">Agendamos tu visita en tiempo récord.</p>
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow">
-                            <i class="fas fa-user-shield"></i>
+                           <i class="fas fa-user-shield"></i>
                         </div>
                         <h3 class="mt-4 text-lg font-bold text-slate-800">Técnicos Expertos</h3>
-                        <p class="mt-1 text-slate-500">Personal calificado y de total confianza.</p>
+                        <p class="mt-1 text-slate-600">Personal calificado y de total confianza.</p>
                     </div>
                 </div>
             </div>
@@ -451,42 +456,69 @@
                     <!-- Columna Izquierda -->
                     <div class="space-y-4">
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button id="faq-1" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿Cuál es el área de cobertura?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                                <span>¿Cuál es el área de cobertura?</span>
+                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                            </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Actualmente cubrimos la Región Metropolitana completamente. Adicionalmente, llegamos a Algarrobo, El Quisco, Papudo y Zapallar.</p></div>
                         </div>
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button id="faq-2" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿Cuánto demora la limpieza?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                                <span>¿Cuánto demora la limpieza?</span>
+                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                            </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">En promedio, la limpieza de un sillón puede tardar 45 minutos.</p></div>
                         </div>
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button id="faq-3" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿Qué tan rápido puedo agendar?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                                <span>¿Qué tan rápido puedo agendar?</span>
+                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                            </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Nuestro equipo de atención está siempre disponible. El tiempo de respuesta promedio para coordinar tu servicio es de solo 5 minutos.</p></div>
                         </div>
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button id="faq-4" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">Si escribo hoy, ¿cuándo pueden venir?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                                <span>Si escribo hoy, ¿cuándo pueden venir?</span>
+                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                            </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Normalmente agendamos con dos días hábiles de anticipación. Si agendas hoy, lo más probable es que te visitemos pasado mañana.</p></div>
                         </div>
                          <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button id="faq-5" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿Se eliminan todas las manchas?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                                <span>¿Se eliminan todas las manchas?</span>
+                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                            </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">No todas las manchas logran salir, ya que el resultado depende de la antigüedad y del tipo de mancha. Damos nuestro mejor esfuerzo, pero algunas son muy difíciles de eliminar por completo.</p></div>
                         </div>
                     </div>
                     <!-- Columna Derecha -->
                     <div class="space-y-4">
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button id="faq-6" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿El servicio tiene garantía?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                                <span>¿El servicio tiene garantía?</span>
+                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                            </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Sí, nuestra garantía se aplica hasta por 7 días después de realizado el servicio. En caso de ser necesario, agendaremos una nueva visita dentro de los siguientes 7 días para revisar el trabajo.</p></div>
                         </div>
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button id="faq-7" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿Cuáles son los tiempos de secado?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                                <span>¿Cuáles son los tiempos de secado?</span>
+                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                            </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Los tiempos promedio son: sillones y sofás, 7 horas; colchones, 5 horas; y alfombras, 12 horas.</p></div>
                         </div>
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button id="faq-8" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿Qué otros tapices limpian?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                                <span>¿Qué otros tapices limpian?</span>
+                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                            </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Además de sillones, nos especializamos en alfombras y colchones. Para colchones, recomendamos agendar el servicio temprano para asegurar un secado eficiente durante el día.</p></div>
                         </div>
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button id="faq-9" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">¿Cómo puedo pagar?<i class="fas fa-plus transform transition-transform pointer-events-none"></i></button>
+                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                                <span>¿Cómo puedo pagar?</span>
+                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                            </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Aceptamos todos los medios de pago: efectivo, transferencia, débito y tarjeta de crédito.</p></div>
                         </div>
                     </div>
@@ -516,7 +548,7 @@
                 <!-- Columna 1: Logo y Marca -->
                 <div>
                     <a href="index.html" class="inline-block">
-                        <img src="https://i.postimg.cc/52X9SGD3/clean-click-logo-120.webp" alt="Logo de Clean Click en el footer" class="h-12 w-auto mx-auto md:mx-0 rounded-full" width="48" height="48">
+                        <img src="https://i.postimg.cc/52X9SGD3/clean-click-logo-120.webp" alt="Logo de Clean Click en el footer" class="h-12 w-auto mx-auto md:mx-0 rounded-full" width="77" height="48">
                     </a>
                     <p class="mt-4 font-bold text-white">Clean Click Aroma a Limpio</p>
                     <p class="mt-2 text-sm max-w-xs mx-auto md:mx-0">
@@ -524,7 +556,9 @@
                     </p>
                     <div class="mt-6 flex justify-center md:justify-start items-center space-x-4">
                         <span class="font-semibold">Visítanos en Instagram</span>
-                        <a href="https://www.instagram.com/cleanclick.aromaalimpio/" target="_blank" id="cta-instagram-footer" class="text-2xl hover:text-white transition-colors"><i class="fab fa-instagram pointer-events-none"></i></a>
+                        <a href="https://www.instagram.com/cleanclick.aromaalimpio/" target="_blank" id="cta-instagram-footer" class="text-2xl hover:text-white transition-colors" aria-label="Visítanos en Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </div>
                 </div>
 
@@ -560,7 +594,7 @@
     </footer>
 
     <!-- Floating Chat Button -->
-    <button id="cta-flotante" class="open-chat-popup fixed bottom-5 right-5 bg-[#1E40AF] hover:bg-[#1D4ED8] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50">
+    <button id="cta-flotante" class="open-chat-popup fixed bottom-5 right-5 bg-[#1E40AF] hover:bg-[#1D4ED8] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50" aria-label="Abrir chat de contacto">
         <i class="fas fa-comment-dots text-4xl pointer-events-none"></i>
     </button>
 
@@ -572,7 +606,7 @@
                 <img src="https://i.postimg.cc/52X9SGD3/clean-click-logo-120.webp" alt="Avatar de Clean Click" class="w-10 h-10 rounded-full mr-3 object-contain" width="40" height="40">
                 <span class="font-bold text-slate-800">Clean Click Aroma a Limpio</span>
             </div>
-            <button id="close-popup" class="text-slate-400 hover:text-slate-800 text-3xl font-light leading-none">&times;</button>
+            <button id="close-popup" class="text-slate-400 hover:text-slate-800 text-3xl font-light leading-none" aria-label="Cerrar chat">&times;</button>
         </div>
         <!-- Contenido del Mensaje -->
         <div class="p-6">
@@ -605,15 +639,14 @@
 
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = menuToggle ? menuToggle.querySelector('i') : null;
         const allPopupTriggers = document.querySelectorAll('.open-chat-popup');
         const chatPopup = document.getElementById('chat-popup');
         const closePopupBtn = document.getElementById('close-popup');
 
         const openPopup = () => { if(chatPopup) { chatPopup.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none'); } };
         const closePopup = () => { if(chatPopup) { chatPopup.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none'); } };
-        const closeMenu = () => { if (mobileMenu && menuIcon) { mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible'); menuIcon.classList.remove('fa-times'); menuIcon.classList.add('fa-bars'); } };
-        const openMenu = () => { closePopup(); if (mobileMenu && menuIcon) { mobileMenu.classList.remove('opacity-0', 'scale-95', 'invisible'); menuIcon.classList.remove('fa-bars'); menuIcon.classList.add('fa-times'); } };
+        const closeMenu = () => { if (mobileMenu) { mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible'); } };
+        const openMenu = () => { closePopup(); if (mobileMenu) { mobileMenu.classList.remove('opacity-0', 'scale-95', 'invisible'); } };
 
         if (menuToggle) {
             menuToggle.addEventListener('click', (e) => {
@@ -651,6 +684,16 @@
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').length > 1) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
                 if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
             });
         });
@@ -724,3 +767,4 @@
     </script>
 </body>
 </html>
+
