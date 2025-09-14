@@ -14,14 +14,12 @@
     <!-- Asynchronously load non-critical CSS -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap"></noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     
     <style>
         /* Critical CSS for Above-the-Fold Content & FOUT Prevention */
-        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; color: #334155; line-height: 1.6; scroll-behavior: smooth; opacity: 0; transition: opacity 0.4s ease-in; }
+        body { font-family: 'Inter', sans-serif; background-color: #F8FAFC; color: #334155; line-height: 1.6; opacity: 0; transition: opacity 0.4s ease-in; scroll-behavior: smooth; }
         .header-logo { height: 48px; width: 77px; }
-        section[id] { scroll-margin-top: 150px; }
+        section[id] { scroll-margin-top: 140px; }
         .sticky { position: sticky; top: 0; z-index: 50; }
         .container { width: 100%; margin-left: auto; margin-right: auto; padding-left: 1.5rem; padding-right: 1.5rem; }
         @media (min-width: 1024px) { .container { max-width: 1024px; } }
@@ -79,7 +77,7 @@
         <header class="bg-white/95 backdrop-blur-sm shadow-sm">
             <div class="container mx-auto px-6 py-3 flex justify-between items-center">
                 <a href="index.html" class="flex items-center">
-                    <img src="https://i.postimg.cc/52X9SGD3/clean-click-logo-120.webp" alt="Logo de Clean Click" class="header-logo" width="77" height="48">
+                    <img src="https://i.postimg.cc/P5zg9yHv/clean-click-logo-77.webp" alt="Logo de Clean Click" class="header-logo" width="77" height="48">
                     <span class="ml-2 text-base font-bold text-slate-800 leading-tight">Clean Click<br class="sm:hidden">Aroma a Limpio</span>
                 </a>
                 <nav class="hidden lg:flex items-center space-x-6">
@@ -89,7 +87,7 @@
                     <div class="relative group">
                         <a href="#servicios" class="text-slate-600 hover:text-brand-blue font-medium items-center inline-flex cursor-pointer">
                             Servicios 
-                            <i class="fas fa-chevron-down text-xs ml-2 transition-transform group-hover:rotate-180"></i>
+                            <svg class="w-2.5 h-2.5 ml-2.5 transition-transform group-hover:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M297.4 470.6C309.9 483.1 330.2 483.1 342.7 470.6L534.7 278.6C547.2 266.1 547.2 245.8 534.7 233.3C522.2 220.8 501.9 220.8 489.4 233.3L320 402.7L150.6 233.4C138.1 220.9 117.8 220.9 105.3 233.4C92.8 245.9 92.8 266.2 105.3 278.7L297.3 470.7z"/></svg>
                         </a>
                         <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-50 border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                             <a href="servicio-sillones.html" class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue">Sillones y Sofás</a>
@@ -107,7 +105,7 @@
                 </button>
                 <div class="lg:hidden">
                     <button id="menu-toggle" class="text-slate-800 hover:text-brand-blue" aria-label="Abrir menú de navegación">
-                        <i class="fas fa-bars text-2xl pointer-events-none"></i>
+                        <svg class="w-6 h-6 pointer-events-none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e293b" d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z"/></svg>
                     </button>
                 </div>
             </div>
@@ -121,7 +119,7 @@
                         <div class="flex items-center justify-between hover:bg-blue-50 rounded-md">
                             <a href="#servicios" id="nav-mobile-servicios" class="mobile-link text-slate-700 hover:text-brand-blue p-3 font-medium flex-grow">Servicios</a>
                             <button id="mobile-services-toggle" class="p-3 text-slate-700 hover:text-brand-blue">
-                                <i class="fas fa-chevron-down transform transition-transform pointer-events-none"></i>
+                                <svg class="w-2.5 h-2.5 transition-transform pointer-events-none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#334155" d="M297.4 470.6C309.9 483.1 330.2 483.1 342.7 470.6L534.7 278.6C547.2 266.1 547.2 245.8 534.7 233.3C522.2 220.8 501.9 220.8 489.4 233.3L320 402.7L150.6 233.4C138.1 220.9 117.8 220.9 105.3 233.4C92.8 245.9 92.8 266.2 105.3 278.7L297.3 470.7z"/></svg>
                             </button>
                         </div>
                         <div id="mobile-services-submenu" class="pl-4 pt-2 accordion-content">
@@ -180,7 +178,7 @@
                          </picture>
                         <div class="absolute bottom-4 right-4 bg-white p-2 sm:p-3 rounded-2xl shadow-lg flex items-center space-x-2 sm:space-x-3 animate-pulse">
                             <div class="bg-blue-100 p-1 sm:p-2 rounded-full">
-                                <i class="fas fa-shield-alt text-brand-blue"></i>
+                                <svg class="w-4 h-4 text-brand-blue" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e40af" d="M317.4 66.9C313.2 65 308.7 64 304 64C299.3 64 294.8 65 290.6 66.9L102.3 146.8C80.3 156.1 63.9 177.8 64 204C64.5 303.2 105.3 484.7 277.6 567.2C294.3 575.2 313.7 575.2 330.4 567.2C502.8 484.7 543.6 303.2 544 204C544.1 177.8 527.7 156.1 505.7 146.8L317.4 66.9zM304 192C317.3 192 328 202.7 328 216C328 238.9 355.7 250.4 371.9 234.2C381.3 224.8 396.5 224.8 405.8 234.2C415.1 243.6 415.2 258.8 405.8 268.1C389.6 284.3 401.1 312 424 312C437.3 312 448 322.7 448 336C448 349.3 437.3 360 424 360C401.1 360 389.6 387.7 405.8 403.9C415.2 413.3 415.2 428.5 405.8 437.8C396.4 447.1 381.2 447.2 371.9 437.8C355.7 421.6 328 433.1 328 456C328 469.3 317.3 480 304 480C290.7 480 280 469.3 280 456C280 433.1 252.3 421.6 236.1 437.8C226.7 447.2 211.5 447.2 202.2 437.8C192.9 428.4 192.8 413.2 202.2 403.9C218.4 387.7 206.9 360 184 360C170.7 360 160 349.3 160 336C160 322.7 170.7 312 184 312C206.9 312 218.4 284.3 202.2 268.1C192.8 258.7 192.8 243.5 202.2 234.2C211.6 224.9 226.8 224.8 236.1 234.2C252.3 250.4 280 238.9 280 216C280 202.7 290.7 192 304 192zM272 328C285.3 328 296 317.3 296 304C296 290.7 285.3 280 272 280C258.7 280 248 290.7 248 304C248 317.3 258.7 328 272 328zM360 368C360 354.7 349.3 344 336 344C322.7 344 312 354.7 312 368C312 381.3 322.7 392 336 392C349.3 392 360 381.3 360 368z"/></svg>
                             </div>
                             <p class="text-xs sm:text-sm font-semibold text-slate-800">Eliminamos el 99.9% de los ácaros</p>
                         </div>
@@ -202,17 +200,17 @@
             <div class="container mx-auto px-6">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     <div class="md:border-r md:border-slate-200 px-4">
-                        <i class="fas fa-users text-4xl text-brand-blue mb-3"></i>
+                        <svg class="w-10 h-10 text-brand-blue mb-3 mx-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e40af" d="M320 80C377.4 80 424 126.6 424 184C424 241.4 377.4 288 320 288C262.6 288 216 241.4 216 184C216 126.6 262.6 80 320 80zM96 152C135.8 152 168 184.2 168 224C168 263.8 135.8 296 96 296C56.2 296 24 263.8 24 224C24 184.2 56.2 152 96 152zM0 480C0 409.3 57.3 352 128 352C140.8 352 153.2 353.9 164.9 357.4C132 394.2 112 442.8 112 496L112 512C112 523.4 114.4 534.2 118.7 544L32 544C14.3 544 0 529.7 0 512L0 480zM521.3 544C525.6 534.2 528 523.4 528 512L528 496C528 442.8 508 394.2 475.1 357.4C486.8 353.9 499.2 352 512 352C582.7 352 640 409.3 640 480L640 512C640 529.7 625.7 544 608 544L521.3 544zM472 224C472 184.2 504.2 152 544 152C583.8 152 616 184.2 616 224C616 263.8 583.8 296 544 296C504.2 296 472 263.8 472 224zM160 496C160 407.6 231.6 336 320 336C408.4 336 480 407.6 480 496L480 512C480 529.7 465.7 544 448 544L192 544C174.3 544 160 529.7 160 512L160 496z"/></svg>
                         <p class="text-4xl font-black text-brand-blue">+700</p>
                         <p class="mt-1 text-slate-600 text-lg">Clientes por año</p>
                     </div>
                     <div class="md:border-r md:border-slate-200 px-4">
-                        <i class="fas fa-check-circle text-4xl text-brand-blue mb-3"></i>
+                        <svg class="w-10 h-10 text-brand-blue mb-3 mx-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e40af" d="M320 576C178.6 576 64 461.4 64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576zM438 209.7C427.3 201.9 412.3 204.3 404.5 215L285.1 379.2L233 327.1C223.6 317.7 208.4 317.7 199.1 327.1C189.8 336.5 189.7 351.7 199.1 361L271.1 433C276.1 438 282.9 440.5 289.9 440C296.9 439.5 303.3 435.9 307.4 430.2L443.3 243.2C451.1 232.5 448.7 217.5 438 209.7z"/></svg>
                         <p class="text-4xl font-black text-brand-blue">+1000</p>
                         <p class="mt-1 text-slate-600 text-lg">Servicios por año</p>
                     </div>
                     <div class="px-4">
-                        <i class="fab fa-instagram text-4xl text-brand-blue mb-3"></i>
+                        <svg class="w-10 h-10 text-brand-blue mb-3 mx-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e40af" d="M320.3 205C256.8 204.8 205.2 256.2 205 319.7C204.8 383.2 256.2 434.8 319.7 435C383.2 435.2 434.8 383.8 435 320.3C435.2 256.8 383.8 205.2 320.3 205zM319.7 245.4C360.9 245.2 394.4 278.5 394.6 319.7C394.8 360.9 361.5 394.4 320.3 394.6C279.1 394.8 245.6 361.5 245.4 320.3C245.2 279.1 278.5 245.6 319.7 245.4zM413.1 200.3C413.1 185.5 425.1 173.5 439.9 173.5C454.7 173.5 466.7 185.5 466.7 200.3C466.7 215.1 454.7 227.1 439.9 227.1C425.1 227.1 413.1 215.1 413.1 200.3zM542.8 227.5C541.1 191.6 532.9 159.8 506.6 133.6C480.4 107.4 448.6 99.2 412.7 97.4C375.7 95.3 264.8 95.3 227.8 97.4C192 99.1 160.2 107.3 133.9 133.5C107.6 159.7 99.5 191.5 97.7 227.4C95.6 264.4 95.6 375.3 97.7 412.3C99.4 448.2 107.6 480 133.9 506.2C160.2 532.4 191.9 540.6 227.8 542.4C264.8 544.5 375.7 544.5 412.7 542.4C448.6 540.7 480.4 532.5 506.6 506.2C532.8 480 541 448.2 542.8 412.3C544.9 375.3 544.9 264.5 542.8 227.5zM495 452C487.2 471.6 472.1 486.7 452.4 494.6C422.9 506.3 352.9 503.6 320.3 503.6C287.7 503.6 217.6 506.2 188.2 494.6C168.6 486.8 153.5 471.7 145.6 452C133.9 422.5 136.6 352.5 136.6 319.9C136.6 287.3 134 217.2 145.6 187.8C153.4 168.2 168.5 153.1 188.2 145.2C217.7 133.5 287.7 136.2 320.3 136.2C352.9 136.2 423 133.6 452.4 145.2C472 153 487.1 168.1 495 187.8C506.7 217.3 504 287.3 504 319.9C504 352.5 506.7 422.6 495 452z"/></svg>
                         <p class="text-4xl font-black text-brand-blue">+37 mil</p>
                         <p class="mt-1 text-slate-600 text-lg">Seguidores en Instagram</p>
                     </div>
@@ -228,28 +226,28 @@
                 <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div class="flex flex-col items-center">
                         <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow">
-                            <i class="fas fa-award"></i>
+                            <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e40af" d="M341.9 38.1C328.5 29.9 311.6 29.9 298.2 38.1C273.8 53 258.7 57 230.1 56.4C214.4 56 199.8 64.5 192.2 78.3C178.5 103.4 167.4 114.5 142.3 128.2C128.5 135.7 120.1 150.4 120.4 166.1C121.1 194.7 117 209.8 102.1 234.2C93.9 247.6 93.9 264.5 102.1 277.9C117 302.3 121 317.4 120.4 346C120 361.7 128.5 376.3 142.3 383.9C164.4 396 175.6 406 187.4 425.4L138.7 522.5C132.8 534.4 137.6 548.8 149.4 554.7L235.4 597.7C246.9 603.4 260.9 599.1 267.1 587.9L319.9 492.8L372.7 587.9C378.9 599.1 392.9 603.5 404.4 597.7L490.4 554.7C502.3 548.8 507.1 534.4 501.1 522.5L452.5 425.3C464.2 405.9 475.5 395.9 497.6 383.8C511.4 376.3 519.8 361.6 519.5 345.9C518.8 317.3 522.9 302.2 537.8 277.8C546 264.4 546 247.5 537.8 234.1C522.9 209.7 518.9 194.6 519.5 166C519.9 150.3 511.4 135.7 497.6 128.1C472.5 114.4 461.4 103.3 447.7 78.2C440.2 64.4 425.5 56 409.8 56.3C381.2 57 366.1 52.9 341.7 38zM320 160C373 160 416 203 416 256C416 309 373 352 320 352C267 352 224 309 224 256C224 203 267 160 320 160z"/></svg>
                         </div>
                         <h3 class="mt-4 text-lg font-bold text-slate-800">Satisfacción Garantizada</h3>
                         <p class="mt-1 text-slate-600">Garantía de 7 días en todos nuestros servicios.</p>
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow">
-                           <i class="fas fa-leaf"></i>
+                            <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e40af" d="M535.3 70.7C541.7 64.6 551 62.4 559.6 65.2C569.4 68.5 576 77.7 576 88L576 274.9C576 406.1 467.9 512 337.2 512C260.2 512 193.8 462.5 169.7 393.3C134.3 424.1 112 469.4 112 520C112 533.3 101.3 544 88 544C74.7 544 64 533.3 64 520C64 445.1 102.2 379.1 160.1 340.3C195.4 316.7 237.5 304 280 304L360 304C373.3 304 384 293.3 384 280C384 266.7 373.3 256 360 256L280 256C240.3 256 202.7 264.8 169 280.5C192.3 210.5 258.2 160 336 160C402.4 160 451.8 137.9 484.7 116C503.9 103.2 520.2 87.9 535.4 70.7z"/></svg>
                         </div>
                         <h3 class="mt-4 text-lg font-bold text-slate-800">Productos Ecológicos</h3>
                         <p class="mt-1 text-slate-600">Seguros para tu familia, mascotas y el planeta.</p>
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow">
-                           <i class="fas fa-bolt"></i>
+                            <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e40af" d="M434.8 54.1C446.7 62.7 451.1 78.3 445.7 91.9L367.3 288L512 288C525.5 288 537.5 296.4 542.1 309.1C546.7 321.8 542.8 336 532.5 344.6L244.5 584.6C233.2 594 217.1 594.5 205.2 585.9C193.3 577.3 188.9 561.7 194.3 548.1L272.7 352L128 352C114.5 352 102.5 343.6 97.9 330.9C93.3 318.2 97.2 304 107.5 295.4L395.5 55.4C406.8 46 422.9 45.5 434.8 54.1z"/></svg>
                         </div>
                         <h3 class="mt-4 text-lg font-bold text-slate-800">Servicio Rápido</h3>
                         <p class="mt-1 text-slate-600">Agendamos tu visita en tiempo récord.</p>
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow">
-                           <i class="fas fa-user-shield"></i>
+                            <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e40af" d="M256 312C322.3 312 376 258.3 376 192C376 125.7 322.3 72 256 72C189.7 72 136 125.7 136 192C136 258.3 189.7 312 256 312zM226.3 368C127.8 368 48 447.8 48 546.3C48 562.7 61.3 576 77.7 576L329.2 576C293 533.4 272 478.5 272 420.4L272 389.3C272 382 273 374.8 274.9 368L226.3 368zM477.3 552.5L464 558.8L464 370.7L560 402.7L560 422.3C560 478.1 527.8 528.8 477.3 552.6zM453.9 323.5L341.9 360.8C328.8 365.2 320 377.4 320 391.2L320 422.3C320 496.7 363 564.4 430.2 596L448.7 604.7C453.5 606.9 458.7 608.1 463.9 608.1C469.1 608.1 474.4 606.9 479.1 604.7L497.6 596C565 564.3 608 496.6 608 422.2L608 391.1C608 377.3 599.2 365.1 586.1 360.7L474.1 323.4C467.5 321.2 460.4 321.2 453.9 323.4z"/></svg>
                         </div>
                         <h3 class="mt-4 text-lg font-bold text-slate-800">Técnicos Expertos</h3>
                         <p class="mt-1 text-slate-600">Personal calificado y de total confianza.</p>
@@ -265,17 +263,17 @@
                 <p class="mt-2 text-slate-600 max-w-2xl mx-auto">Más que una limpieza, es una renovación completa para tus espacios.</p>
                 <div class="mt-12 grid md:grid-cols-3 gap-8">
                     <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 text-center transform hover:-translate-y-2 transition-transform">
-                        <i class="fas fa-palette text-4xl text-brand-cyan"></i>
+                        <svg class="w-10 h-10 text-brand-cyan mx-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#06b6d4" d="M576 320C576 320.9 576 321.8 576 322.7C575.6 359.2 542.4 384 505.9 384L408 384C381.5 384 360 405.5 360 432C360 435.4 360.4 438.7 361 441.9C363.1 452.1 367.5 461.9 371.8 471.8C377.9 485.6 383.9 499.3 383.9 513.8C383.9 545.6 362.3 574.5 330.5 575.8C327 575.9 323.5 576 319.9 576C178.5 576 63.9 461.4 63.9 320C63.9 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320zM192 352C192 334.3 177.7 320 160 320C142.3 320 128 334.3 128 352C128 369.7 142.3 384 160 384C177.7 384 192 369.7 192 352zM192 256C209.7 256 224 241.7 224 224C224 206.3 209.7 192 192 192C174.3 192 160 206.3 160 224C160 241.7 174.3 256 192 256zM352 160C352 142.3 337.7 128 320 128C302.3 128 288 142.3 288 160C288 177.7 302.3 192 320 192C337.7 192 352 177.7 352 160zM448 256C465.7 256 480 241.7 480 224C480 206.3 465.7 192 448 192C430.3 192 416 206.3 416 224C416 241.7 430.3 256 448 256z"/></svg>
                         <h3 class="text-xl font-bold mt-4 text-slate-800">Colores más Vivos</h3>
                         <p class="mt-2 text-slate-600">El vapor de alta potencia reaviva los colores originales de la tela, dejándola como nueva.</p>
                     </div>
                     <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 text-center transform hover:-translate-y-2 transition-transform">
-                        <i class="fas fa-shield-virus text-4xl text-brand-cyan"></i>
+                        <svg class="w-10 h-10 text-brand-cyan mx-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#06b6d4" d="M317.4 66.9C313.2 65 308.7 64 304 64C299.3 64 294.8 65 290.6 66.9L102.3 146.8C80.3 156.1 63.9 177.8 64 204C64.5 303.2 105.3 484.7 277.6 567.2C294.3 575.2 313.7 575.2 330.4 567.2C502.8 484.7 543.6 303.2 544 204C544.1 177.8 527.7 156.1 505.7 146.8L317.4 66.9zM304 192C317.3 192 328 202.7 328 216C328 238.9 355.7 250.4 371.9 234.2C381.3 224.8 396.5 224.8 405.8 234.2C415.1 243.6 415.2 258.8 405.8 268.1C389.6 284.3 401.1 312 424 312C437.3 312 448 322.7 448 336C448 349.3 437.3 360 424 360C401.1 360 389.6 387.7 405.8 403.9C415.2 413.3 415.2 428.5 405.8 437.8C396.4 447.1 381.2 447.2 371.9 437.8C355.7 421.6 328 433.1 328 456C328 469.3 317.3 480 304 480C290.7 480 280 469.3 280 456C280 433.1 252.3 421.6 236.1 437.8C226.7 447.2 211.5 447.2 202.2 437.8C192.9 428.4 192.8 413.2 202.2 403.9C218.4 387.7 206.9 360 184 360C170.7 360 160 349.3 160 336C160 322.7 170.7 312 184 312C206.9 312 218.4 284.3 202.2 268.1C192.8 258.7 192.8 243.5 202.2 234.2C211.6 224.9 226.8 224.8 236.1 234.2C252.3 250.4 280 238.9 280 216C280 202.7 290.7 192 304 192zM272 328C285.3 328 296 317.3 296 304C296 290.7 285.3 280 272 280C258.7 280 248 290.7 248 304C248 317.3 258.7 328 272 328zM360 368C360 354.7 349.3 344 336 344C322.7 344 312 354.7 312 368C312 381.3 322.7 392 336 392C349.3 392 360 381.3 360 368z"/></svg>
                         <h3 class="text-xl font-bold mt-4 text-slate-800">Hogar Desinfectado</h3>
                         <p class="mt-2 text-slate-600">Elimina el 99.9% de virus, bacterias y ácaros, creando un ambiente más saludable.</p>
                     </div>
                     <div class="bg-slate-50 p-8 rounded-2xl border border-slate-200 text-center transform hover:-translate-y-2 transition-transform">
-                        <i class="fas fa-wind text-4xl text-brand-cyan"></i>
+                        <svg class="w-10 h-10 text-brand-cyan mx-auto" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#06b6d4" d="M352 96C352 113.7 366.3 128 384 128L424 128C437.3 128 448 138.7 448 152C448 165.3 437.3 176 424 176L96 176C78.3 176 64 190.3 64 208C64 225.7 78.3 240 96 240L424 240C472.6 240 512 200.6 512 152C512 103.4 472.6 64 424 64L384 64C366.3 64 352 78.3 352 96zM416 448C416 465.7 430.3 480 448 480L480 480C533 480 576 437 576 384C576 331 533 288 480 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L480 352C497.7 352 512 366.3 512 384C512 401.7 497.7 416 480 416L448 416C430.3 416 416 430.3 416 448zM192 576L232 576C280.6 576 320 536.6 320 488C320 439.4 280.6 400 232 400L96 400C78.3 400 64 414.3 64 432C64 449.7 78.3 464 96 464L232 464C245.3 464 256 474.7 256 488C256 501.3 245.3 512 232 512L192 512C174.3 512 160 526.3 160 544C160 561.7 174.3 576 192 576z"/></svg>
                         <h3 class="text-xl font-bold mt-4 text-slate-800">Adiós a los Malos Olores</h3>
                         <p class="mt-2 text-slate-600">Neutralizamos olores de raíz, dejando una sensación de frescura y limpieza duradera.</p>
                     </div>
@@ -292,7 +290,7 @@
                     <!-- Servicio 1: Sillones -->
                     <a href="servicio-sillones.html" class="block bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-brand-blue hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col">
                         <div class="flex-shrink-0 w-16 h-16 mx-auto flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-3xl">
-                            <i class="fas fa-couch"></i>
+                            <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e40af" d="M144 336C144 288.7 109.8 249.4 64.8 241.5C72 177.6 126.2 128 192 128L448 128C513.8 128 568 177.6 575.2 241.5C530.2 249.5 496 288.7 496 336L496 368L144 368L144 336zM0 448L0 336C0 309.5 21.5 288 48 288C74.5 288 96 309.5 96 336L96 416L544 416L544 336C544 309.5 565.5 288 592 288C618.5 288 640 309.5 640 336L640 448C640 483.3 611.3 512 576 512L64 512C28.7 512 0 483.3 0 448z"/></svg>
                         </div>
                         <h3 class="text-xl font-bold mt-6 text-slate-800 text-center">Limpieza de Sillones y Sofás</h3>
                         <p class="mt-2 text-slate-600 text-center">Devolvemos la vida a tus muebles, eliminando manchas, polvo y alérgenos.</p>
@@ -308,7 +306,7 @@
                     <!-- Servicio 2: Alfombras -->
                     <a href="servicio-alfombras.html" class="block bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-brand-blue hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col">
                         <div class="flex-shrink-0 w-16 h-16 mx-auto flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-3xl">
-                           <i class="fas fa-layer-group"></i>
+                           <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e40af" d="M296.5 69.2C311.4 62.3 328.6 62.3 343.5 69.2L562.1 170.2C570.6 174.1 576 182.6 576 192C576 201.4 570.6 209.9 562.1 213.8L343.5 314.8C328.6 321.7 311.4 321.7 296.5 314.8L77.9 213.8C69.4 209.8 64 201.3 64 192C64 182.7 69.4 174.1 77.9 170.2L296.5 69.2zM112.1 282.4L276.4 358.3C304.1 371.1 336 371.1 363.7 358.3L528 282.4L562.1 298.2C570.6 302.1 576 310.6 576 320C576 329.4 570.6 337.9 562.1 341.8L343.5 442.8C328.6 449.7 311.4 449.7 296.5 442.8L77.9 341.8C69.4 337.8 64 329.3 64 320C64 310.7 69.4 302.1 77.9 298.2L112 282.4zM77.9 426.2L112 410.4L276.3 486.3C304 499.1 335.9 499.1 363.6 486.3L527.9 410.4L562 426.2C570.5 430.1 575.9 438.6 575.9 448C575.9 457.4 570.5 465.9 562 469.8L343.4 570.8C328.5 577.7 311.3 577.7 296.4 570.8L77.9 469.8C69.4 465.8 64 457.3 64 448C64 438.7 69.4 430.1 77.9 426.2z"/></svg>
                         </div>
                         <h3 class="text-xl font-bold mt-6 text-slate-800 text-center">Limpieza de Alfombras</h3>
                         <p class="mt-2 text-slate-600 text-center">Reavivamos los colores y la textura de tus alfombras, eliminando suciedad y olores.</p>
@@ -324,7 +322,7 @@
                     <!-- Servicio 3: Colchones -->
                     <a href="servicio-colchones.html" class="block bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-brand-blue hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col">
                          <div class="flex-shrink-0 w-16 h-16 mx-auto flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-3xl">
-                            <i class="fas fa-bed"></i>
+                            <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e40af" d="M64 96C81.7 96 96 110.3 96 128L96 352L320 352L320 224C320 206.3 334.3 192 352 192L512 192C565 192 608 235 608 288L608 512C608 529.7 593.7 544 576 544C558.3 544 544 529.7 544 512L544 448L96 448L96 512C96 529.7 81.7 544 64 544C46.3 544 32 529.7 32 512L32 128C32 110.3 46.3 96 64 96zM144 256C144 220.7 172.7 192 208 192C243.3 192 272 220.7 272 256C272 291.3 243.3 320 208 320C172.7 320 144 291.3 144 256z"/></svg>
                         </div>
                         <h3 class="text-xl font-bold mt-6 text-slate-800 text-center">Limpieza de Colchones</h3>
                         <p class="mt-2 text-slate-600 text-center">Higienizamos tu colchón para un descanso saludable y libre de alérgenos.</p>
@@ -456,37 +454,37 @@
                     <!-- Columna Izquierda -->
                     <div class="space-y-4">
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                            <button id="faq-1" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
                                 <span>¿Cuál es el área de cobertura?</span>
-                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                                <svg class="w-4 h-4 transition-transform shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e293b" d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
                             </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Actualmente cubrimos la Región Metropolitana completamente. Adicionalmente, llegamos a Algarrobo, El Quisco, Papudo y Zapallar.</p></div>
                         </div>
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                            <button id="faq-2" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
                                 <span>¿Cuánto demora la limpieza?</span>
-                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                                <svg class="w-4 h-4 transition-transform shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e293b" d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
                             </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">En promedio, la limpieza de un sillón puede tardar 45 minutos.</p></div>
                         </div>
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                            <button id="faq-3" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
                                 <span>¿Qué tan rápido puedo agendar?</span>
-                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                                <svg class="w-4 h-4 transition-transform shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e293b" d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
                             </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Nuestro equipo de atención está siempre disponible. El tiempo de respuesta promedio para coordinar tu servicio es de solo 5 minutos.</p></div>
                         </div>
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                            <button id="faq-4" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
                                 <span>Si escribo hoy, ¿cuándo pueden venir?</span>
-                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                                <svg class="w-4 h-4 transition-transform shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e293b" d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
                             </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Normalmente agendamos con dos días hábiles de anticipación. Si agendas hoy, lo más probable es que te visitemos pasado mañana.</p></div>
                         </div>
                          <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                            <button id="faq-5" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
                                 <span>¿Se eliminan todas las manchas?</span>
-                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                                <svg class="w-4 h-4 transition-transform shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e293b" d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
                             </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">No todas las manchas logran salir, ya que el resultado depende de la antigüedad y del tipo de mancha. Damos nuestro mejor esfuerzo, pero algunas son muy difíciles de eliminar por completo.</p></div>
                         </div>
@@ -494,30 +492,30 @@
                     <!-- Columna Derecha -->
                     <div class="space-y-4">
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                            <button id="faq-6" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
                                 <span>¿El servicio tiene garantía?</span>
-                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                                <svg class="w-4 h-4 transition-transform shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e293b" d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
                             </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Sí, nuestra garantía se aplica hasta por 7 días después de realizado el servicio. En caso de ser necesario, agendaremos una nueva visita dentro de los siguientes 7 días para revisar el trabajo.</p></div>
                         </div>
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                            <button id="faq-7" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
                                 <span>¿Cuáles son los tiempos de secado?</span>
-                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                                <svg class="w-4 h-4 transition-transform shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e293b" d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
                             </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Los tiempos promedio son: sillones y sofás, 7 horas; colchones, 5 horas; y alfombras, 12 horas.</p></div>
                         </div>
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                            <button id="faq-8" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
                                 <span>¿Qué otros tapices limpian?</span>
-                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                                <svg class="w-4 h-4 transition-transform shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e293b" d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
                             </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Además de sillones, nos especializamos en alfombras y colchones. Para colchones, recomendamos agendar el servicio temprano para asegurar un secado eficiente durante el día.</p></div>
                         </div>
                         <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                            <button class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
+                            <button id="faq-9" class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800">
                                 <span>¿Cómo puedo pagar?</span>
-                                <i class="fas fa-plus transform transition-transform pointer-events-none"></i>
+                                <svg class="w-4 h-4 transition-transform shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#1e293b" d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"/></svg>
                             </button>
                             <div class="accordion-content"><p class="text-slate-600 px-5 pt-0 pb-5">Aceptamos todos los medios de pago: efectivo, transferencia, débito y tarjeta de crédito.</p></div>
                         </div>
@@ -548,7 +546,7 @@
                 <!-- Columna 1: Logo y Marca -->
                 <div>
                     <a href="index.html" class="inline-block">
-                        <img src="https://i.postimg.cc/52X9SGD3/clean-click-logo-120.webp" alt="Logo de Clean Click en el footer" class="h-12 w-auto mx-auto md:mx-0 rounded-full" width="77" height="48">
+                        <img src="https://i.postimg.cc/P5zg9yHv/clean-click-logo-77.webp" alt="Logo de Clean Click en el footer" class="h-12 w-auto mx-auto md:mx-0 rounded-full" width="77" height="48">
                     </a>
                     <p class="mt-4 font-bold text-white">Clean Click Aroma a Limpio</p>
                     <p class="mt-2 text-sm max-w-xs mx-auto md:mx-0">
@@ -557,7 +555,7 @@
                     <div class="mt-6 flex justify-center md:justify-start items-center space-x-4">
                         <span class="font-semibold">Visítanos en Instagram</span>
                         <a href="https://www.instagram.com/cleanclick.aromaalimpio/" target="_blank" id="cta-instagram-footer" class="text-2xl hover:text-white transition-colors" aria-label="Visítanos en Instagram">
-                            <i class="fab fa-instagram"></i>
+                            <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#d1d5db" d="M320.3 205C256.8 204.8 205.2 256.2 205 319.7C204.8 383.2 256.2 434.8 319.7 435C383.2 435.2 434.8 383.8 435 320.3C435.2 256.8 383.8 205.2 320.3 205zM319.7 245.4C360.9 245.2 394.4 278.5 394.6 319.7C394.8 360.9 361.5 394.4 320.3 394.6C279.1 394.8 245.6 361.5 245.4 320.3C245.2 279.1 278.5 245.6 319.7 245.4zM413.1 200.3C413.1 185.5 425.1 173.5 439.9 173.5C454.7 173.5 466.7 185.5 466.7 200.3C466.7 215.1 454.7 227.1 439.9 227.1C425.1 227.1 413.1 215.1 413.1 200.3zM542.8 227.5C541.1 191.6 532.9 159.8 506.6 133.6C480.4 107.4 448.6 99.2 412.7 97.4C375.7 95.3 264.8 95.3 227.8 97.4C192 99.1 160.2 107.3 133.9 133.5C107.6 159.7 99.5 191.5 97.7 227.4C95.6 264.4 95.6 375.3 97.7 412.3C99.4 448.2 107.6 480 133.9 506.2C160.2 532.4 191.9 540.6 227.8 542.4C264.8 544.5 375.7 544.5 412.7 542.4C448.6 540.7 480.4 532.5 506.6 506.2C532.8 480 541 448.2 542.8 412.3C544.9 375.3 544.9 264.5 542.8 227.5zM495 452C487.2 471.6 472.1 486.7 452.4 494.6C422.9 506.3 352.9 503.6 320.3 503.6C287.7 503.6 217.6 506.2 188.2 494.6C168.6 486.8 153.5 471.7 145.6 452C133.9 422.5 136.6 352.5 136.6 319.9C136.6 287.3 134 217.2 145.6 187.8C153.4 168.2 168.5 153.1 188.2 145.2C217.7 133.5 287.7 136.2 320.3 136.2C352.9 136.2 423 133.6 452.4 145.2C472 153 487.1 168.1 495 187.8C506.7 217.3 504 287.3 504 319.9C504 352.5 506.7 422.6 495 452z"/></svg>
                         </a>
                     </div>
                 </div>
@@ -595,7 +593,7 @@
 
     <!-- Floating Chat Button -->
     <button id="cta-flotante" class="open-chat-popup fixed bottom-5 right-5 bg-[#1E40AF] hover:bg-[#1D4ED8] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50" aria-label="Abrir chat de contacto">
-        <i class="fas fa-comment-dots text-4xl pointer-events-none"></i>
+        <svg class="w-8 h-8 pointer-events-none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="#ffffff" d="M320 544C461.4 544 576 436.5 576 304C576 171.5 461.4 64 320 64C178.6 64 64 171.5 64 304C64 358.3 83.2 408.3 115.6 448.5L66.8 540.8C62 549.8 63.5 560.8 70.4 568.3C77.3 575.8 88.2 578.1 97.5 574.1L215.9 523.4C247.7 536.6 282.9 544 320 544zM192 272C209.7 272 224 286.3 224 304C224 321.7 209.7 336 192 336C174.3 336 160 321.7 160 304C160 286.3 174.3 272 192 272zM320 272C337.7 272 352 286.3 352 304C352 321.7 337.7 336 320 336C302.3 336 288 321.7 288 304C288 286.3 302.3 272 320 272zM416 304C416 286.3 430.3 272 448 272C465.7 272 480 286.3 480 304C480 321.7 465.7 336 448 336C430.3 336 416 321.7 416 304z"/></svg>
     </button>
 
     <!-- Pop-up de Chat -->
@@ -603,7 +601,7 @@
         <!-- Header del Pop-up -->
         <div class="flex justify-between items-center p-4 bg-slate-50 border-b border-slate-200">
             <div class="flex items-center">
-                <img src="https://i.postimg.cc/52X9SGD3/clean-click-logo-120.webp" alt="Avatar de Clean Click" class="w-10 h-10 rounded-full mr-3 object-contain" width="40" height="40">
+                <img src="https://i.postimg.cc/P5zg9yHv/clean-click-logo-77.webp" alt="Avatar de Clean Click" class="w-10 h-10 rounded-full mr-3 object-contain" width="40" height="40">
                 <span class="font-bold text-slate-800">Clean Click Aroma a Limpio</span>
             </div>
             <button id="close-popup" class="text-slate-400 hover:text-slate-800 text-3xl font-light leading-none" aria-label="Cerrar chat">&times;</button>
@@ -683,18 +681,21 @@
         });
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                if (this.getAttribute('href').length > 1) {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(this.getAttribute('href'));
+             anchor.addEventListener('click', function (e) {
+                if (mobileMenu && !mobileMenu.classList.contains('invisible')) {
+                    closeMenu();
+                }
+                const href = this.getAttribute('href');
+                if (href.length > 1 && href.startsWith('#')) {
+                    const targetElement = document.querySelector(href);
                     if (targetElement) {
+                        e.preventDefault();
                         targetElement.scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
                         });
                     }
                 }
-                if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
             });
         });
 
@@ -703,10 +704,10 @@
             mobileServicesToggle.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const submenu = document.getElementById('mobile-services-submenu');
-                const icon = mobileServicesToggle.querySelector('i');
+                const icon = mobileServicesToggle.querySelector('svg');
                 const isActive = submenu.style.maxHeight && submenu.style.maxHeight !== '0px';
                 submenu.style.maxHeight = isActive ? '0px' : submenu.scrollHeight + 'px';
-                if(icon) icon.style.transform = isActive ? 'rotate(0deg)' : 'rotate(180deg)';
+                if(icon) icon.style.transform = isActive ? '' : 'rotate(180deg)';
             });
         }
         
@@ -738,10 +739,10 @@
         faqToggles.forEach(button => {
             button.addEventListener('click', () => {
                 const accordionContent = button.nextElementSibling;
-                const icon = button.querySelector('i');
+                const icon = button.querySelector('svg');
                 const isActive = accordionContent.style.maxHeight && accordionContent.style.maxHeight !== '0px';
                 accordionContent.style.maxHeight = isActive ? '0px' : accordionContent.scrollHeight + 'px';
-                if(icon) { icon.classList.toggle('fa-plus', isActive); icon.classList.toggle('fa-minus', !isActive); icon.style.transform = isActive ? 'rotate(0deg)' : 'rotate(180deg)'; }
+                if(icon) { icon.style.transform = isActive ? '' : 'rotate(180deg)'; }
             });
         });
 
@@ -767,4 +768,3 @@
     </script>
 </body>
 </html>
-
