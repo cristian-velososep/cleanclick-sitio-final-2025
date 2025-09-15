@@ -68,31 +68,31 @@ document.addEventListener('DOMContentLoaded', () => {
             if (icon) icon.style.transform = isActive ? '' : 'rotate(180deg)';
         });
     }
-    setTimeout(() => {
-        const rotatingPhrases = ["¿Esa mancha de vino no quiere salir?", "¿Te estás cambiando de casa?, se vería linda con todo limpio.", "¿Harás una fiesta en tu casa?", "No me digas... ¿la fiesta ya fue?", "¿Vienen los suegros de visita?", "¿Tus alergias no te dejan en paz?", "¿Te pidieron cuidar al perrihijo de un amigo?", "¿Le sacaste los pañales a tu pequeño?"];
-        let currentPhraseIndex = 0;
-        const phraseContainer = document.getElementById('rotating-text-container');
-    
-        if (phraseContainer) {
-            const showNextPhrase = () => {
-                const currentElement = phraseContainer.querySelector('span');
-                if (currentElement) { currentElement.classList.add('slide-out'); }
-                setTimeout(() => {
-                    if (currentElement) { phraseContainer.innerHTML = ''; }
-                    currentPhraseIndex = (currentPhraseIndex + 1) % rotatingPhrases.length;
-                    const newElement = document.createElement('span');
-                    newElement.textContent = `“ ${rotatingPhrases[currentPhraseIndex]} ”`;
-                    newElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
-                    phraseContainer.appendChild(newElement);
-                }, 500);
-            };
-            const initialElement = document.createElement('span');
-            initialElement.textContent = `“ ${rotatingPhrases[0]} ”`;
-            initialElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
-            phraseContainer.appendChild(initialElement);
-            setInterval(showNextPhrase, 4000);
-        }
-    }, 2500); // <-- Retrasamos la ejecución 2.5 segundos
+
+    const rotatingPhrases = ["¿Esa mancha de vino no quiere salir?", "¿Te estás cambiando de casa?, se vería linda con todo limpio.", "¿Harás una fiesta en tu casa?", "No me digas... ¿la fiesta ya fue?", "¿Vienen los suegros de visita?", "¿Tus alergias no te dejan en paz?", "¿Te pidieron cuidar al perrihijo de un amigo?", "¿Le sacaste los pañales a tu pequeño?"];
+    let currentPhraseIndex = 0;
+    const phraseContainer = document.getElementById('rotating-text-container');
+
+    if (phraseContainer) {
+        const showNextPhrase = () => {
+            const currentElement = phraseContainer.querySelector('span');
+            if (currentElement) { currentElement.classList.add('slide-out'); }
+            setTimeout(() => {
+                if (currentElement) { phraseContainer.innerHTML = ''; }
+                currentPhraseIndex = (currentPhraseIndex + 1) % rotatingPhrases.length;
+                const newElement = document.createElement('span');
+                newElement.textContent = `“ ${rotatingPhrases[currentPhraseIndex]} ”`;
+                newElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
+                phraseContainer.appendChild(newElement);
+            }, 500);
+        };
+        const initialElement = document.createElement('span');
+        initialElement.textContent = `“ ${rotatingPhrases[0]} ”`;
+        initialElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
+        phraseContainer.appendChild(initialElement);
+        setInterval(showNextPhrase, 4000);
+    }
+
     // Nota: El script de index.html tiene dos funciones extra (FAQ y YouTube)
     // Para simplificar, las incluiremos en el main.js para todas las páginas.
     // No afecta el rendimiento ya que solo se ejecutan si encuentran los elementos.
