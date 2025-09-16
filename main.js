@@ -48,12 +48,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            if (this.getAttribute('href').length > 1) {
-                const targetId = this.getAttribute('href');
-                // For service pages, we redirect to index.html with the hash
+            const path = window.location.pathname;
+            const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
+            const targetId = this.getAttribute('href');
+
+            // Cierra el menú móvil si está abierto, sin importar la página
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('invisible')) {
+                mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
+            }
+
+            // Si estamos en la página principal, hacemos scroll suave
+            if (isIndexPage && targetId.length > 1) {
+                e.preventDefault(); // Prevenimos el salto brusco
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth', // ¡Aquí está la magia del scroll suave!
+                        block: 'start'
+                    });
+                }
+            } 
+            // Si estamos en una subpágina, navegamos a la sección en index.html
+            else if (!isIndexPage && targetId.length > 1) {
+                // No prevenimos la acción, solo nos aseguramos de ir al lugar correcto
                 window.location.href = 'index.html' + targetId;
             }
-            if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
         });
     });
 
