@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     document.body.style.opacity = '1';
 
+    // Detectar dispositivo móvil para optimizaciones específicas
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
     // Calcular altura del header pegajoso y aplicar como variable CSS
     const calculateHeaderHeight = () => {
         const stickyHeader = document.querySelector('.sticky');
@@ -13,13 +16,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // Calcular altura inicial usando requestAnimationFrame para optimizar rendimiento
     requestAnimationFrame(calculateHeaderHeight);
     
-    // Debounce para resize para reducir trabajo del hilo principal
+    // Debounce/throttle optimizado para móviles
     let resizeTimeout;
+    let lastResizeTime = 0;
     const debouncedResize = () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
+        const now = Date.now();
+        const timeSinceLastResize = now - lastResizeTime;
+        
+        // En móviles, usar throttle más agresivo
+        const throttleDelay = isMobile ? 250 : 100;
+        
+        if (timeSinceLastResize >= throttleDelay) {
+            clearTimeout(resizeTimeout);
+            lastResizeTime = now;
             requestAnimationFrame(calculateHeaderHeight);
-        }, 100);
+        } else {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                lastResizeTime = Date.now();
+                requestAnimationFrame(calculateHeaderHeight);
+            }, throttleDelay - timeSinceLastResize);
+        }
     };
     
     window.addEventListener('resize', debouncedResize);
@@ -36,8 +53,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const openMenu = () => { closePopup(); if (mobileMenu) { mobileMenu.classList.remove('opacity-0', 'scale-95', 'invisible'); } };
 
     if (menuToggle) {
-        menuToggle.addEventListener('click', (e) => {
+        // Optimización para móviles: usar touchstart para mejor respuesta
+        const eventType = isMobile ? 'touchstart' : 'click';
+        menuToggle.addEventListener(eventType, (e) => {
             e.stopPropagation();
+            if (isMobile) {
+                e.preventDefault();
+            }
             const isMenuOpen = !mobileMenu.classList.contains('invisible');
             if (isMenuOpen) { closeMenu(); } else { openMenu(); }
         });
@@ -45,8 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (allPopupTriggers.length > 0) {
         allPopupTriggers.forEach(button => {
-            button.addEventListener('click', (e) => {
+            // Optimización para móviles: usar touchstart para mejor respuesta
+            const eventType = isMobile ? 'touchstart' : 'click';
+            button.addEventListener(eventType, (e) => {
                 e.stopPropagation();
+                if (isMobile) {
+                    e.preventDefault();
+                }
                 const isPopupOpen = chatPopup && !chatPopup.classList.contains('opacity-0');
                 if (button.id === 'cta-flotante') {
                     if (isPopupOpen) { closePopup(); }
@@ -64,7 +91,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (closePopupBtn) { closePopupBtn.addEventListener('click', (e) => { e.stopPropagation(); closePopup(); }); }
+    if (closePopupBtn) { 
+        // Optimización para móviles: usar touchstart para mejor respuesta
+        const eventType = isMobile ? 'touchstart' : 'click';
+        closePopupBtn.addEventListener(eventType, (e) => { 
+            e.stopPropagation(); 
+            if (isMobile) {
+                e.preventDefault();
+            }
+            closePopup(); 
+        }); 
+    }
 
     document.addEventListener('click', (e) => {
         if (mobileMenu && !mobileMenu.classList.contains('invisible') && !mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) { closeMenu(); }
@@ -138,10 +175,19 @@ document.addEventListener('DOMContentLoaded', () => {
                             // Función optimizada de scroll usando requestAnimationFrame
                             const smoothScrollTo = (targetPosition) => {
                                 requestAnimationFrame(() => {
-                                    window.scrollTo({
-                                        top: Math.max(0, targetPosition),
-                                        behavior: 'smooth'
-                                    });
+                                    // Optimización específica para móviles
+                                    if (isMobile) {
+                                        // En móviles, usar scroll más directo para mejor rendimiento
+                                        window.scrollTo({
+                                            top: Math.max(0, targetPosition),
+                                            behavior: 'smooth'
+                                        });
+                                    } else {
+                                        window.scrollTo({
+                                            top: Math.max(0, targetPosition),
+                                            behavior: 'smooth'
+                                        });
+                                    }
                                 });
                             };
                             
@@ -256,32 +302,49 @@ document.addEventListener('DOMContentLoaded', () => {
     const faqToggles = document.querySelectorAll('.accordion-toggle');
     faqToggles.forEach(button => {
         button.addEventListener('click', () => {
-            const accordionContent = button.nextElementSibling;
-            const icon = button.querySelector('svg');
-            const isActive = accordionContent.style.maxHeight && accordionContent.style.maxHeight !== '0px';
-
-            // En móviles: cerrar cualquier otra abierta antes de abrir la nueva
-            const shouldEnforceSingleOpen = window.matchMedia('(max-width: 767px)').matches;
-            if (shouldEnforceSingleOpen && !isActive) {
-                document.querySelectorAll('.accordion-content').forEach(content => {
-                    if (content !== accordionContent && content.style.maxHeight && content.style.maxHeight !== '0px') {
-                        content.style.maxHeight = '0px';
-                        const parentButton = content.previousElementSibling;
-                        const parentIcon = parentButton ? parentButton.querySelector('svg') : null;
-                        if (parentIcon) parentIcon.style.transform = '';
-                    }
+            // Optimización para móviles: usar requestAnimationFrame para animaciones
+            if (isMobile) {
+                requestAnimationFrame(() => {
+                    handleAccordionClick(button);
                 });
+            } else {
+                handleAccordionClick(button);
             }
-
-            accordionContent.style.maxHeight = isActive ? '0px' : accordionContent.scrollHeight + 'px';
-            if (icon) { icon.style.transform = isActive ? '' : 'rotate(180deg)'; }
         });
     });
+
+    function handleAccordionClick(button) {
+        const accordionContent = button.nextElementSibling;
+        const icon = button.querySelector('svg');
+        const isActive = accordionContent.style.maxHeight && accordionContent.style.maxHeight !== '0px';
+
+        // En móviles: cerrar cualquier otra abierta antes de abrir la nueva
+        const shouldEnforceSingleOpen = isMobile || window.matchMedia('(max-width: 767px)').matches;
+        if (shouldEnforceSingleOpen && !isActive) {
+            document.querySelectorAll('.accordion-content').forEach(content => {
+                if (content !== accordionContent && content.style.maxHeight && content.style.maxHeight !== '0px') {
+                    content.style.maxHeight = '0px';
+                    const parentButton = content.previousElementSibling;
+                    const parentIcon = parentButton ? parentButton.querySelector('svg') : null;
+                    if (parentIcon) parentIcon.style.transform = '';
+                }
+            });
+        }
+
+        accordionContent.style.maxHeight = isActive ? '0px' : accordionContent.scrollHeight + 'px';
+        if (icon) { icon.style.transform = isActive ? '' : 'rotate(180deg)'; }
+    }
 
     function initYouTubeFacades() {
         const facades = document.querySelectorAll('.youtube-fachada');
         facades.forEach(facade => {
-            facade.addEventListener('click', () => {
+            // Optimización para móviles: usar touchstart para mejor respuesta
+            const eventType = isMobile ? 'touchstart' : 'click';
+            facade.addEventListener(eventType, (e) => {
+                // Prevenir comportamiento por defecto en móviles
+                if (isMobile) {
+                    e.preventDefault();
+                }
                 const videoId = facade.dataset.videoid;
                 if (!videoId) return;
                 const iframe = document.createElement('iframe');
