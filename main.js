@@ -1,348 +1,1194 @@
-document.addEventListener('DOMContentLoaded', () => {
-    document.body.style.opacity = '1';
-
-    // Calcular altura del header pegajoso y aplicar como variable CSS
-    const calculateHeaderHeight = () => {
-        const stickyHeader = document.querySelector('.sticky');
-        if (stickyHeader) {
-            const headerHeight = stickyHeader.offsetHeight;
-            document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
-        }
-    };
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T37SGWVK');</script>
+    <!-- End Google Tag Manager -->
     
-    // Calcular altura inicial
-    calculateHeaderHeight();
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17323286248"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
     
-    // Recalcular en resize (por si cambia la altura del header)
-    window.addEventListener('resize', calculateHeaderHeight);
-
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const allPopupTriggers = document.querySelectorAll('.open-chat-popup');
-    const chatPopup = document.getElementById('chat-popup');
-    const closePopupBtn = document.getElementById('close-popup');
-
-    const openPopup = () => { if (chatPopup) { chatPopup.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none'); } };
-    const closePopup = () => { if (chatPopup) { chatPopup.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none'); } };
-    const closeMenu = () => { if (mobileMenu) { mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible'); } };
-    const openMenu = () => { closePopup(); if (mobileMenu) { mobileMenu.classList.remove('opacity-0', 'scale-95', 'invisible'); } };
-
-    if (menuToggle) {
-        menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isMenuOpen = !mobileMenu.classList.contains('invisible');
-            if (isMenuOpen) { closeMenu(); } else { openMenu(); }
-        });
-    }
-
-    if (allPopupTriggers.length > 0) {
-        allPopupTriggers.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isPopupOpen = chatPopup && !chatPopup.classList.contains('opacity-0');
-                if (button.id === 'cta-flotante') {
-                    if (isPopupOpen) { closePopup(); }
-                    else {
-                        if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
-                        openPopup();
-                        attachAutoCloseListeners();
-                    }
-                } else {
-                    if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
-                    openPopup();
-                    attachAutoCloseListeners();
-                }
-            });
-        });
-    }
-
-    if (closePopupBtn) { closePopupBtn.addEventListener('click', (e) => { e.stopPropagation(); closePopup(); }); }
-
-    document.addEventListener('click', (e) => {
-        if (mobileMenu && !mobileMenu.classList.contains('invisible') && !mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) { closeMenu(); }
-        if (chatPopup && !chatPopup.classList.contains('opacity-0') && !chatPopup.contains(e.target) && !e.target.closest('.open-chat-popup')) { closePopup(); }
-    });
-
-    // Cierre auto del pop-up solo en dispositivos no táctiles (mantener dinámica móvil)
-    const isTouchDevice = () => (
-        'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0
-    );
-    const interactionCloseHandler = () => {
-        if (chatPopup && !chatPopup.classList.contains('opacity-0')) {
-            closePopup();
-        }
-        window.removeEventListener('scroll', interactionCloseHandler, { passive: true });
-        document.removeEventListener('pointerdown', interactionCloseHandler, true);
-        document.removeEventListener('keydown', interactionCloseHandler, true);
-    };
-    const attachAutoCloseListeners = () => {
-        // En todos los dispositivos, cerrar al hacer scroll
-        window.addEventListener('scroll', interactionCloseHandler, { passive: true });
-        // En no táctiles, también cerrar por clic/tecla
-        if (!isTouchDevice()) {
-            document.addEventListener('pointerdown', interactionCloseHandler, true);
-            document.addEventListener('keydown', interactionCloseHandler, true);
-        }
-    };
-
-    // Enlaces internos: clics simples, el navegador maneja el smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const path = window.location.pathname;
-            const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
-            const targetId = this.getAttribute('href');
-
-            // Cierra el menú móvil si está abierto, sin importar la página
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenu && !mobileMenu.classList.contains('invisible')) {
-                mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
-            }
-
-            if (targetId && targetId.length > 1) {
-                if (isIndexPage) {
-                    // En index.html: dejar que el navegador maneje el scroll suave
-                    // El CSS con scroll-margin-top se encarga del offset
-                    const target = document.querySelector(targetId);
-                    if (target) {
-                        e.preventDefault();
-                        // Función para verificar que la página esté completamente cargada
-                        const waitForPageLoad = (callback, maxAttempts = 10) => {
-                            let attempts = 0;
-                            const checkLoad = () => {
-                                attempts++;
-                                // Verificar que el documento esté completamente cargado
-                                if (document.readyState === 'complete' && 
-                                    document.querySelector('.sticky')?.offsetHeight > 0 &&
-                                    target.offsetTop > 0) {
-                                    callback();
-                                } else if (attempts < maxAttempts) {
-                                    setTimeout(checkLoad, 50);
-                                } else {
-                                    // Fallback si no se puede verificar completamente
-                                    callback();
-                                }
-                            };
-                            checkLoad();
-                        };
-
-                        // Esperar a que la página esté completamente cargada
-                        waitForPageLoad(() => {
-                            // Forzar el scroll con el offset correcto
-                            const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
-                            const offsetPosition = target.offsetTop - headerHeight;
-                            window.scrollTo({
-                                top: Math.max(0, offsetPosition),
-                                behavior: 'smooth'
-                            });
-                            
-                            // Scroll adicional para corregir el problema de la primera carga
-                            setTimeout(() => {
-                                window.scrollTo({
-                                    top: Math.max(0, offsetPosition),
-                                    behavior: 'smooth'
-                                });
-                            }, 300);
-                            
-                            // Scroll final sutil para asegurar posición correcta
-                            setTimeout(() => {
-                                const currentScroll = window.pageYOffset;
-                                const targetScroll = Math.max(0, offsetPosition);
-                                // Solo hacer scroll si hay una diferencia significativa
-                                if (Math.abs(currentScroll - targetScroll) > 50) {
-                                    window.scrollTo({
-                                        top: targetScroll,
-                                        behavior: 'smooth'
-                                    });
-                                }
-                            }, 300);
-                        });
-                    }
-                } else {
-                    // En subpáginas: manejar enlaces locales o redirigir a index
-                    const target = document.querySelector(targetId);
-                    if (target) {
-                        // Si el elemento existe en la página actual, hacer scroll local
-                        e.preventDefault();
-                        const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
-                        const offsetPosition = target.offsetTop - headerHeight;
-                        window.scrollTo({
-                            top: Math.max(0, offsetPosition),
-                            behavior: 'smooth'
-                        });
-                    } else {
-                        // Si el elemento no existe, redirigir a index.html
-                        e.preventDefault();
-                        window.location.href = 'index.html' + targetId;
-                    }
-                }
-            }
-        });
-    });
-
-    // Enlaces a index.html con secciones específicas (solo en páginas de servicio)
-    document.querySelectorAll('a[href^="index.html#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const path = window.location.pathname;
-            const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
-            
-            // Solo manejar en páginas de servicio, no en index.html
-            if (!isIndexPage) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                const targetId = href.split('#')[1]; // Extraer la parte después de #
-                
-                
-                // Cerrar menú móvil si está abierto
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (mobileMenu && !mobileMenu.classList.contains('invisible')) {
-                    mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
-                }
-                
-                // Cargar index.html con el hash para que el navegador maneje el scroll
-                window.location.href = href;
-            }
-        });
-    });
-
-    const mobileServicesToggle = document.getElementById('mobile-services-toggle');
-    if (mobileServicesToggle) {
-        mobileServicesToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const submenu = document.getElementById('mobile-services-submenu');
-            const icon = mobileServicesToggle.querySelector('svg');
-            const isActive = submenu.style.maxHeight && submenu.style.maxHeight !== '0px';
-            submenu.style.maxHeight = isActive ? '0px' : submenu.scrollHeight + 'px';
-            if (icon) icon.style.transform = isActive ? '' : 'rotate(180deg)';
-        });
-    }
-
-    const rotatingPhrases = ["¿Esa mancha de vino no quiere salir?", "¿Te estás cambiando de casa?, se vería linda con todo limpio.", "¿Harás una fiesta en tu casa?", "No me digas... ¿la fiesta ya fue?", "¿Vienen los suegros de visita?", "¿Tus alergias no te dejan en paz?", "¿Te pidieron cuidar al perrihijo de un amigo?", "¿Le sacaste los pañales a tu pequeño?"];
-    let currentPhraseIndex = 0;
-    const phraseContainer = document.getElementById('rotating-text-container');
-
-    if (phraseContainer) {
-        const showNextPhrase = () => {
-            const currentElement = phraseContainer.querySelector('span');
-            if (currentElement) { currentElement.classList.add('slide-out'); }
-            setTimeout(() => {
-                if (currentElement) { phraseContainer.innerHTML = ''; }
-                currentPhraseIndex = (currentPhraseIndex + 1) % rotatingPhrases.length;
-                const newElement = document.createElement('span');
-                newElement.textContent = `“ ${rotatingPhrases[currentPhraseIndex]} ”`;
-                newElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
-                phraseContainer.appendChild(newElement);
-            }, 500);
-        };
-        const initialElement = document.createElement('span');
-        initialElement.textContent = `“ ${rotatingPhrases[0]} ”`;
-        initialElement.className = 'text-white text-base md:text-lg font-semibold absolute slide-in';
-        phraseContainer.appendChild(initialElement);
-        setInterval(showNextPhrase, 4000);
-    }
-
-    // Nota: El script de index.html tiene dos funciones extra (FAQ y YouTube)
-    // Para simplificar, las incluiremos en el main.js para todas las páginas.
-    // No afecta el rendimiento ya que solo se ejecutan si encuentran los elementos.
-
-    const faqToggles = document.querySelectorAll('.accordion-toggle');
-    faqToggles.forEach(button => {
-        button.addEventListener('click', () => {
-            const accordionContent = button.nextElementSibling;
-            const icon = button.querySelector('svg');
-            const isActive = accordionContent.style.maxHeight && accordionContent.style.maxHeight !== '0px';
-
-            // En móviles: cerrar cualquier otra abierta antes de abrir la nueva
-            const shouldEnforceSingleOpen = window.matchMedia('(max-width: 767px)').matches;
-            if (shouldEnforceSingleOpen && !isActive) {
-                document.querySelectorAll('.accordion-content').forEach(content => {
-                    if (content !== accordionContent && content.style.maxHeight && content.style.maxHeight !== '0px') {
-                        content.style.maxHeight = '0px';
-                        const parentButton = content.previousElementSibling;
-                        const parentIcon = parentButton ? parentButton.querySelector('svg') : null;
-                        if (parentIcon) parentIcon.style.transform = '';
-                    }
-                });
-            }
-
-            accordionContent.style.maxHeight = isActive ? '0px' : accordionContent.scrollHeight + 'px';
-            if (icon) { icon.style.transform = isActive ? '' : 'rotate(180deg)'; }
-        });
-    });
-
-    function initYouTubeFacades() {
-        const facades = document.querySelectorAll('.youtube-fachada');
-        facades.forEach(facade => {
-            facade.addEventListener('click', () => {
-                const videoId = facade.dataset.videoid;
-                if (!videoId) return;
-                const iframe = document.createElement('iframe');
-                iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`);
-                iframe.setAttribute('frameborder', '0');
-                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-                iframe.setAttribute('allowfullscreen', '');
-                iframe.setAttribute('title', 'Reproductor de video de YouTube');
-                facade.innerHTML = '';
-                facade.appendChild(iframe);
-                facade.classList.add('video-loaded');
-            }, { once: true });
-        });
-    }
-    initYouTubeFacades();
-
-    // Manejar hash en la URL al cargar index.html (para navegación desde páginas de servicio)
-    const path = window.location.pathname;
-    const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
+      gtag('config', 'AW-17323286248');
+    </script>
     
-    if (isIndexPage && window.location.hash) {
-        // Función para hacer scroll a la sección
-        const scrollToSection = () => {
-            const targetId = window.location.hash;
-            const target = document.querySelector(targetId);
-            if (target) {
-                const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
-                const offsetPosition = target.offsetTop - headerHeight;
-                window.scrollTo({
-                    top: Math.max(0, offsetPosition),
-                    behavior: 'smooth'
-                });
-                return true;
-            }
-            return false;
-        };
+    <!-- MS Clarity -->
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "tie7wvk0zd");
+    </script>
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lavado y Limpieza de Alfombras a Domicilio | Clean Click</title>
+    <meta
+      name="description"
+      content="Servicio de limpieza de alfombras a domicilio en Santiago. Expertos en lavado de alfombras muro a muro y decorativas. ¡Consulta nuestros precios!"
+    />
 
-        // Múltiples intentos para asegurar que funcione en móviles
-        const attemptScroll = (attempts = 0) => {
-            if (attempts < 5) {
-                setTimeout(() => {
-                    if (!scrollToSection()) {
-                        attemptScroll(attempts + 1);
-                    }
-                }, 200 + (attempts * 100)); // Delay progresivo: 200ms, 300ms, 400ms, etc.
-            }
-        };
+    <!-- Enlace de las fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap"></noscript>
 
-        // Iniciar los intentos de scroll
-        attemptScroll();
-    }
-
-    // Manejador adicional para cambios de hash (útil en móviles)
-    window.addEventListener('hashchange', function() {
-        const path = window.location.pathname;
-        const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
-        
-        if (isIndexPage && window.location.hash) {
-            setTimeout(() => {
-                const targetId = window.location.hash;
-                const target = document.querySelector(targetId);
-                if (target) {
-                    const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
-                    const offsetPosition = target.offsetTop - headerHeight;
-                    window.scrollTo({
-                        top: Math.max(0, offsetPosition),
-                        behavior: 'smooth'
-                    });
-                }
-            }, 100);
+    <style>
+      /* Critical CSS for Above-the-Fold Content & FOUT Prevention */
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+        color: #334155;
+        line-height: 1.6;
+        scroll-behavior: smooth;
+        opacity: 0;
+        transition: opacity 0.4s ease-in;
+      }
+      /* Scroll margin para secciones con ancla */
+      section[id] {
+        scroll-margin-top: var(--header-height, 80px);
+      }
+      .header-logo {
+        height: 48px;
+        width: 77px;
+      }
+      .sticky {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+      }
+      .container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+      @media (min-width: 1024px) {
+        .container {
+          max-width: 1024px;
         }
-    });
-});
+      }
+      .font-black {
+        font-weight: 900;
+      }
+      .text-4xl {
+        font-size: 2.25rem;
+      }
+      .md\:text-5xl {
+        font-size: 3rem;
+      }
+      .bg-brand-blue-light {
+        background-color: #eff6ff;
+      }
+      .text-brand-blue {
+        color: #1e40af;
+      }
+      .bg-brand-blue-dark {
+        background-color: #0f172a;
+      }
+      .btn-primary {
+        background-color: #1e40af;
+        color: white;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      .btn-primary:hover {
+        background-color: #1d4ed8;
+        transform: translateY(-px);
+      }
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out;
+      }
+
+      @keyframes text-color-pulse {
+        0%,
+        100% {
+          color: #ffffff;
+        }
+        50% {
+          color: #f97316;
+        }
+      }
+      .animated-banner-text {
+        animation: text-color-pulse 3s ease-in-out infinite;
+      }
+
+      @keyframes brand-blue-bg-pulse {
+        0% { background-color: #1e3a8a; }
+        25% { background-color: #1e40af; }
+        50% { background-color: #2563eb; }
+        75% { background-color: #1e40af; }
+        100% { background-color: #1e3a8a; }
+      }
+      @keyframes brand-cyan-bg-pulse {
+        0% { background-color: #0e7490; }
+        25% { background-color: #06b6d4; }
+        50% { background-color: #22d3ee; }
+        75% { background-color: #06b6d4; }
+        100% { background-color: #0e7490; }
+      }
+      .pulse-brand-blue { animation: brand-blue-bg-pulse 3s ease-in-out infinite; }
+      .pulse-brand-cyan { animation: brand-cyan-bg-pulse 3s ease-in-out infinite; }
+
+      @keyframes slideInFromRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      @keyframes slideOutToLeft {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+      }
+      .slide-in {
+        animation: slideInFromRight 0.5s ease-out forwards;
+      }
+      .slide-out {
+        animation: slideOutToLeft 0.5s ease-out forwards;
+      }
+    </style>
+  </head>
+  <body class="text-slate-700">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T37SGWVK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <div class="sticky top-0 z-50">
+      <div
+        class="bg-brand-blue-dark text-white text-center py-2 px-4 text-base font-medium"
+      >
+        <div class="animated-banner-text">
+          <p>Horario de atención: <u>7 de la mañana a 12 de la noche</u></p>
+          <p class="text-sm font-semibold">
+            Atendemos a toda la Región Metropolitana
+          </p>
+        </div>
+      </div>
+      <header class="bg-white/95 backdrop-blur-sm shadow-sm">
+        <div
+          class="container mx-auto px-6 py-3 flex justify-between items-center"
+        >
+          <a href="index.html" class="flex items-center">
+            <img
+              src="https://i.postimg.cc/d0MvKfbn/clean-click-logo-77.webp"
+              alt="Logo de Clean Click"
+              class="header-logo"
+              width="77"
+              height="48"
+            />
+            <span class="ml-2 text-base font-bold text-slate-800 leading-tight"
+              >Clean Click<br class="sm:hidden" /> Aroma a Limpio</span
+            >
+          </a>
+          <nav class="hidden lg:flex items-center space-x-6">
+            <a
+              href="index.html"
+              id="nav-home"
+              class="text-slate-600 hover:text-brand-blue font-medium"
+              >Home</a
+            >
+            <a
+              href="index.html#porque-elegirnos"
+              id="nav-beneficios"
+              class="text-slate-600 hover:text-brand-blue font-medium"
+              >Beneficios</a
+            >
+            <div class="relative group">
+              <span
+                class="text-slate-600 hover:text-brand-blue font-medium items-center inline-flex cursor-pointer"
+                id="nav-servicios"
+              >
+                Servicios
+                <svg
+                  class="w-2.5 h-2.5 ml-2 transition-transform group-hover:rotate-180"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M297.4 470.6C309.9 483.1 330.2 483.1 342.7 470.6L534.7 278.6C547.2 266.1 547.2 245.8 534.7 233.3C522.2 220.8 501.9 220.8 489.4 233.3L320 402.7L150.6 233.4C138.1 220.9 117.8 220.9 105.3 233.4C92.8 245.9 92.8 266.2 105.3 278.7L297.3 470.7z"
+                  />
+                </svg>
+              </span>
+              <div
+                class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-50 border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+              >
+                <a
+                  href="servicio-sillones.html"
+                  id="nav-sillones"
+                  class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue"
+                  >Sillones y Sofás</a
+                >
+                <a
+                  href="servicio-alfombras.html"
+                  id="nav-alfombras"
+                  class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue"
+                  >Alfombras</a
+                >
+                <a
+                  href="servicio-colchones.html"
+                  id="nav-colchones"
+                  class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue"
+                  >Colchones</a
+                >
+              </div>
+            </div>
+            <a
+              href="index.html#proceso"
+              id="nav-proceso"
+              class="text-slate-600 hover:text-brand-blue font-medium"
+              >Proceso</a
+            >
+            <a
+              href="index.html#testimonios"
+              id="nav-testimonios"
+              class="text-slate-600 hover:text-brand-blue font-medium"
+              >Testimonios</a
+            >
+            <a
+              href="#faq-alfombras"
+              id="nav-preguntas"
+              class="text-slate-600 hover:text-brand-blue font-medium"
+              >Preguntas</a
+            >
+          </nav>
+          <button
+            class="open-chat-popup hidden lg:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center"
+            id="cta-header-alfombras"
+          >
+            <span id="cta-header-alfombras">Contacta Aquí</span>
+            <span class="text-xs font-normal" id="cta-header-alfombras">Atención 7am - 12am</span>
+          </button>
+          <div class="lg:hidden">
+            <button
+              id="menu-toggle"
+              class="text-slate-800 hover:text-brand-blue"
+            >
+              <svg
+                class="w-6 h-6 pointer-events-none"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 640 640"
+              >
+                <path
+                  fill="currentColor"
+                  d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div
+          id="mobile-menu"
+          class="absolute top-full right-6 mt-2 w-72 origin-top-right rounded-xl bg-white p-2 shadow-lg ring-1 ring-slate-900/5 opacity-0 scale-95 invisible transition-all duration-200 ease-in-out z-50"
+        >
+          <nav class="flex flex-col">
+            <a
+              href="index.html"
+              class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
+              >Home</a
+            >
+            <a
+              href="index.html#porque-elegirnos"
+              class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
+              >Beneficios</a
+            >
+            <div>
+              <div
+                class="flex items-center justify-between hover:bg-blue-50 rounded-md"
+              >
+                <a
+                  href="index.html#servicios"
+                  class="mobile-link text-slate-700 hover:text-brand-blue p-3 font-medium flex-grow"
+                  >Servicios</a
+                >
+                <button
+                  id="mobile-services-toggle"
+                  class="p-3 text-slate-700 hover:text-brand-blue"
+                >
+                  <svg
+                    class="w-2.5 h-2.5 transform transition-transform pointer-events-none"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M297.4 470.6C309.9 483.1 330.2 483.1 342.7 470.6L534.7 278.6C547.2 266.1 547.2 245.8 534.7 233.3C522.2 220.8 501.9 220.8 489.4 233.3L320 402.7L150.6 233.4C138.1 220.9 117.8 220.9 105.3 233.4C92.8 245.9 92.8 266.2 105.3 278.7L297.3 470.7z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div
+                id="mobile-services-submenu"
+                class="pl-4 pt-2 accordion-content"
+              >
+                <a
+                  href="servicio-sillones.html"
+                  class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
+                  >Sillones y Sofás</a
+                >
+                <a
+                  href="servicio-alfombras.html"
+                  class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
+                  >Alfombras</a
+                >
+                <a
+                  href="servicio-colchones.html"
+                  class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
+                  >Colchones</a
+                >
+              </div>
+            </div>
+            <a
+              href="index.html#proceso"
+              class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
+              >Proceso</a
+            >
+            <a
+              href="index.html#testimonios"
+              class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
+              >Testimonios</a
+            >
+            <a
+              href="#faq-alfombras"
+              class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
+              >Preguntas</a
+            >
+            <button
+              class="open-chat-popup mt-2 w-full btn-primary font-bold py-3 px-6 rounded-full shadow-lg inline-flex flex-col items-center"
+              id="cta-header-alfombras"
+            >
+              <span>Contacta Aquí</span>
+              <span class="text-xs font-normal mt-1">Atención 7am - 12am</span>
+            </button>
+          </nav>
+        </div>
+      </header>
+    </div>
+
+    <main>
+      <section class="bg-brand-blue-light py-20">
+        <div class="container mx-auto px-6 text-center">
+          <h1 class="text-4xl md:text-5xl font-black text-slate-900">
+            Servicio Especializado en Limpieza de Alfombras
+          </h1>
+          <p class="mt-4 text-xl text-slate-600 max-w-3xl mx-auto">
+            Devolvemos la vida, el color y la suavidad a tus alfombras con
+            nuestro
+            <strong class="text-brand-blue"
+              >lavado profesional a domicilio</strong
+            >.
+          </p>
+        </div>
+      </section>
+
+      <section class="bg-brand-blue-dark py-4">
+        <div class="max-w-5xl mx-auto px-2 sm:px-6 text-center">
+          <div
+            id="rotating-text-container"
+            class="relative h-14 lg:h-7 flex items-center justify-center overflow-hidden"
+          ></div>
+        </div>
+      </section>
+
+      <section class="pt-10 pb-10 md:pt-20 md:pb-20 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl">
+          <div class="text-slate-700 space-y-6">
+            <div>
+              <h2 class="text-3xl font-bold text-slate-800">
+                Una Alfombra Limpia Transforma tu Espacio
+              </h2>
+              <p class="mt-4 text-lg">
+                Las alfombras no solo aportan calidez, sino que también actúan
+                como un filtro, atrapando polvo y suciedad. Un
+                <strong>lavado de alfombras</strong> periódico es esencial para
+                mantener un ambiente saludable. Ofrecemos un
+                <strong>servicio de limpieza de alfombras a domicilio</strong>
+                en toda la <strong>Región Metropolitana</strong>, incluyendo
+                comunas como Las Condes, Providencia, Ñuñoa y Santiago Centro.
+              </p>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-bold text-slate-800 mt-12">
+                Nuestra Técnica: Limpieza Profunda y Cuidadosa
+              </h3>
+              <p class="mt-4 text-lg">
+                Combinamos maquinaria de última generación con productos
+                ecológicos para garantizar una limpieza profunda. Ya sea que
+                necesites una
+                <strong>limpieza de alfombra muro a muro</strong> o el lavado de
+                una <strong>alfombra decorativa</strong>, tenemos la solución.
+              </p>
+              <ul class="mt-6 space-y-6">
+                <li class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 640 640"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M480 272C480 317.9 465.1 360.3 440 394.7L566.6 521.4C579.1 533.9 579.1 554.2 566.6 566.7C554.1 579.2 533.8 579.2 521.3 566.7L394.7 440C360.3 465.1 317.9 480 272 480C157.1 480 64 386.9 64 272C64 157.1 157.1 64 272 64C386.9 64 480 157.1 480 272zM272 176C258.7 176 248 186.7 248 200L248 248L200 248C186.7 248 176 258.7 176 272C176 285.3 186.7 296 200 296L248 296L248 344C248 357.3 258.7 368 272 368C285.3 368 296 357.3 296 344L296 296L344 296C357.3 296 368 285.3 368 272C368 258.7 357.3 248 344 248L296 248L296 200C296 186.7 285.3 176 272 176z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-lg font-bold text-slate-800">
+                      Diagnóstico Inicial en tu casa
+                    </h4>
+                    <p class="mt-1">
+                      Evaluamos el tipo de fibra y el nivel de suciedad para
+                      aplicar el tratamiento más adecuado.
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 640 640"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M210.5 480L333.5 480L398.8 414.7L225.3 241.2L98.6 367.9L210.6 479.9zM256 544L210.5 544C193.5 544 177.2 537.3 165.2 525.3L49 409C38.1 398.1 32 383.4 32 368C32 352.6 38.1 337.9 49 327L295 81C305.9 70.1 320.6 64 336 64C351.4 64 366.1 70.1 377 81L559 263C569.9 273.9 576 288.6 576 304C576 319.4 569.9 334.1 559 345L424 480L544 480C561.7 480 576 494.3 576 512C576 529.7 561.7 544 544 544L256 544z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-lg font-bold text-slate-800">
+                      Eliminación de Manchas
+                    </h4>
+                    <p class="mt-1">
+                      Aplicamos desmanchadores específicos para tratar y
+                      eliminar manchas difíciles, devolviendo la uniformidad al
+                      color.
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 640 640"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M474.6 188.1C495.3 203.7 520.6 218.8 548.8 222.6C561.9 224.4 574 215.1 575.8 202C577.6 188.9 568.3 176.8 555.2 175C539.3 172.9 522 163.7 503.5 149.8C465.1 120.8 413 120.8 374.5 149.8C350.5 167.9 333.8 176.1 320 176.1C306.2 176.1 289.5 167.9 265.5 149.8C227.1 120.8 175 120.8 136.5 149.8C118 163.7 100.7 172.9 84.8 175C71.7 176.8 62.4 188.8 64.2 202C66 215.2 78 224.4 91.2 222.6C119.4 218.8 144.8 203.7 165.4 188.1C186.7 172 215.3 172 236.6 188.1C260.8 206.4 288.9 224 320 224C351.1 224 379.1 206.3 403.4 188.1C424.7 172 453.3 172 474.6 188.1zM474.6 332.1C495.3 347.7 520.6 362.8 548.8 366.6C561.9 368.4 574 359.1 575.8 346C577.6 332.9 568.3 320.8 555.2 319C539.3 316.9 522 307.7 503.5 293.8C465.1 264.8 413 264.8 374.5 293.8C350.5 311.9 333.8 320.1 320 320.1C306.2 320.1 289.5 311.9 265.5 293.8C227.1 264.8 175 264.8 136.5 293.8C118 307.7 100.7 316.9 84.8 319C71.7 320.7 62.4 332.8 64.2 346C66 359.2 78 368.4 91.2 366.6C119.4 362.8 144.8 347.7 165.4 332.1C186.7 316 215.3 316 236.6 332.1C260.8 350.4 288.9 368 320 368C351.1 368 379.1 350.3 403.4 332.1C424.7 316 453.3 316 474.6 332.1zM403.4 476.1C424.7 460 453.3 460 474.6 476.1C495.3 491.7 520.6 506.8 548.8 510.6C561.9 512.4 574 503.1 575.8 490C577.6 476.9 568.3 464.8 555.2 463C539.3 460.9 522 451.7 503.5 437.8C465.1 408.8 413 408.8 374.5 437.8C350.5 455.9 333.8 464.1 320 464.1C306.2 464.1 289.5 455.9 265.5 437.8C227.1 408.8 175 408.8 136.5 437.8C118 451.7 100.7 460.9 84.8 463C71.7 464.8 62.4 476.8 64.2 490C66 503.2 78 512.4 91.2 510.6C119.4 506.8 144.8 491.7 165.4 476.1C186.7 460 215.3 460 236.6 476.1C260.8 494.4 288.9 512 320 512C351.1 512 379.1 494.3 403.4 476.1z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-lg font-bold text-slate-800">
+                      Lavado y Enjuague Profundo
+                    </h4>
+                    <p class="mt-1">
+                      Nuestro sistema de inyección y extracción elimina la
+                      suciedad desde la base de la alfombra, sin dejar residuos
+                      pegajosos.
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 640 640"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M576 320C576 320.9 576 321.8 576 322.7C575.6 359.2 542.4 384 505.9 384L408 384C381.5 384 360 405.5 360 432C360 435.4 360.4 438.7 361 441.9C363.1 452.1 367.5 461.9 371.8 471.8C377.9 485.6 383.9 499.3 383.9 513.8C383.9 545.6 362.3 574.5 330.5 575.8C327 575.9 323.5 576 319.9 576C178.5 576 63.9 461.4 63.9 320C63.9 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320zM192 352C192 334.3 177.7 320 160 320C142.3 320 128 334.3 128 352C128 369.7 142.3 384 160 384C177.7 384 192 369.7 192 352zM192 256C209.7 256 224 241.7 224 224C224 206.3 209.7 192 192 192C174.3 192 160 206.3 160 224C160 241.7 174.3 256 192 256zM352 160C352 142.3 337.7 128 320 128C302.3 128 288 142.3 288 160C288 177.7 302.3 192 320 192C337.7 192 352 177.7 352 160zM448 256C465.7 256 480 241.7 480 224C480 206.3 465.7 192 448 192C430.3 192 416 206.3 416 224C416 241.7 430.3 256 448 256z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-lg font-bold text-slate-800">
+                      Colores Revitalizados
+                    </h4>
+                    <p class="mt-1">
+                      Nuestro proceso reaviva los colores originales, haciendo
+                      que tu alfombra luzca como nueva.
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 640 640"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M96.5 160L96.5 309.5C96.5 326.5 103.2 342.8 115.2 354.8L307.2 546.8C332.2 571.8 372.7 571.8 397.7 546.8L547.2 397.3C572.2 372.3 572.2 331.8 547.2 306.8L355.2 114.8C343.2 102.7 327 96 310 96L160.5 96C125.2 96 96.5 124.7 96.5 160zM208.5 176C226.2 176 240.5 190.3 240.5 208C240.5 225.7 226.2 240 208.5 240C190.8 240 176.5 225.7 176.5 208C176.5 190.3 190.8 176 208.5 176z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-lg font-bold text-slate-800">
+                      Precios Transparentes
+                    </h4>
+                    <p class="mt-1">
+                      Ofrecemos
+                      <strong>precios de lavado de alfombras</strong> claros y
+                      competitivos. Solicita tu cotización sin compromiso.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-bold text-slate-800 mt-12">
+                Servicios para Todo Tipo de Alfombras
+              </h3>
+              <p class="mt-4 text-lg">
+                Nuestro equipo está capacitado para limpiar cualquier tipo de
+                alfombra, adaptando el proceso para proteger su integridad y
+                textura.
+              </p>
+              <ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-blue mr-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"
+                    />
+                  </svg>
+                  Limpieza de alfombras muro a muro.
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-blue mr-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"
+                    />
+                  </svg>
+                  Lavado de alfombras decorativas.
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-blue mr-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"
+                    />
+                  </svg>
+                  Limpieza de cubrepisos.
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-blue mr-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"
+                    />
+                  </svg>
+                  Escaleras alfombradas.
+                </li>
+              </ul>
+            </div>
+            <div
+              class="!mt-12 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg shadow-sm"
+            >
+              <p class="text-lg">
+                Si buscas un servicio para
+                <strong>lavar alfombras a domicilio</strong> eficiente y de
+                confianza en Santiago, Clean Click es tu mejor aliado.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+    <section id="faq-alfombras" class="bg-brand-blue-light pt-10 pb-20 md:pt-20 md:pb-20">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center text-slate-900">
+          Resolvemos tus Dudas
+        </h2>
+        <div
+          class="mt-12 max-w-4xl mx-auto grid md:grid-cols-2 gap-x-8 gap-y-4"
+        >
+          <!-- Columna Izquierda -->
+          <div class="space-y-4">
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-1"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-1">¿Cuál es el área de cobertura?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
+                  id="faq-1"
+                >
+                  <path
+                    fill="#1e293b"
+                    id="faq-1"
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  Actualmente cubrimos la Región Metropolitana completamente.
+                  Adicionalmente, llegamos a Algarrobo, El Quisco, Papudo y
+                  Zapallar.
+                </p>
+              </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-2"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-2">¿Cuánto demora la limpieza?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
+                  id="faq-2"
+                >
+                  <path
+                    fill="#1e293b"
+                    id="faq-2"
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  En promedio, la limpieza de una alfombra puede tardar 45
+                  minutos.
+                </p>
+              </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-3"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-3">¿Qué tan rápido puedo agendar?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
+                  id="faq-3"
+                >
+                  <path
+                    fill="#1e293b"
+                    id="faq-3"
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  Nuestro equipo de atención está siempre disponible. El
+                  tiempo de respuesta promedio para coordinar tu servicio es
+                  de solo 5 minutos.
+                </p>
+              </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-4"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-4">Si escribo hoy, ¿cuándo pueden venir?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
+                  id="faq-4"
+                >
+                  <path
+                    fill="#1e293b"
+                    id="faq-4"
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  Normalmente agendamos con dos días hábiles de anticipación.
+                  Si agendas hoy, lo más probable es que te visitemos pasado
+                  mañana.
+                </p>
+              </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-5"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-5">¿Se eliminan todas las manchas?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
+                  id="faq-5"
+                >
+                  <path
+                    fill="#1e293b"
+                    id="faq-5"
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  No todas las manchas logran salir, ya que el resultado
+                  depende de la antigüedad y del tipo de mancha. Damos nuestro
+                  mejor esfuerzo, pero algunas son muy difíciles de eliminar
+                  por completo.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Columna Derecha -->
+          <div class="space-y-4">
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-6"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-6">¿El servicio tiene garantía?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
+                  id="faq-6"
+                >
+                  <path
+                    fill="#1e293b"
+                    id="faq-6"
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  Sí, nuestra garantía se aplica hasta por 7 días después de
+                  realizado el servicio. En caso de ser necesario, agendaremos
+                  una nueva visita dentro de los siguientes 7 días para
+                  revisar el trabajo.
+                </p>
+              </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-7"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-7">¿Cuáles son los tiempos de secado?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
+                  id="faq-7"
+                >
+                  <path
+                    fill="#1e293b"
+                    id="faq-7"
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  Los tiempos promedio son: sillones y sofás, 7 horas;
+                  colchones, 5 horas; y alfombras, 12 horas.
+                </p>
+              </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-8"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-8">¿Qué otros tapices limpian?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
+                  id="faq-8"
+                >
+                  <path
+                    fill="#1e293b"
+                    id="faq-8"
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  Además de alfombras, nos especializamos en sillones y
+                  colchones. Para alfombras, recomendamos agendar el servicio
+                  temprano para asegurar un secado eficiente durante el día.
+                </p>
+              </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-9"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-9">¿Cómo puedo pagar?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
+                  id="faq-9"
+                >
+                  <path
+                    fill="#1e293b"
+                    id="faq-9"
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  Aceptamos todos los medios de pago: efectivo, transferencia,
+                  débito y tarjeta de crédito.
+                </p>
+              </div>
+            </div>
+            <!-- Pregunta de precios (faq-10) ubicada como décima pregunta -->
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-10"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-10">¿Cuánto cuesta el servicio de limpieza a vapor?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
+                  id="faq-10"
+                >
+                  <path
+                    fill="#1e293b"
+                    id="faq-10"
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <div class="text-slate-600 px-5 pt-0 pb-5">
+                  <p>A continuación te entregamos algunos precios de referencia:</p>
+                  <ul class="list-disc list-inside mt-2 space-y-1">
+                    <li>Colchón dos plazas $24.990</li>
+                    <li>Sofá dos puestos $29.990</li>
+                    <li>Alfombra mediana $26.990</li>
+                    <li>Sofá seccional desde $39.990</li>
+                  </ul>
+                  <p class="mt-3">Se debe considerar que el precio mínimo de visita en la región metropolitana es de $29.990. Si tienes dudas, no te preocupes, escríbenos y te entregaremos una cotización rápidamente.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6 py-20 text-center">
+        <h2 class="text-4xl font-extrabold text-slate-900">
+          ¿Listo para una alfombra como nueva?
+        </h2>
+        <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+          Recupera la belleza y frescura de tus alfombras hoy mismo.
+          Contáctanos, uno de nuestros expertos te asesorará
+        </p>
+        <div class="mt-8">
+          <button
+            class="open-chat-popup inline-flex flex-col items-center bg-white text-brand-blue text-xl font-bold py-3 px-12 rounded-full shadow-xl transform hover:scale-105 transition-transform"
+            id="cta-final-alfombras"
+          >
+            <span id="cta-final-alfombras">¡Sí, Quiero Contactarme Ahora!</span>
+            <span class="text-sm font-normal mt-1" id="cta-final-alfombras">Atención 7am - 12am</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    </main>
+
+    <footer class="bg-brand-blue-dark text-slate-300">
+      <div class="container mx-auto px-6 pt-16 pb-8">
+        <div class="grid md:grid-cols-3 gap-12 text-center md:text-left">
+          <div>
+            <a href="index.html" class="inline-block">
+              <img
+                src="https://i.postimg.cc/d0MvKfbn/clean-click-logo-77.webp"
+                alt="Logo de Clean Click en el footer"
+                class="h-12 w-auto mx-auto md:mx-0 rounded-full"
+                width="77"
+                height="48"
+              />
+            </a>
+            <p class="mt-4 font-bold text-white">Clean Click Aroma a Limpio</p>
+            <p class="mt-2 text-sm max-w-xs mx-auto md:mx-0">
+              Expertos en limpieza profesional de tapices y alfombras para un
+              hogar renovado.
+            </p>
+            <div
+              class="mt-6 flex justify-center md:justify-start items-center space-x-4"
+            >
+              <span class="font-semibold">Visítanos en Instagram</span>
+              <a
+                href="https://www.instagram.com/cleanclick.aromaalimpio/"
+                target="_blank"
+                class="text-2xl hover:text-white transition-colors"
+                id="cta-instagram-footer"
+              >
+                <svg
+                  class="w-6 h-6"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
+                  id="cta-instagram-footer"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M320.3 205C256.8 204.8 205.2 256.2 205 319.7C204.8 383.2 256.2 434.8 319.7 435C383.2 435.2 434.8 383.8 435 320.3C435.2 256.8 383.8 205.2 320.3 205zM319.7 245.4C360.9 245.2 394.4 278.5 394.6 319.7C394.8 360.9 361.5 394.4 320.3 394.6C279.1 394.8 245.6 361.5 245.4 320.3C245.2 279.1 278.5 245.6 319.7 245.4zM413.1 200.3C413.1 185.5 425.1 173.5 439.9 173.5C454.7 173.5 466.7 185.5 466.7 200.3C466.7 215.1 454.7 227.1 439.9 227.1C425.1 227.1 413.1 215.1 413.1 200.3zM542.8 227.5C541.1 191.6 532.9 159.8 506.6 133.6C480.4 107.4 448.6 99.2 412.7 97.4C375.7 95.3 264.8 95.3 227.8 97.4C192 99.1 160.2 107.3 133.9 133.5C107.6 159.7 99.5 191.5 97.7 227.4C95.6 264.4 95.6 375.3 97.7 412.3C99.4 448.2 107.6 480 133.9 506.2C160.2 532.4 191.9 540.6 227.8 542.4C264.8 544.5 375.7 544.5 412.7 542.4C448.6 540.7 480.4 532.5 506.6 506.2C532.8 480 541 448.2 542.8 412.3C544.9 375.3 544.9 264.5 542.8 227.5zM495 452C487.2 471.6 472.1 486.7 452.4 494.6C422.9 506.3 352.9 503.6 320.3 503.6C287.7 503.6 217.6 506.2 188.2 494.6C168.6 486.8 153.5 471.7 145.6 452C133.9 422.5 136.6 352.5 136.6 319.9C136.6 287.3 134 217.2 145.6 187.8C153.4 168.2 168.5 153.1 188.2 145.2C217.7 133.5 287.7 136.2 320.3 136.2C352.9 136.2 423 133.6 452.4 145.2C472 153 487.1 168.1 495 187.8C506.7 217.3 504 287.3 504 319.9C504 352.5 506.7 422.6 495 452z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-white tracking-wider uppercase">
+              Navegación
+            </h3>
+            <nav class="mt-4 flex flex-col space-y-2">
+              <a
+                href="index.html#porque-elegirnos"
+                id="nav-beneficios"
+                class="hover:text-white transition-colors"
+                >Beneficios</a
+              >
+              <a
+                href="index.html#servicios"
+                id="nav-servicios"
+                class="hover:text-white transition-colors"
+                >Servicios</a
+              >
+              <a
+                href="index.html#proceso"
+                id="nav-proceso"
+                class="hover:text-white transition-colors"
+                >Proceso</a
+              >
+              <a
+                href="index.html#testimonios"
+                id="nav-testimonios"
+                class="hover:text-white transition-colors"
+                >Testimonios</a
+              >
+              <a
+                href="#faq-alfombras"
+                id="nav-preguntas"
+                class="hover:text-white transition-colors"
+                >Preguntas Frecuentes</a
+              >
+            </nav>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-white tracking-wider uppercase">
+              Contáctanos
+            </h3>
+            <div class="mt-4 border border-slate-700 rounded-lg p-4">
+              <p class="text-sm">
+                Uno de nuestros expertos se encuentra disponible para ti.
+                Recuerda que nuestro horario de atención de 7 de la mañana a las
+                12 de la noche. Después de ese horario siempre nos puedes dejar
+                un mensaje.
+              </p>
+            </div>
+          </div>
+        </div>
+        <hr class="my-8 border-slate-700/50" />
+        <div class="text-center text-slate-400 text-sm">
+          <p>&copy; 2025 Clean Click. Todos los derechos reservados.</p>
+          <p class="mt-1">
+            Diseñado por
+            <a
+              href="https://lumina-lab.io/"
+              id="link-lumina"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-semibold hover:text-white"
+              >Lumina Labs</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <button
+      id="cta-flotante-alfombras"
+      class="open-chat-popup fixed bottom-5 right-5 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50 pulse-brand-blue"
+    >
+      <svg
+        class="w-8 h-8 pointer-events-none"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 640 640"
+      >
+        <path
+          fill="currentColor"
+          d="M320 544C461.4 544 576 436.5 576 304C576 171.5 461.4 64 320 64C178.6 64 64 171.5 64 304C64 358.3 83.2 408.3 115.6 448.5L66.8 540.8C62 549.8 63.5 560.8 70.4 568.3C77.3 575.8 88.2 578.1 97.5 574.1L215.9 523.4C247.7 536.6 282.9 544 320 544zM192 272C209.7 272 224 286.3 224 304C224 321.7 209.7 336 192 336C174.3 336 160 321.7 160 304C160 286.3 174.3 272 192 272zM320 272C337.7 272 352 286.3 352 304C352 321.7 337.7 336 320 336C302.3 336 288 321.7 288 304C288 286.3 302.3 272 320 272zM416 304C416 286.3 430.3 272 448 272C465.7 272 480 286.3 480 304C480 321.7 465.7 336 448 336C430.3 336 416 321.7 416 304z"
+        />
+      </svg>
+    </button>
+
+    <!-- Floating FAQ Button -->
+    <a
+                href="#faq-alfombras"
+      id="cta-faq-flotante-alfombras"
+      class="fixed bottom-5 left-5 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50 pulse-brand-cyan"
+      aria-label="Ir a preguntas frecuentes"
+    >
+      <span class="text-2xl font-black">?</span>
+    </a>
+
+    <div
+      id="chat-popup"
+      class="fixed bottom-24 right-5 max-w-sm w-[calc(100%-2.5rem)] bg-white rounded-2xl shadow-xl text-left opacity-0 transform translate-y-4 pointer-events-none transition-all duration-300 ease-in-out z-40 overflow-hidden"
+    >
+      <div
+        class="flex justify-between items-center p-4 bg-slate-50 border-b border-slate-200"
+      >
+        <div class="flex items-center">
+          <img
+            src="https://i.postimg.cc/d0MvKfbn/clean-click-logo-77.webp"
+            alt="Avatar de Clean Click"
+            class="w-10 h-10 rounded-full mr-3 object-contain"
+            width="40"
+            height="40"
+          />
+          <span class="font-bold text-slate-800"
+            >Clean Click Aroma a Limpio</span
+          >
+        </div>
+        <button
+          id="close-popup"
+          class="text-slate-400 hover:text-slate-800 text-3xl font-light leading-none"
+        >
+          &times;
+        </button>
+      </div>
+      <div class="p-6">
+        <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
+          <p class="text-slate-600 mb-4">Gracias por estar aquí.</p>
+          <p class="text-slate-600 mb-4">
+            Nuestro horario de atención es ininterrumpido de
+            <strong>7 de la mañana a 12 de la noche</strong>.
+          </p>
+          <p class="text-slate-600">
+            Fuera de ese horario, déjanos tu mensaje con toda confianza y al día
+            siguiente te escribiremos 😉.
+          </p>
+          <div class="mt-6 text-center">
+            <a
+              href="https://wa.me/+56950107753?text=Hola,%20quiero%20tener%20más%20información%20de%20sus%20servicios%20de%20limpieza"
+              target="_blank"
+              id="cta-popup-alfombras"
+              class="inline-block btn-primary font-bold py-2 px-8 rounded-full shadow-md"
+              >Escríbenos</a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute bottom-[-10px] right-6 w-0 h-0 border-x-transparent border-x-[10px] border-t-[10px] border-t-white"
+      ></div>
+    </div>
+
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <!-- importanción js en diferido -->
+    <script src="main.js" defer></script>
+  </body>
+</html>
+
+
+
