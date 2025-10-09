@@ -9,6 +9,25 @@
     })(window,document,'script','dataLayer','GTM-T37SGWVK');</script>
     <!-- End Google Tag Manager -->
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17323286248"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'AW-17323286248');
+    </script>
+    
+    <!-- MS Clarity -->
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "tie7wvk0zd");
+    </script>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Limpieza de Sillones y Sofás a Domicilio | Clean Click</title>
@@ -102,6 +121,23 @@
         animation: text-color-pulse 3s ease-in-out infinite;
       }
 
+      @keyframes brand-blue-bg-pulse {
+        0% { background-color: #1e3a8a; }
+        25% { background-color: #1e40af; }
+        50% { background-color: #2563eb; }
+        75% { background-color: #1e40af; }
+        100% { background-color: #1e3a8a; }
+      }
+      @keyframes brand-cyan-bg-pulse {
+        0% { background-color: #0e7490; }
+        25% { background-color: #06b6d4; }
+        50% { background-color: #22d3ee; }
+        75% { background-color: #06b6d4; }
+        100% { background-color: #0e7490; }
+      }
+      .pulse-brand-blue { animation: brand-blue-bg-pulse 3s ease-in-out infinite; }
+      .pulse-brand-cyan { animation: brand-cyan-bg-pulse 3s ease-in-out infinite; }
+
       @keyframes slideInFromRight {
         from {
           transform: translateX(100%);
@@ -160,23 +196,26 @@
               height="48"
             />
             <span class="ml-2 text-base font-bold text-slate-800 leading-tight"
-              >Clean Click<br class="sm:hidden" />Aroma a Limpio</span
+              >Clean Click<br class="sm:hidden" /> Aroma a Limpio</span
             >
           </a>
           <nav class="hidden lg:flex items-center space-x-6">
             <a
               href="index.html"
+              id="nav-home"
               class="text-slate-600 hover:text-brand-blue font-medium"
               >Home</a
             >
             <a
               href="index.html#porque-elegirnos"
+              id="nav-beneficios"
               class="text-slate-600 hover:text-brand-blue font-medium"
               >Beneficios</a
             >
             <div class="relative group">
               <span
                 class="text-slate-600 hover:text-brand-blue font-medium items-center inline-flex cursor-pointer"
+                id="nav-servicios"
               >
                 Servicios
                 <svg
@@ -196,16 +235,19 @@
               >
                 <a
                   href="servicio-sillones.html"
+                  id="nav-sillones"
                   class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue"
                   >Sillones y Sofás</a
                 >
                 <a
                   href="servicio-alfombras.html"
+                  id="nav-alfombras"
                   class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue"
                   >Alfombras</a
                 >
                 <a
                   href="servicio-colchones.html"
+                  id="nav-colchones"
                   class="block px-4 py-2 text-slate-700 hover:bg-blue-50 hover:text-brand-blue"
                   >Colchones</a
                 >
@@ -213,16 +255,19 @@
             </div>
             <a
               href="index.html#proceso"
+              id="nav-proceso"
               class="text-slate-600 hover:text-brand-blue font-medium"
               >Proceso</a
             >
             <a
               href="index.html#testimonios"
+              id="nav-testimonios"
               class="text-slate-600 hover:text-brand-blue font-medium"
               >Testimonios</a
             >
             <a
               href="index.html#faq"
+              id="nav-preguntas"
               class="text-slate-600 hover:text-brand-blue font-medium"
               >Preguntas</a
             >
@@ -231,8 +276,8 @@
             class="open-chat-popup hidden lg:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center"
             id="cta-header-sillones"
           >
-            <span>Contacta Aquí</span>
-            <span class="text-xs font-normal">Atención 7am - 12am</span>
+            <span id="cta-header-sillones">Contacta Aquí</span>
+            <span class="text-xs font-normal" id="cta-header-sillones">Atención 7am - 12am</span>
           </button>
           <div class="lg:hidden">
             <button
@@ -332,6 +377,7 @@
             >
             <button
               class="open-chat-popup mt-2 w-full btn-primary font-bold py-3 px-6 rounded-full shadow-lg inline-flex flex-col items-center"
+              id="cta-header-sillones"
             >
               <span>Contacta Aquí</span>
               <span class="text-xs font-normal mt-1">Atención 7am - 12am</span>
@@ -633,8 +679,8 @@
               class="open-chat-popup inline-flex flex-col items-center bg-white text-brand-blue text-xl font-bold py-3 px-12 rounded-full shadow-xl transform hover:scale-105 transition-transform"
               id="cta-final-sillones"
             >
-              <span>¡Sí, Quiero Contactarme Ahora!</span>
-              <span class="text-sm font-normal mt-1">Atención 7am - 12am</span>
+              <span id="cta-final-sillones">¡Sí, Quiero Contactarme Ahora!</span>
+              <span class="text-sm font-normal mt-1" id="cta-final-sillones">Atención 7am - 12am</span>
             </button>
           </div>
         </div>
@@ -667,12 +713,14 @@
                 href="https://www.instagram.com/cleanclick.aromaalimpio/"
                 target="_blank"
                 class="text-2xl hover:text-white transition-colors"
+                id="cta-instagram-footer"
               >
                 <svg
                   class="w-6 h-6"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 640 640"
+                  id="cta-instagram-footer"
                 >
                   <path
                     fill="currentColor"
@@ -690,27 +738,32 @@
             <nav class="mt-4 flex flex-col space-y-2">
               <a
                 href="index.html#porque-elegirnos"
+                id="nav-beneficios"
                 class="hover:text-white transition-colors"
                 >Beneficios</a
               >
               <a
                 href="index.html#servicios"
+                id="nav-servicios"
                 class="hover:text-white transition-colors"
                 >Servicios</a
               >
               <a
                 href="index.html#proceso"
+                id="nav-proceso"
                 class="hover:text-white transition-colors"
                 >Proceso</a
               >
               <a
                 href="index.html#testimonios"
+                id="nav-testimonios"
                 class="hover:text-white transition-colors"
                 >Testimonios</a
               >
               <a
                 href="index.html#faq"
                 class="hover:text-white transition-colors"
+                id="nav-preguntas"
                 >Preguntas Frecuentes</a
               >
             </nav>
@@ -750,7 +803,7 @@
 
     <button
       id="cta-flotante-sillones"
-      class="open-chat-popup fixed bottom-5 right-5 bg-[#1E40AF] hover:bg-[#1D4ED8] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50"
+      class="open-chat-popup fixed bottom-5 right-5 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50 pulse-brand-blue"
     >
       <svg
         class="w-8 h-8 pointer-events-none"
@@ -764,6 +817,16 @@
         />
       </svg>
     </button>
+
+    <!-- Floating FAQ Button -->
+    <a
+      href="index.html#faq"
+      id="cta-faq-flotante"
+      class="fixed bottom-5 left-5 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50 pulse-brand-cyan"
+      aria-label="Ir a preguntas frecuentes"
+    >
+      <span class="text-2xl font-black">?</span>
+    </a>
 
     <div
       id="chat-popup"
@@ -804,7 +867,7 @@
           </p>
           <div class="mt-6 text-center">
             <a
-              href="https://wa.me/+56957079910?text=Hola,%20me%20gustar%C3%ADa%20cotizar%20la%20limpieza%20de%20mi%20sill%C3%B3n."
+              href="https://wa.me/+56950107753?text=Hola,%20quiero%20tener%20más%20información%20de%20sus%20servicios%20de%20limpieza"
               target="_blank"
               id="cta-popup-sillones"
               class="inline-block btn-primary font-bold py-2 px-8 rounded-full shadow-md"
