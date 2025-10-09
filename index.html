@@ -80,6 +80,31 @@
       section[id] {
         scroll-margin-top: var(--header-height, 80px);
       }
+      
+      /* Optimizaciones específicas para móviles */
+      @media (max-width: 768px) {
+        /* Mejorar rendimiento de scroll en móviles */
+        * {
+          -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Optimizar animaciones para móviles */
+        .accordion-content {
+          transition: max-height 0.2s ease-out;
+        }
+        
+        /* Mejorar renderizado de imágenes en móviles */
+        img {
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+        }
+        
+        /* Optimizar transformaciones */
+        .youtube-fachada, .mobile-menu {
+          transform: translateZ(0);
+          -webkit-transform: translateZ(0);
+        }
+      }
       .sticky {
         position: sticky;
         top: 0;
@@ -1220,48 +1245,57 @@
               data-videoid="pHdzZYcw5Gc"
               aria-label="Reproducir testimonio en video 1"
             >
-              <img
-                src="https://i.postimg.cc/y6cF53tJ/img-video1.webp"
-                id="miniatura-1"
-                alt="Miniatura del testimonio 1"
-                loading="eager"
-                width="364"
-                height="273"
-                fetchpriority="low"
-                decoding="async"
-              />
+              <picture>
+                <source media="(max-width: 639px)" srcset="https://i.postimg.cc/y6cF53tJ/img-video1.webp" width="280" height="210">
+                <img
+                  src="https://i.postimg.cc/y6cF53tJ/img-video1.webp"
+                  id="miniatura-1"
+                  alt="Miniatura del testimonio 1"
+                  loading="eager"
+                  width="364"
+                  height="273"
+                  fetchpriority="low"
+                  decoding="async"
+                />
+              </picture>
             </div>
             <div
               class="youtube-fachada aspect-video"
               data-videoid="Yx4lKEeCwss"
               aria-label="Reproducir testimonio en video 2"
             >
-              <img
-                src="https://i.postimg.cc/tRWhfnwV/img-video2.webp"
-                id="miniatura-2"
-                alt="Miniatura del testimonio 2"
-                loading="eager"
-                width="364"
-                height="273"
-                fetchpriority="low"
-                decoding="async"
-              />
+              <picture>
+                <source media="(max-width: 639px)" srcset="https://i.postimg.cc/tRWhfnwV/img-video2.webp" width="280" height="210">
+                <img
+                  src="https://i.postimg.cc/tRWhfnwV/img-video2.webp"
+                  id="miniatura-2"
+                  alt="Miniatura del testimonio 2"
+                  loading="eager"
+                  width="364"
+                  height="273"
+                  fetchpriority="low"
+                  decoding="async"
+                />
+              </picture>
             </div>
             <div
               class="youtube-fachada aspect-video"
               data-videoid="gtggraD_N_w"
               aria-label="Reproducir testimonio en video 3"
             >
-              <img
-                src="https://i.postimg.cc/P5RpNd0r/img-video3.webp"
-                id="miniatura-3"
-                alt="Miniatura del testimonio 3"
-                loading="eager"
-                width="364"
-                height="273"
-                fetchpriority="low"
-                decoding="async"
-              />
+              <picture>
+                <source media="(max-width: 639px)" srcset="https://i.postimg.cc/P5RpNd0r/img-video3.webp" width="280" height="210">
+                <img
+                  src="https://i.postimg.cc/P5RpNd0r/img-video3.webp"
+                  id="miniatura-3"
+                  alt="Miniatura del testimonio 3"
+                  loading="eager"
+                  width="364"
+                  height="273"
+                  fetchpriority="low"
+                  decoding="async"
+                />
+              </picture>
             </div>
           </div>
         </div>
