@@ -10,11 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
-    // Calcular altura inicial
-    calculateHeaderHeight();
+    // Calcular altura inicial usando requestAnimationFrame para optimizar rendimiento
+    requestAnimationFrame(calculateHeaderHeight);
     
-    // Recalcular en resize (por si cambia la altura del header)
-    window.addEventListener('resize', calculateHeaderHeight);
+    // Debounce para resize para reducir trabajo del hilo principal
+    let resizeTimeout;
+    const debouncedResize = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            requestAnimationFrame(calculateHeaderHeight);
+        }, 100);
+    };
+    
+    window.addEventListener('resize', debouncedResize);
 
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -127,20 +135,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         // Esperar a que la página esté completamente cargada
                         waitForPageLoad(() => {
+                            // Función optimizada de scroll usando requestAnimationFrame
+                            const smoothScrollTo = (targetPosition) => {
+                                requestAnimationFrame(() => {
+                                    window.scrollTo({
+                                        top: Math.max(0, targetPosition),
+                                        behavior: 'smooth'
+                                    });
+                                });
+                            };
+                            
                             // Forzar el scroll con el offset correcto
                             const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
                             const offsetPosition = target.offsetTop - headerHeight;
-                            window.scrollTo({
-                                top: Math.max(0, offsetPosition),
-                                behavior: 'smooth'
-                            });
+                            smoothScrollTo(offsetPosition);
                             
                             // Scroll adicional para corregir el problema de la primera carga
                             setTimeout(() => {
-                                window.scrollTo({
-                                    top: Math.max(0, offsetPosition),
-                                    behavior: 'smooth'
-                                });
+                                smoothScrollTo(offsetPosition);
                             }, 300);
                             
                             // Scroll final sutil para asegurar posición correcta
@@ -149,10 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 const targetScroll = Math.max(0, offsetPosition);
                                 // Solo hacer scroll si hay una diferencia significativa
                                 if (Math.abs(currentScroll - targetScroll) > 50) {
-                                    window.scrollTo({
-                                        top: targetScroll,
-                                        behavior: 'smooth'
-                                    });
+                                    smoothScrollTo(targetScroll);
                                 }
                             }, 300);
                         });
