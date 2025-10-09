@@ -158,10 +158,48 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
                 } else {
-                    // En subpáginas: redirigir a index.html#sección
-                    e.preventDefault();
-                    window.location.href = 'index.html' + targetId;
+                    // En subpáginas: manejar enlaces locales o redirigir a index
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        // Si el elemento existe en la página actual, hacer scroll local
+                        e.preventDefault();
+                        const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
+                        const offsetPosition = target.offsetTop - headerHeight;
+                        window.scrollTo({
+                            top: Math.max(0, offsetPosition),
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        // Si el elemento no existe, redirigir a index.html
+                        e.preventDefault();
+                        window.location.href = 'index.html' + targetId;
+                    }
                 }
+            }
+        });
+    });
+
+    // Enlaces a index.html con secciones específicas (solo en páginas de servicio)
+    document.querySelectorAll('a[href^="index.html#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const path = window.location.pathname;
+            const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
+            
+            // Solo manejar en páginas de servicio, no en index.html
+            if (!isIndexPage) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                const targetId = href.split('#')[1]; // Extraer la parte después de #
+                
+                
+                // Cerrar menú móvil si está abierto
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu && !mobileMenu.classList.contains('invisible')) {
+                    mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
+                }
+                
+                // Cargar index.html con el hash para que el navegador maneje el scroll
+                window.location.href = href;
             }
         });
     });
@@ -250,4 +288,61 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     initYouTubeFacades();
+
+    // Manejar hash en la URL al cargar index.html (para navegación desde páginas de servicio)
+    const path = window.location.pathname;
+    const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
+    
+    if (isIndexPage && window.location.hash) {
+        // Función para hacer scroll a la sección
+        const scrollToSection = () => {
+            const targetId = window.location.hash;
+            const target = document.querySelector(targetId);
+            if (target) {
+                const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
+                const offsetPosition = target.offsetTop - headerHeight;
+                window.scrollTo({
+                    top: Math.max(0, offsetPosition),
+                    behavior: 'smooth'
+                });
+                return true;
+            }
+            return false;
+        };
+
+        // Múltiples intentos para asegurar que funcione en móviles
+        const attemptScroll = (attempts = 0) => {
+            if (attempts < 5) {
+                setTimeout(() => {
+                    if (!scrollToSection()) {
+                        attemptScroll(attempts + 1);
+                    }
+                }, 200 + (attempts * 100)); // Delay progresivo: 200ms, 300ms, 400ms, etc.
+            }
+        };
+
+        // Iniciar los intentos de scroll
+        attemptScroll();
+    }
+
+    // Manejador adicional para cambios de hash (útil en móviles)
+    window.addEventListener('hashchange', function() {
+        const path = window.location.pathname;
+        const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
+        
+        if (isIndexPage && window.location.hash) {
+            setTimeout(() => {
+                const targetId = window.location.hash;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
+                    const offsetPosition = target.offsetTop - headerHeight;
+                    window.scrollTo({
+                        top: Math.max(0, offsetPosition),
+                        behavior: 'smooth'
+                    });
+                }
+            }, 100);
+        }
+    });
 });
