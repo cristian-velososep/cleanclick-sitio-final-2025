@@ -1,6 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     document.body.style.opacity = '1';
 
+    // Calcular altura del header pegajoso y aplicar como variable CSS
+    const calculateHeaderHeight = () => {
+        const stickyHeader = document.querySelector('.sticky');
+        if (stickyHeader) {
+            const headerHeight = stickyHeader.offsetHeight;
+            document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+        }
+    };
+    
+    // Calcular altura inicial
+    calculateHeaderHeight();
+    
+    // Recalcular en resize (por si cambia la altura del header)
+    window.addEventListener('resize', calculateHeaderHeight);
+
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     const allPopupTriggers = document.querySelectorAll('.open-chat-popup');
@@ -30,10 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     else {
                         if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
                         openPopup();
+                        attachAutoCloseListeners();
                     }
                 } else {
                     if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
                     openPopup();
+                    attachAutoCloseListeners();
                 }
             });
         });
@@ -46,6 +63,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if (chatPopup && !chatPopup.classList.contains('opacity-0') && !chatPopup.contains(e.target) && !e.target.closest('.open-chat-popup')) { closePopup(); }
     });
 
+    // Cierre auto del pop-up solo en dispositivos no táctiles (mantener dinámica móvil)
+    const isTouchDevice = () => (
+        'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0
+    );
+    const interactionCloseHandler = () => {
+        if (chatPopup && !chatPopup.classList.contains('opacity-0')) {
+            closePopup();
+        }
+        window.removeEventListener('scroll', interactionCloseHandler, { passive: true });
+        document.removeEventListener('pointerdown', interactionCloseHandler, true);
+        document.removeEventListener('keydown', interactionCloseHandler, true);
+    };
+    const attachAutoCloseListeners = () => {
+        // En todos los dispositivos, cerrar al hacer scroll
+        window.addEventListener('scroll', interactionCloseHandler, { passive: true });
+        // En no táctiles, también cerrar por clic/tecla
+        if (!isTouchDevice()) {
+            document.addEventListener('pointerdown', interactionCloseHandler, true);
+            document.addEventListener('keydown', interactionCloseHandler, true);
+        }
+    };
+
+    // Enlaces internos: clics simples, el navegador maneja el smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const path = window.location.pathname;
@@ -58,21 +98,70 @@ document.addEventListener('DOMContentLoaded', () => {
                 mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
             }
 
-            // Si estamos en la página principal, hacemos scroll suave
-            if (isIndexPage && targetId.length > 1) {
-                e.preventDefault(); // Prevenimos el salto brusco
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth', // ¡Aquí está la magia del scroll suave!
-                        block: 'start'
-                    });
+            if (targetId && targetId.length > 1) {
+                if (isIndexPage) {
+                    // En index.html: dejar que el navegador maneje el scroll suave
+                    // El CSS con scroll-margin-top se encarga del offset
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        // Función para verificar que la página esté completamente cargada
+                        const waitForPageLoad = (callback, maxAttempts = 10) => {
+                            let attempts = 0;
+                            const checkLoad = () => {
+                                attempts++;
+                                // Verificar que el documento esté completamente cargado
+                                if (document.readyState === 'complete' && 
+                                    document.querySelector('.sticky')?.offsetHeight > 0 &&
+                                    target.offsetTop > 0) {
+                                    callback();
+                                } else if (attempts < maxAttempts) {
+                                    setTimeout(checkLoad, 50);
+                                } else {
+                                    // Fallback si no se puede verificar completamente
+                                    callback();
+                                }
+                            };
+                            checkLoad();
+                        };
+
+                        // Esperar a que la página esté completamente cargada
+                        waitForPageLoad(() => {
+                            // Forzar el scroll con el offset correcto
+                            const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
+                            const offsetPosition = target.offsetTop - headerHeight;
+                            window.scrollTo({
+                                top: Math.max(0, offsetPosition),
+                                behavior: 'smooth'
+                            });
+                            
+                            // Scroll adicional para corregir el problema de la primera carga
+                            setTimeout(() => {
+                                window.scrollTo({
+                                    top: Math.max(0, offsetPosition),
+                                    behavior: 'smooth'
+                                });
+                            }, 300);
+                            
+                            // Scroll final sutil para asegurar posición correcta
+                            setTimeout(() => {
+                                const currentScroll = window.pageYOffset;
+                                const targetScroll = Math.max(0, offsetPosition);
+                                // Solo hacer scroll si hay una diferencia significativa
+                                if (Math.abs(currentScroll - targetScroll) > 50) {
+                                    window.scrollTo({
+                                        top: targetScroll,
+                                        behavior: 'smooth'
+                                    });
+                                }
+                            }, 300);
+                        });
+                    }
+                } else {
+                    // En subpáginas: redirigir a index.html#sección
+                    e.preventDefault();
+                    window.location.href = 'index.html' + targetId;
                 }
-            } 
-            // Si estamos en una subpágina, navegamos a la sección en index.html
-            else if (!isIndexPage && targetId.length > 1) {
-                // No prevenimos la acción, solo nos aseguramos de ir al lugar correcto
-                window.location.href = 'index.html' + targetId;
             }
         });
     });
@@ -123,6 +212,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const accordionContent = button.nextElementSibling;
             const icon = button.querySelector('svg');
             const isActive = accordionContent.style.maxHeight && accordionContent.style.maxHeight !== '0px';
+
+            // En móviles: cerrar cualquier otra abierta antes de abrir la nueva
+            const shouldEnforceSingleOpen = window.matchMedia('(max-width: 767px)').matches;
+            if (shouldEnforceSingleOpen && !isActive) {
+                document.querySelectorAll('.accordion-content').forEach(content => {
+                    if (content !== accordionContent && content.style.maxHeight && content.style.maxHeight !== '0px') {
+                        content.style.maxHeight = '0px';
+                        const parentButton = content.previousElementSibling;
+                        const parentIcon = parentButton ? parentButton.querySelector('svg') : null;
+                        if (parentIcon) parentIcon.style.transform = '';
+                    }
+                });
+            }
+
             accordionContent.style.maxHeight = isActive ? '0px' : accordionContent.scrollHeight + 'px';
             if (icon) { icon.style.transform = isActive ? '' : 'rotate(180deg)'; }
         });
@@ -133,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
         facades.forEach(facade => {
             facade.addEventListener('click', () => {
                 const videoId = facade.dataset.videoid;
+                if (!videoId) return;
                 const iframe = document.createElement('iframe');
                 iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`);
                 iframe.setAttribute('frameborder', '0');
