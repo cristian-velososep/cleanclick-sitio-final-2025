@@ -9,6 +9,25 @@
     })(window,document,'script','dataLayer','GTM-T37SGWVK');</script>
     <!-- End Google Tag Manager -->
     
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17323286248"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'AW-17323286248');
+    </script>
+    
+    <!-- MS Clarity -->
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "tie7wvk0zd");
+    </script>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clean Click | Limpieza Profesional de Sillones a Vapor</title>
@@ -57,8 +76,9 @@
         height: 48px;
         width: 77px;
       }
+      /* Scroll margin para secciones con ancla */
       section[id] {
-        scroll-margin-top: 140px;
+        scroll-margin-top: var(--header-height, 80px);
       }
       .sticky {
         position: sticky;
@@ -112,6 +132,16 @@
         transform: translateY(-2px);
       }
 
+      .btn-secondary {
+        background-color: #06b6d4; /* cyan de la paleta */
+        color: #ffffff;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      .btn-secondary:hover {
+        background-color: #0891b2; /* tono más oscuro */
+        transform: translateY(-2px);
+      }
+
       .accordion-content {
         max-height: 0;
         overflow: hidden;
@@ -130,6 +160,24 @@
       .animated-banner-text {
         animation: text-color-pulse 3s ease-in-out infinite;
       }
+
+      /* Pulsos sincronizados para botones (mismo ciclo que el banner) */
+      @keyframes brand-blue-bg-pulse {
+        0% { background-color: #1e3a8a; } /* más oscuro */
+        25% { background-color: #1e40af; } /* base */
+        50% { background-color: #2563eb; } /* más claro (sin llegar a blanco) */
+        75% { background-color: #1e40af; }
+        100% { background-color: #1e3a8a; }
+      }
+      @keyframes brand-cyan-bg-pulse {
+        0% { background-color: #0e7490; } /* más oscuro */
+        25% { background-color: #06b6d4; } /* base */
+        50% { background-color: #22d3ee; } /* más claro (sin llegar a blanco) */
+        75% { background-color: #06b6d4; }
+        100% { background-color: #0e7490; }
+      }
+      .pulse-brand-blue { animation: brand-blue-bg-pulse 3s ease-in-out infinite; }
+      .pulse-brand-cyan { animation: brand-cyan-bg-pulse 3s ease-in-out infinite; }
 
       @keyframes slideInFromRight {
         from {
@@ -217,6 +265,28 @@
         height: 100%;
         border: 0;
       }
+
+      /* Scroll suave más lento que se sincroniza con la carga */
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 140px;
+      }
+      
+      /* Transición personalizada para scroll más lento */
+      * {
+        scroll-behavior: smooth !important;
+      }
+      
+      @media (prefers-reduced-motion: no-preference) {
+        html {
+          scroll-behavior: smooth;
+        }
+        
+        /* Scroll más lento para sincronizar con carga de página */
+        * {
+          scroll-behavior: smooth !important;
+        }
+      }
     </style>
   </head>
   <body class="text-slate-700">
@@ -254,7 +324,7 @@
               height="48"
             />
             <span class="ml-2 text-base font-bold text-slate-800 leading-tight"
-              >Clean Click<br class="sm:hidden" />Aroma a Limpio</span
+              >Clean Click<br class="sm:hidden" /> Aroma a Limpio</span
             >
           </a>
           <nav class="hidden lg:flex items-center space-x-6">
@@ -336,8 +406,8 @@
             id="cta-header"
             class="open-chat-popup hidden lg:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center"
           >
-            <span>Contacta Aquí</span>
-            <span class="text-xs font-normal">Atención 7am - 12am</span>
+            <span id="cta-header">Contacta Aquí</span>
+            <span class="text-xs font-normal" id="cta-header">Atención 7am - 12am</span>
           </button>
           <div class="lg:hidden">
             <button
@@ -451,8 +521,8 @@
               id="cta-mobile-menu"
               class="open-chat-popup mt-2 w-full btn-primary font-bold py-3 px-6 rounded-full shadow-lg inline-flex flex-col items-center"
             >
-              <span>Contacta Aquí</span>
-              <span class="text-xs font-normal mt-1">Atención 7am - 12am</span>
+              <span id="cta-mobile-menu">Contacta Aquí</span>
+              <span class="text-xs font-normal mt-1" id="cta-mobile-menu">Atención 7am - 12am</span>
             </button>
           </nav>
         </div>
@@ -482,26 +552,23 @@
                 Somos <strong class="text-brand-blue">Clean Click</strong>,
                 expertos en limpieza para tu hogar.
               </p>
-              <div class="mt-8">
+              <div class="mt-8 flex flex-col items-center gap-3 lg:flex-row lg:items-stretch">
                 <button
                   id="cta-hero"
                   class="open-chat-popup inline-flex flex-col items-center btn-primary text-lg font-bold py-3 px-10 rounded-full shadow-xl transform hover:scale-105 transition-transform"
                 >
-                  <span>Contáctanos Aquí</span>
-                  <span class="text-sm font-normal mt-1"
+                  <span id="cta-hero">Contáctanos Aquí</span>
+                  <span class="text-sm font-normal mt-1" id="cta-hero"
                     >Atención 7am - 12am</span
                   >
                 </button>
-                  <button
-                  id="cta-faq"
-                  class="open-chat-popup inline-flex flex-col items-center btn-primary text-lg font-bold py-3 px-10 rounded-full shadow-xl transform hover:scale-105 transition-transform"
+                <a
+                  href="#faq"
+                  id="cta-hero-faq"
+                  class="inline-flex flex-col items-center btn-secondary text-lg font-bold py-3 px-10 rounded-full shadow-xl transform hover:scale-105 transition-transform text-center"
                 >
-                  <span href="#faq">¡Tienes dudas?</span>
-                  <span href="#faq" class="text-sm font-normal mt-1"
-                    >Revisa aquí!</span
-                  >
-                </button>
-                
+                  <span>¿Tienes dudas?<br />Resuélvelas aquí</span>
+                </a>
               </div>
             </div>
             <!-- Columna de Imagen -->
@@ -818,6 +885,7 @@
             <!-- Servicio 1: Sillones -->
             <a
               href="servicio-sillones.html"
+              id="nav-sillones"
               class="block bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-brand-blue hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col"
             >
               <div
@@ -854,6 +922,7 @@
             <!-- Servicio 2: Alfombras -->
             <a
               href="servicio-alfombras.html"
+              id="nav-alfombras"
               class="block bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-brand-blue hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col"
             >
               <div
@@ -892,6 +961,7 @@
             <!-- Servicio 3: Colchones -->
             <a
               href="servicio-colchones.html"
+              id="nav-colchones"
               class="block bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-brand-blue hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col"
             >
               <div
@@ -1059,7 +1129,7 @@
                   src="https://i.postimg.cc/0j5PMHp7/clean-click-testimonio-01-450.webp"
                   alt="Testimonio de cliente 1"
                   class="w-full h-auto rounded-2xl shadow-lg"
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                   width="450"
                   height="800"
@@ -1084,7 +1154,7 @@
                   src="https://i.postimg.cc/SRZqW7r3/clean-click-testimonio-02-450.webp"
                   alt="Testimonio de cliente 2"
                   class="w-full h-auto rounded-2xl shadow-lg"
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                   width="450"
                   height="800"
@@ -1109,7 +1179,7 @@
                   src="https://i.postimg.cc/htQgdm7Z/clean-click-testimonio-03-450.webp"
                   alt="Testimonio de cliente 3"
                   class="w-full h-auto rounded-2xl shadow-lg"
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                   width="450"
                   height="800"
@@ -1134,7 +1204,7 @@
                   src="https://i.postimg.cc/yYbsxjWS/clean-click-testimonio-04-450.webp"
                   alt="Testimonio de cliente 4"
                   class="w-full h-auto rounded-2xl shadow-lg"
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                   width="450"
                   height="800"
@@ -1154,7 +1224,7 @@
                 src="https://i.ytimg.com/vi/pHdzZYcw5Gc/hqdefault.jpg"
                 id="miniatura-1"
                 alt="Miniatura del testimonio 1"
-                loading="lazy"
+                loading="eager"
                 width="480"
                 height="360"
               />
@@ -1168,7 +1238,7 @@
                 src="https://i.ytimg.com/vi/Yx4lKEeCwss/hqdefault.jpg"
                 id="miniatura-2"
                 alt="Miniatura del testimonio 2"
-                loading="lazy"
+                loading="eager"
                 width="480"
                 height="360"
               />
@@ -1182,7 +1252,7 @@
                 src="https://i.ytimg.com/vi/gtggraD_N_w/hqdefault.jpg"
                 id="miniatura-3"
                 alt="Miniatura del testimonio 3"
-                loading="lazy"
+                loading="eager"
                 width="480"
                 height="360"
               />
@@ -1207,15 +1277,17 @@
                   id="faq-1"
                   class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span>¿Cuál es el área de cobertura?</span>
+                  <span id="faq-1">¿Cuál es el área de cobertura?</span>
                   <svg
                     class="w-4 h-4 transition-transform shrink-0"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 640 640"
+                    id="faq-1"
                   >
                     <path
                       fill="#1e293b"
+                      id="faq-1"
                       d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
                     />
                   </svg>
@@ -1233,15 +1305,17 @@
                   id="faq-2"
                   class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span>¿Cuánto demora la limpieza?</span>
+                  <span id="faq-2">¿Cuánto demora la limpieza?</span>
                   <svg
                     class="w-4 h-4 transition-transform shrink-0"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 640 640"
+                    id="faq-2"
                   >
                     <path
                       fill="#1e293b"
+                      id="faq-2"
                       d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
                     />
                   </svg>
@@ -1258,15 +1332,17 @@
                   id="faq-3"
                   class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span>¿Qué tan rápido puedo agendar?</span>
+                  <span id="faq-3">¿Qué tan rápido puedo agendar?</span>
                   <svg
                     class="w-4 h-4 transition-transform shrink-0"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 640 640"
+                    id="faq-3"
                   >
                     <path
                       fill="#1e293b"
+                      id="faq-3"
                       d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
                     />
                   </svg>
@@ -1284,15 +1360,17 @@
                   id="faq-4"
                   class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span>Si escribo hoy, ¿cuándo pueden venir?</span>
+                  <span id="faq-4">Si escribo hoy, ¿cuándo pueden venir?</span>
                   <svg
                     class="w-4 h-4 transition-transform shrink-0"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 640 640"
+                    id="faq-4"
                   >
                     <path
                       fill="#1e293b"
+                      id="faq-4"
                       d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
                     />
                   </svg>
@@ -1310,15 +1388,17 @@
                   id="faq-5"
                   class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span>¿Se eliminan todas las manchas?</span>
+                  <span id="faq-5">¿Se eliminan todas las manchas?</span>
                   <svg
                     class="w-4 h-4 transition-transform shrink-0"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 640 640"
+                    id="faq-5"
                   >
                     <path
                       fill="#1e293b"
+                      id="faq-5"
                       d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
                     />
                   </svg>
@@ -1340,15 +1420,17 @@
                   id="faq-6"
                   class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span>¿El servicio tiene garantía?</span>
+                  <span id="faq-6">¿El servicio tiene garantía?</span>
                   <svg
                     class="w-4 h-4 transition-transform shrink-0"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 640 640"
+                    id="faq-6"
                   >
                     <path
                       fill="#1e293b"
+                      id="faq-6"
                       d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
                     />
                   </svg>
@@ -1367,15 +1449,17 @@
                   id="faq-7"
                   class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span>¿Cuáles son los tiempos de secado?</span>
+                  <span id="faq-7">¿Cuáles son los tiempos de secado?</span>
                   <svg
                     class="w-4 h-4 transition-transform shrink-0"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 640 640"
+                    id="faq-7"
                   >
                     <path
                       fill="#1e293b"
+                      id="faq-7"
                       d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
                     />
                   </svg>
@@ -1392,15 +1476,17 @@
                   id="faq-8"
                   class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span>¿Qué otros tapices limpian?</span>
+                  <span id="faq-8">¿Qué otros tapices limpian?</span>
                   <svg
                     class="w-4 h-4 transition-transform shrink-0"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 640 640"
+                    id="faq-8"
                   >
                     <path
                       fill="#1e293b"
+                      id="faq-8"
                       d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
                     />
                   </svg>
@@ -1418,15 +1504,17 @@
                   id="faq-9"
                   class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span>¿Cómo puedo pagar?</span>
+                  <span id="faq-9">¿Cómo puedo pagar?</span>
                   <svg
                     class="w-4 h-4 transition-transform shrink-0"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 640 640"
+                    id="faq-9"
                   >
                     <path
                       fill="#1e293b"
+                      id="faq-9"
                       d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
                     />
                   </svg>
@@ -1436,6 +1524,40 @@
                     Aceptamos todos los medios de pago: efectivo, transferencia,
                     débito y tarjeta de crédito.
                   </p>
+                </div>
+              </div>
+              <!-- Pregunta de precios (faq-10) ubicada como décima pregunta -->
+              <div class="bg-slate-50 border border-slate-200 rounded-lg">
+                <button
+                  id="faq-10"
+                  class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+                >
+                  <span id="faq-10">¿Cuánto cuesta el servicio de limpieza a vapor?</span>
+                  <svg
+                    class="w-4 h-4 transition-transform shrink-0"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                    id="faq-10"
+                  >
+                    <path
+                      fill="#1e293b"
+                      id="faq-10"
+                      d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                    />
+                  </svg>
+                </button>
+                <div class="accordion-content">
+                  <div class="text-slate-600 px-5 pt-0 pb-5">
+                    <p>A continuación te entregamos algunos precios de referencia:</p>
+                    <ul class="list-disc list-inside mt-2 space-y-1">
+                      <li>Colchón dos plazas $24.990</li>
+                      <li>Sofá dos puestos $29.990</li>
+                      <li>Alfombra mediana $26.990</li>
+                      <li>Sofá seccional desde $39.990</li>
+                    </ul>
+                    <p class="mt-3">Se debe considerar que el precio mínimo de visita en la región metropolitana es de $29.990. Si tienes dudas, no te preocupes, escríbenos y te entregaremos una cotización rápidamente.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1458,8 +1580,8 @@
               id="cta-final"
               class="open-chat-popup inline-flex flex-col items-center bg-white text-brand-blue text-xl font-bold py-3 px-12 rounded-full shadow-xl transform hover:scale-105 transition-transform"
             >
-              <span>¡Sí, Quiero Contactarme Ahora!</span>
-              <span class="text-sm font-normal mt-1">Atención 7am - 12am</span>
+              <span id="cta-final">¡Sí, Quiero Contactarme Ahora!</span>
+              <span class="text-sm font-normal mt-1" id="cta-final">Atención 7am - 12am</span>
             </button>
           </div>
         </div>
@@ -1501,6 +1623,7 @@
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 640 640"
+                  id="cta-instagram-footer"
                 >
                   <path
                     fill="#d1d5db"
@@ -1589,7 +1712,7 @@
     <!-- Floating Chat Button -->
     <button
       id="cta-flotante"
-      class="open-chat-popup fixed bottom-5 right-5 bg-[#1E40AF] hover:bg-[#1D4ED8] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50"
+      class="open-chat-popup fixed bottom-5 right-5 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50 pulse-brand-blue"
       aria-label="Abrir chat de contacto"
     >
       <svg
@@ -1604,6 +1727,16 @@
         />
       </svg>
     </button>
+
+    <!-- Floating FAQ Button -->
+    <a
+      href="#faq"
+      id="cta-faq-flotante"
+      class="fixed bottom-5 left-5 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50 pulse-brand-cyan"
+      aria-label="Ir a preguntas frecuentes"
+    >
+      <span class="text-2xl font-black">?</span>
+    </a>
 
     <!-- Pop-up de Chat -->
     <div
@@ -1648,7 +1781,7 @@
           </p>
           <div class="mt-6 text-center">
             <a
-              href="https://wa.me/+56957079910?text=Cuéntanos%20qué%20servicio%20te%20interesa%20cotizar"
+              href="https://wa.me/+56950107753?text=Hola,%20quiero%20tener%20más%20información%20de%20sus%20servicios%20de%20limpieza"
               target="_blank"
               id="cta-popup"
               class="inline-block btn-primary font-bold py-2 px-8 rounded-full shadow-md"
@@ -1669,7 +1802,6 @@
     <script src="main.js" defer></script>
   </body>
 </html>
-
 
 
 
