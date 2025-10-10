@@ -88,6 +88,7 @@
 .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
 .px-8 { padding-left: 2rem; padding-right: 2rem; }
 .px-10 { padding-left: 2.5rem; padding-right: 2.5rem; }
+.px-12 { padding-left: 3rem; padding-right: 3rem; }
 .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
 .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
 .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
@@ -142,6 +143,7 @@
 .w-full { width: 100%; }
 .w-4 { width: 1rem; }
 .w-6 { width: 1.5rem; }
+.w-8 { width: 2rem; }
 .w-10 { width: 2.5rem; }
 .w-12 { width: 3rem; }
 .w-16 { width: 4rem; }
@@ -155,6 +157,7 @@
 .h-auto { height: auto; }
 .h-4 { height: 1rem; }
 .h-6 { height: 1.5rem; }
+.h-8 { height: 2rem; }
 .h-10 { height: 2.5rem; }
 .h-12 { height: 3rem; }
 .h-14 { height: 3.5rem; }
@@ -356,6 +359,58 @@ strong { font-weight: 700; }
 
 .pulse-brand-blue { animation: brand-blue-bg-pulse 3s ease-in-out infinite; }
 .pulse-brand-cyan { animation: brand-cyan-bg-pulse 3s ease-in-out infinite; }
+
+/* Custom button classes */
+.btn-primary {
+  background-color: #1e40af;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #06b6d4;
+  color: #ffffff;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #0891b2;
+  transform: translateY(-2px);
+}
+
+/* Accordion content */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+}
+
+/* Custom logo class */
+.header-logo {
+  height: 48px;
+  width: 77px;
+}
+
+/* Animated banner text */
+@keyframes text-color-pulse {
+  0%, 100% {
+    color: #ffffff;
+  }
+  50% {
+    color: #f97316;
+  }
+}
+
+.animated-banner-text {
+  animation: text-color-pulse 3s ease-in-out infinite;
+}
+
+/* Mobile link and open chat popup classes are utility classes with no specific styles */
 
 /* Additional classes found in HTML */
 .cursor-pointer { cursor: pointer; }
