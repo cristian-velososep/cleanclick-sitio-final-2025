@@ -590,9 +590,45 @@ html {
 .text-2xl { font-size: 1.5rem; }
 .space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.5rem; }
 .shrink-0 { flex-shrink: 0; }
+
+/* Critical missing classes that were removed */
+.bg-white\/95 { background-color: rgba(255, 255, 255, 0.95); }
+.ml-2\.5 { margin-left: 0.625rem; }
+.w-2\.5 { width: 0.625rem; }
+.h-2\.5 { height: 0.625rem; }
+.group-hover\:rotate-180:hover { transform: rotate(180deg); }
+.group-hover\:opacity-100:hover { opacity: 1; }
+.group-hover\:visible:hover { visibility: visible; }
+.hover\:bg-blue-50:hover { background-color: #eff6ff; }
+.hover\:text-brand-blue:hover { color: #1e40af; }
+.hover\:scale-105:hover { transform: scale(1.05); }
+.hover\:scale-110:hover { transform: scale(1.1); }
+.transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+.transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+.duration-300 { transition-duration: 300ms; }
+.ease-in-out { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
 .overflow-hidden { overflow: hidden; }
 .max-w-sm { max-width: 24rem; }
 .pointer-events-none { pointer-events: none; }
+.bottom-24 { bottom: 6rem; }
+.right-5 { right: 1.25rem; }
+.w-\[calc\(100\%-2\.5rem\)\] { width: calc(100% - 2.5rem); }
+
+/* Responsive utilities */
+.sm\:hidden { display: none; }
+.lg\:flex { display: flex; }
+.lg\:inline-flex { display: inline-flex; }
+.lg\:hidden { display: none; }
+
+@media (min-width: 640px) {
+  .sm\:hidden { display: block; }
+}
+
+@media (min-width: 1024px) {
+  .lg\:flex { display: flex; }
+  .lg\:inline-flex { display: inline-flex; }
+  .lg\:hidden { display: none; }
+}
 
 /* Border utilities */
 .border-x-transparent { border-left-color: transparent; border-right-color: transparent; }
@@ -605,7 +641,7 @@ html {
 .bottom-5 { bottom: 1.25rem; }
 .bottom-24 { bottom: 6rem; }
 .left-5 { left: 1.25rem; }
-.right-5 { right: 1.25rem; }
+.transform { transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)); }
 .fixed { position: fixed; }
 
 /* Responsive utilities */
