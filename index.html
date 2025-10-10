@@ -1,56 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <!-- Google Tag Manager - Optimizado con lazy loading -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T37SGWVK');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17323286248"></script>
     <script>
-      // Inicializar dataLayer inmediatamente para evitar errores
       window.dataLayer = window.dataLayer || [];
-      
-      // Función para cargar GTM de forma diferida
-      function loadGTM() {
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-T37SGWVK');
-        
-        // Cargar gtag después de GTM
-        var gtagScript = document.createElement('script');
-        gtagScript.async = true;
-        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17323286248';
-        document.head.appendChild(gtagScript);
-        
-        gtagScript.onload = function() {
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'AW-17323286248');
-        };
-      }
-      
-      // Cargar GTM después de la interacción del usuario o timeout
-      let gtmLoaded = false;
-      function loadGTMOnInteraction() {
-        if (!gtmLoaded) {
-          gtmLoaded = true;
-          loadGTM();
-          // Remover listeners después de cargar
-          document.removeEventListener('click', loadGTMOnInteraction);
-          document.removeEventListener('scroll', loadGTMOnInteraction);
-          document.removeEventListener('touchstart', loadGTMOnInteraction);
-        }
-      }
-      
-      // Cargar GTM en la primera interacción del usuario
-      document.addEventListener('click', loadGTMOnInteraction, { passive: true });
-      document.addEventListener('scroll', loadGTMOnInteraction, { passive: true });
-      document.addEventListener('touchstart', loadGTMOnInteraction, { passive: true });
-      
-      // Fallback: cargar después de 3 segundos si no hay interacción
-      setTimeout(function() {
-        if (!gtmLoaded) {
-          loadGTMOnInteraction();
-        }
-      }, 3000);
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'AW-17323286248');
     </script>
     
     <!-- MS Clarity -->
@@ -78,6 +44,158 @@
     <!-- Asynchronously load non-critical CSS -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap"></noscript>
+
+    <style>
+      /* Critical CSS for Above-the-Fold Content & FOUT Prevention */
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+        color: #334155;
+        line-height: 1.6;
+        scroll-behavior: smooth;
+        opacity: 0;
+        transition: opacity 0.4s ease-in;
+      }
+      /* Scroll margin para secciones con ancla */
+      section[id] {
+        scroll-margin-top: var(--header-height, 80px);
+      }
+      
+      /* Optimizaciones específicas para móviles */
+      @media (max-width: 768px) {
+        /* Mejorar rendimiento de scroll en móviles */
+        * {
+          -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Optimizar animaciones para móviles */
+        .accordion-content {
+          transition: max-height 0.2s ease-out;
+        }
+        
+        /* Mejorar renderizado de imágenes en móviles */
+        img {
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+        }
+        
+        /* Optimizar transformaciones */
+        .youtube-fachada, .mobile-menu {
+          transform: translateZ(0);
+          -webkit-transform: translateZ(0);
+        }
+      }
+      .header-logo {
+        height: 48px;
+        width: 77px;
+      }
+      .sticky {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+      }
+      .container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+      @media (min-width: 1024px) {
+        .container {
+          max-width: 1024px;
+        }
+      }
+      .font-black {
+        font-weight: 900;
+      }
+      .text-3xl {
+        font-size: 1.875rem;
+      }
+      .md\:text-4xl {
+        font-size: 2.25rem;
+      }
+      .bg-brand-blue-light {
+        background-color: #eff6ff;
+      }
+      .text-brand-blue {
+        color: #1e40af;
+      }
+      .bg-brand-blue-dark {
+        background-color: #0f172a;
+      }
+      .btn-primary {
+        background-color: #1e40af;
+        color: white;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      .btn-primary:hover {
+        background-color: #1d4ed8;
+        transform: translateY(-2px);
+      }
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-in-out;
+      }
+
+      @keyframes text-color-pulse {
+        0%,
+        100% {
+          color: #ffffff;
+        }
+        50% {
+          color: #f97316;
+        }
+      }
+      .animated-banner-text {
+        animation: text-color-pulse 3s ease-in-out infinite;
+      }
+
+      @keyframes brand-blue-bg-pulse {
+        0% { background-color: #1e3a8a; }
+        25% { background-color: #1e40af; }
+        50% { background-color: #2563eb; }
+        75% { background-color: #1e40af; }
+        100% { background-color: #1e3a8a; }
+      }
+      @keyframes brand-cyan-bg-pulse {
+        0% { background-color: #0e7490; }
+        25% { background-color: #06b6d4; }
+        50% { background-color: #22d3ee; }
+        75% { background-color: #06b6d4; }
+        100% { background-color: #0e7490; }
+      }
+      .pulse-brand-blue { animation: brand-blue-bg-pulse 3s ease-in-out infinite; }
+      .pulse-brand-cyan { animation: brand-cyan-bg-pulse 3s ease-in-out infinite; }
+
+      @keyframes slideInFromRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      @keyframes slideOutToLeft {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+      }
+      .slide-in {
+        animation: slideInFromRight 0.5s ease-out forwards;
+      }
+      .slide-out {
+        animation: slideOutToLeft 0.5s ease-out forwards;
+      }
+    </style>
     
     <!-- Tailwind CSS Optimizado -->
     <link rel="stylesheet" href="tailwind-optimized.css">
@@ -1622,6 +1740,7 @@
       ></div>
     </div>
 
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <!-- JavaScript optimizado para rendimiento -->
     <script src="main.js" defer></script>
   </body>
