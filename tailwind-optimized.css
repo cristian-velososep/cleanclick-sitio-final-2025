@@ -389,7 +389,7 @@ strong { font-weight: 700; }
   overflow: hidden;
   transition: max-height 0.4s ease-in-out;
 }
-
+/*si*/
 /* Custom logo class */
 .header-logo {
   height: 48px;
