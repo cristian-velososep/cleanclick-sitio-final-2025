@@ -16,30 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Calcular altura inicial usando requestAnimationFrame para optimizar rendimiento
     requestAnimationFrame(calculateHeaderHeight);
     
-    // Debounce/throttle optimizado para móviles
+    // Resize optimizado - solo recalcular cuando sea necesario
     let resizeTimeout;
-    let lastResizeTime = 0;
     const debouncedResize = () => {
-        const now = Date.now();
-        const timeSinceLastResize = now - lastResizeTime;
-        
-        // En móviles, usar throttle más agresivo
-        const throttleDelay = isMobile ? 250 : 100;
-        
-        if (timeSinceLastResize >= throttleDelay) {
-            clearTimeout(resizeTimeout);
-            lastResizeTime = now;
-            requestAnimationFrame(calculateHeaderHeight);
-        } else {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                lastResizeTime = Date.now();
-                requestAnimationFrame(calculateHeaderHeight);
-            }, throttleDelay - timeSinceLastResize);
-        }
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(calculateHeaderHeight, 150);
     };
     
-    window.addEventListener('resize', debouncedResize);
+    window.addEventListener('resize', debouncedResize, { passive: true });
 
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -53,13 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const openMenu = () => { closePopup(); if (mobileMenu) { mobileMenu.classList.remove('opacity-0', 'scale-95', 'invisible'); } };
 
     if (menuToggle) {
-        // Optimización para móviles: usar touchstart para mejor respuesta
-        const eventType = isMobile ? 'touchstart' : 'click';
-        menuToggle.addEventListener(eventType, (e) => {
+        menuToggle.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (isMobile) {
-                e.preventDefault();
-            }
             const isMenuOpen = !mobileMenu.classList.contains('invisible');
             if (isMenuOpen) { closeMenu(); } else { openMenu(); }
         });
@@ -67,21 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (allPopupTriggers.length > 0) {
         allPopupTriggers.forEach(button => {
-            // Optimización para móviles: usar touchstart para mejor respuesta
-            const eventType = isMobile ? 'touchstart' : 'click';
-            button.addEventListener(eventType, (e) => {
+            button.addEventListener('click', (e) => {
                 e.stopPropagation();
-                if (isMobile) {
-                    e.preventDefault();
-                }
                 const isPopupOpen = chatPopup && !chatPopup.classList.contains('opacity-0');
-                if (button.id === 'cta-flotante') {
-                    if (isPopupOpen) { closePopup(); }
-                    else {
-                        if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
-                        openPopup();
-                        attachAutoCloseListeners();
-                    }
+                
+                if (button.id === 'cta-flotante' && isPopupOpen) {
+                    closePopup();
                 } else {
                     if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
                     openPopup();
@@ -92,13 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (closePopupBtn) { 
-        // Optimización para móviles: usar touchstart para mejor respuesta
-        const eventType = isMobile ? 'touchstart' : 'click';
-        closePopupBtn.addEventListener(eventType, (e) => { 
+        closePopupBtn.addEventListener('click', (e) => { 
             e.stopPropagation(); 
-            if (isMobile) {
-                e.preventDefault();
-            }
             closePopup(); 
         }); 
     }
@@ -130,131 +95,62 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Enlaces internos: clics simples, el navegador maneja el smooth scroll
+    // Smooth scroll simplificado y optimizado
+    const handleSmoothScroll = (targetId, e) => {
+        const path = window.location.pathname;
+        const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
+        
+        // Cerrar menú móvil si está abierto
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenu && !mobileMenu.classList.contains('invisible')) {
+            mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
+        }
+
+        if (!targetId || targetId.length <= 1) return;
+
+        const target = document.querySelector(targetId);
+        if (!target) {
+            if (!isIndexPage) {
+                e.preventDefault();
+                window.location.href = 'index.html' + targetId;
+            }
+            return;
+        }
+
+        e.preventDefault();
+        
+        // Scroll simplificado - una sola llamada
+        const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
+        const offsetPosition = Math.max(0, target.offsetTop - headerHeight);
+        
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    };
+
+    // Event listeners optimizados
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            const path = window.location.pathname;
-            const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
             const targetId = this.getAttribute('href');
-
-            // Cierra el menú móvil si está abierto, sin importar la página
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenu && !mobileMenu.classList.contains('invisible')) {
-                mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
-            }
-
-            if (targetId && targetId.length > 1) {
-                if (isIndexPage) {
-                    // En index.html: dejar que el navegador maneje el scroll suave
-                    // El CSS con scroll-margin-top se encarga del offset
-                    const target = document.querySelector(targetId);
-                    if (target) {
-                        e.preventDefault();
-                        // Función para verificar que la página esté completamente cargada
-                        const waitForPageLoad = (callback, maxAttempts = 10) => {
-                            let attempts = 0;
-                            const checkLoad = () => {
-                                attempts++;
-                                // Verificar que el documento esté completamente cargado
-                                if (document.readyState === 'complete' && 
-                                    document.querySelector('.sticky')?.offsetHeight > 0 &&
-                                    target.offsetTop > 0) {
-                                    callback();
-                                } else if (attempts < maxAttempts) {
-                                    setTimeout(checkLoad, 50);
-                                } else {
-                                    // Fallback si no se puede verificar completamente
-                                    callback();
-                                }
-                            };
-                            checkLoad();
-                        };
-
-                        // Esperar a que la página esté completamente cargada
-                        waitForPageLoad(() => {
-                            // Función optimizada de scroll usando requestAnimationFrame
-                            const smoothScrollTo = (targetPosition) => {
-                                requestAnimationFrame(() => {
-                                    // Optimización específica para móviles
-                                    if (isMobile) {
-                                        // En móviles, usar scroll más directo para mejor rendimiento
-                                        window.scrollTo({
-                                            top: Math.max(0, targetPosition),
-                                            behavior: 'smooth'
-                                        });
-                                    } else {
-                                        window.scrollTo({
-                                            top: Math.max(0, targetPosition),
-                                            behavior: 'smooth'
-                                        });
-                                    }
-                                });
-                            };
-                            
-                            // Forzar el scroll con el offset correcto
-                            const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
-                            const offsetPosition = target.offsetTop - headerHeight;
-                            smoothScrollTo(offsetPosition);
-                            
-                            // Scroll adicional para corregir el problema de la primera carga
-                            setTimeout(() => {
-                                smoothScrollTo(offsetPosition);
-                            }, 300);
-                            
-                            // Scroll final sutil para asegurar posición correcta
-                            setTimeout(() => {
-                                const currentScroll = window.pageYOffset;
-                                const targetScroll = Math.max(0, offsetPosition);
-                                // Solo hacer scroll si hay una diferencia significativa
-                                if (Math.abs(currentScroll - targetScroll) > 50) {
-                                    smoothScrollTo(targetScroll);
-                                }
-                            }, 300);
-                        });
-                    }
-                } else {
-                    // En subpáginas: manejar enlaces locales o redirigir a index
-                    const target = document.querySelector(targetId);
-                    if (target) {
-                        // Si el elemento existe en la página actual, hacer scroll local
-                        e.preventDefault();
-                        const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
-                        const offsetPosition = target.offsetTop - headerHeight;
-                        window.scrollTo({
-                            top: Math.max(0, offsetPosition),
-                            behavior: 'smooth'
-                        });
-                    } else {
-                        // Si el elemento no existe, redirigir a index.html
-                        e.preventDefault();
-                        window.location.href = 'index.html' + targetId;
-                    }
-                }
-            }
+            handleSmoothScroll(targetId, e);
         });
     });
 
-    // Enlaces a index.html con secciones específicas (solo en páginas de servicio)
+    // Enlaces a index.html simplificados
     document.querySelectorAll('a[href^="index.html#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const path = window.location.pathname;
             const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
             
-            // Solo manejar en páginas de servicio, no en index.html
             if (!isIndexPage) {
                 e.preventDefault();
-                const href = this.getAttribute('href');
-                const targetId = href.split('#')[1]; // Extraer la parte después de #
-                
-                
-                // Cerrar menú móvil si está abierto
+                // Cerrar menú móvil
                 const mobileMenu = document.getElementById('mobile-menu');
                 if (mobileMenu && !mobileMenu.classList.contains('invisible')) {
                     mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
                 }
-                
-                // Cargar index.html con el hash para que el navegador maneje el scroll
-                window.location.href = href;
+                window.location.href = this.getAttribute('href');
             }
         });
     });
@@ -302,57 +198,42 @@ document.addEventListener('DOMContentLoaded', () => {
     const faqToggles = document.querySelectorAll('.accordion-toggle');
     faqToggles.forEach(button => {
         button.addEventListener('click', () => {
-            // Optimización para móviles: usar requestAnimationFrame para animaciones
-            if (isMobile) {
-                requestAnimationFrame(() => {
-                    handleAccordionClick(button);
+            const accordionContent = button.nextElementSibling;
+            const icon = button.querySelector('svg');
+            const isActive = accordionContent.style.maxHeight && accordionContent.style.maxHeight !== '0px';
+
+            // En móviles: cerrar cualquier otra abierta
+            const isMobileView = window.innerWidth <= 767;
+            if (isMobileView && !isActive) {
+                document.querySelectorAll('.accordion-content').forEach(content => {
+                    if (content !== accordionContent && content.style.maxHeight && content.style.maxHeight !== '0px') {
+                        content.style.maxHeight = '0px';
+                        const parentButton = content.previousElementSibling;
+                        const parentIcon = parentButton ? parentButton.querySelector('svg') : null;
+                        if (parentIcon) parentIcon.style.transform = '';
+                    }
                 });
-            } else {
-                handleAccordionClick(button);
             }
+
+            accordionContent.style.maxHeight = isActive ? '0px' : accordionContent.scrollHeight + 'px';
+            if (icon) { icon.style.transform = isActive ? '' : 'rotate(180deg)'; }
         });
     });
-
-    function handleAccordionClick(button) {
-        const accordionContent = button.nextElementSibling;
-        const icon = button.querySelector('svg');
-        const isActive = accordionContent.style.maxHeight && accordionContent.style.maxHeight !== '0px';
-
-        // En móviles: cerrar cualquier otra abierta antes de abrir la nueva
-        const shouldEnforceSingleOpen = isMobile || window.matchMedia('(max-width: 767px)').matches;
-        if (shouldEnforceSingleOpen && !isActive) {
-            document.querySelectorAll('.accordion-content').forEach(content => {
-                if (content !== accordionContent && content.style.maxHeight && content.style.maxHeight !== '0px') {
-                    content.style.maxHeight = '0px';
-                    const parentButton = content.previousElementSibling;
-                    const parentIcon = parentButton ? parentButton.querySelector('svg') : null;
-                    if (parentIcon) parentIcon.style.transform = '';
-                }
-            });
-        }
-
-        accordionContent.style.maxHeight = isActive ? '0px' : accordionContent.scrollHeight + 'px';
-        if (icon) { icon.style.transform = isActive ? '' : 'rotate(180deg)'; }
-    }
 
     function initYouTubeFacades() {
         const facades = document.querySelectorAll('.youtube-fachada');
         facades.forEach(facade => {
-            // Optimización para móviles: usar touchstart para mejor respuesta
-            const eventType = isMobile ? 'touchstart' : 'click';
-            facade.addEventListener(eventType, (e) => {
-                // Prevenir comportamiento por defecto en móviles
-                if (isMobile) {
-                    e.preventDefault();
-                }
+            facade.addEventListener('click', (e) => {
                 const videoId = facade.dataset.videoid;
                 if (!videoId) return;
+                
                 const iframe = document.createElement('iframe');
-                iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`);
-                iframe.setAttribute('frameborder', '0');
-                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-                iframe.setAttribute('allowfullscreen', '');
-                iframe.setAttribute('title', 'Reproductor de video de YouTube');
+                iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                iframe.frameBorder = '0';
+                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                iframe.allowFullscreen = true;
+                iframe.title = 'Reproductor de video de YouTube';
+                
                 facade.innerHTML = '';
                 facade.appendChild(iframe);
                 facade.classList.add('video-loaded');
@@ -361,60 +242,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initYouTubeFacades();
 
-    // Manejar hash en la URL al cargar index.html (para navegación desde páginas de servicio)
-    const path = window.location.pathname;
-    const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
-    
-    if (isIndexPage && window.location.hash) {
-        // Función para hacer scroll a la sección
-        const scrollToSection = () => {
-            const targetId = window.location.hash;
-            const target = document.querySelector(targetId);
-            if (target) {
-                const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
-                const offsetPosition = target.offsetTop - headerHeight;
-                window.scrollTo({
-                    top: Math.max(0, offsetPosition),
-                    behavior: 'smooth'
-                });
-                return true;
-            }
-            return false;
-        };
-
-        // Múltiples intentos para asegurar que funcione en móviles
-        const attemptScroll = (attempts = 0) => {
-            if (attempts < 5) {
-                setTimeout(() => {
-                    if (!scrollToSection()) {
-                        attemptScroll(attempts + 1);
-                    }
-                }, 200 + (attempts * 100)); // Delay progresivo: 200ms, 300ms, 400ms, etc.
-            }
-        };
-
-        // Iniciar los intentos de scroll
-        attemptScroll();
-    }
-
-    // Manejador adicional para cambios de hash (útil en móviles)
-    window.addEventListener('hashchange', function() {
+    // Manejo de hash simplificado
+    const handleHashScroll = () => {
         const path = window.location.pathname;
         const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
         
         if (isIndexPage && window.location.hash) {
-            setTimeout(() => {
-                const targetId = window.location.hash;
-                const target = document.querySelector(targetId);
-                if (target) {
-                    const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
-                    const offsetPosition = target.offsetTop - headerHeight;
-                    window.scrollTo({
-                        top: Math.max(0, offsetPosition),
-                        behavior: 'smooth'
-                    });
-                }
-            }, 100);
+            const target = document.querySelector(window.location.hash);
+            if (target) {
+                const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
+                const offsetPosition = Math.max(0, target.offsetTop - headerHeight);
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
         }
-    });
+    };
+
+    // Scroll inicial con hash
+    if (window.location.hash) {
+        setTimeout(handleHashScroll, 100);
+    }
+
+    // Cambios de hash
+    window.addEventListener('hashchange', handleHashScroll);
 });
