@@ -1,56 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <!-- Google Tag Manager - Optimizado con lazy loading -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T37SGWVK');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17323286248"></script>
     <script>
-      // Inicializar dataLayer inmediatamente para evitar errores
       window.dataLayer = window.dataLayer || [];
-      
-      // Función para cargar GTM de forma diferida
-      function loadGTM() {
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-T37SGWVK');
-        
-        // Cargar gtag después de GTM
-        var gtagScript = document.createElement('script');
-        gtagScript.async = true;
-        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17323286248';
-        document.head.appendChild(gtagScript);
-        
-        gtagScript.onload = function() {
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'AW-17323286248');
-        };
-      }
-      
-      // Cargar GTM después de la interacción del usuario o timeout
-      let gtmLoaded = false;
-      function loadGTMOnInteraction() {
-        if (!gtmLoaded) {
-          gtmLoaded = true;
-          loadGTM();
-          // Remover listeners después de cargar
-          document.removeEventListener('click', loadGTMOnInteraction);
-          document.removeEventListener('scroll', loadGTMOnInteraction);
-          document.removeEventListener('touchstart', loadGTMOnInteraction);
-        }
-      }
-      
-      // Cargar GTM en la primera interacción del usuario
-      document.addEventListener('click', loadGTMOnInteraction, { passive: true });
-      document.addEventListener('scroll', loadGTMOnInteraction, { passive: true });
-      document.addEventListener('touchstart', loadGTMOnInteraction, { passive: true });
-      
-      // Fallback: cargar después de 3 segundos si no hay interacción
-      setTimeout(function() {
-        if (!gtmLoaded) {
-          loadGTMOnInteraction();
-        }
-      }, 3000);
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'AW-17323286248');
     </script>
     
     <!-- MS Clarity -->
@@ -143,11 +109,11 @@
       .font-black {
         font-weight: 900;
       }
-      .text-3xl {
-        font-size: 1.875rem;
-      }
-      .md\:text-4xl {
+      .text-4xl {
         font-size: 2.25rem;
+      }
+      .md\:text-5xl {
+        font-size: 3rem;
       }
       .bg-brand-blue-light {
         background-color: #eff6ff;
@@ -169,14 +135,15 @@
       }
 
       .btn-secondary {
-        background-color: #06b6d4; /* cyan de la paleta */
+        background-color: #06b6d4; /* Mismo color base que el botón flotante FAQ */
         color: #ffffff;
         transition: background-color 0.3s ease, transform 0.2s ease;
       }
       .btn-secondary:hover {
-        background-color: #0891b2; /* tono más oscuro */
+        background-color: #0891b2; /* Mismo hover que el botón flotante FAQ */
         transform: translateY(-2px);
       }
+
 
       .accordion-content {
         max-height: 0;
@@ -205,20 +172,12 @@
         100% { background-color: #1e3a8a; }
       }
       @keyframes brand-cyan-bg-pulse {
-        0% { background-color: #0e7490; }
-        25% { background-color: #06b6d4; }
-        50% { background-color: #22d3ee; }
-        75% { background-color: #06b6d4; }
-        100% { background-color: #0e7490; }
+        0% { background-color: #06b6d4; }
+        50% { background-color: #0891b2; }
+        100% { background-color: #06b6d4; }
       }
-      .pulse-brand-blue { 
-        animation: brand-blue-bg-pulse 3s ease-in-out infinite;
-        animation-delay: 0s; /* Sincronizado con el header */
-      }
-      .pulse-brand-cyan { 
-        animation: brand-cyan-bg-pulse 3s ease-in-out infinite;
-        animation-delay: 0s; /* Sincronizado con el header */
-      }
+      .pulse-brand-blue { animation: brand-blue-bg-pulse 3s ease-in-out infinite; }
+      .pulse-brand-cyan { animation: brand-cyan-bg-pulse 3s ease-in-out infinite; }
 
       @keyframes slideInFromRight {
         from {
@@ -247,65 +206,6 @@
         animation: slideOutToLeft 0.5s ease-out forwards;
       }
 
-      /* Styles for YouTube Facade */
-      .youtube-fachada {
-        position: relative;
-        cursor: pointer;
-        overflow: hidden;
-        border-radius: 1rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-          0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        background-color: #e0e0e0;
-      }
-      .youtube-fachada img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-        border: 0;
-      }
-      .youtube-fachada:hover img {
-        transform: scale(1.05);
-      }
-      .youtube-fachada::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 70px;
-        height: 50px;
-        background-color: rgba(0, 0, 0, 0.6);
-        border-radius: 10px;
-        transition: background-color 0.3s ease;
-      }
-      .youtube-fachada::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-40%, -50%);
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 15px 0 15px 26px;
-        border-color: transparent transparent transparent white;
-      }
-      .youtube-fachada:hover::before {
-        background-color: rgba(255, 0, 0, 0.8);
-      }
-      .youtube-fachada.video-loaded::before,
-      .youtube-fachada.video-loaded::after {
-        display: none;
-      }
-      .youtube-fachada iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-      }
     </style>
 
     <!-- Pre-carga definitiva de la imagen del LCP -->
@@ -330,7 +230,7 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T37SGWVK"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-
+    
     <div class="sticky top-0 z-50">
       <div
         class="bg-brand-blue-dark text-white text-center py-2 px-4 text-base font-medium"
@@ -1843,8 +1743,7 @@
       ></div>
     </div>
 
-    <!-- Tailwind CSS Optimizado -->
-    <link rel="stylesheet" href="tailwind-optimized.css">
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <!-- JavaScript optimizado para rendimiento -->
     <script src="main.js" defer></script>
   </body>
