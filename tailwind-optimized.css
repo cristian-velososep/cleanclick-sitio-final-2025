@@ -3,6 +3,56 @@
 /* Reset y base */
 *, *::before, *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Critical CSS for Above-the-Fold Content & FOUT Prevention */
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f8fafc;
+  color: #334155;
+  line-height: 1.6;
+  opacity: 0;
+  transition: opacity 0.4s ease-in;
+  scroll-behavior: smooth;
+}
+
+/* Scroll margin para secciones con ancla */
+section[id] {
+  scroll-margin-top: var(--header-height, 80px);
+}
+
+/* Optimizaciones específicas para móviles */
+@media (max-width: 768px) {
+  /* Mejorar rendimiento de scroll en móviles */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Optimizar animaciones para móviles */
+  .accordion-content {
+    transition: max-height 0.2s ease-out;
+  }
+  
+  /* Mejorar renderizado de imágenes en móviles */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Optimizar transformaciones */
+  .youtube-fachada, .mobile-menu {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
 }
 
 /* Container */
@@ -389,7 +439,7 @@ strong { font-weight: 700; }
   overflow: hidden;
   transition: max-height 0.4s ease-in-out;
 }
-/*si*/
+
 /* Custom logo class */
 .header-logo {
   height: 48px;
@@ -411,6 +461,125 @@ strong { font-weight: 700; }
 }
 
 /* Mobile link and open chat popup classes are utility classes with no specific styles */
+
+/* Additional critical animations and styles */
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+.slide-in {
+  animation: slideInFromRight 0.5s ease-out forwards;
+}
+
+.slide-out {
+  animation: slideOutToLeft 0.5s ease-out forwards;
+}
+
+/* Styles for YouTube Facade */
+.youtube-fachada {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  background-color: #e0e0e0;
+}
+
+.youtube-fachada img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border: 0;
+}
+
+.youtube-fachada:hover img {
+  transform: scale(1.05);
+}
+
+.youtube-fachada::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.youtube-fachada::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 0 15px 26px;
+  border-color: transparent transparent transparent white;
+}
+
+.youtube-fachada:hover::before {
+  background-color: rgba(255, 0, 0, 0.8);
+}
+
+.youtube-fachada.video-loaded::before,
+.youtube-fachada.video-loaded::after {
+  display: none;
+}
+
+.youtube-fachada iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Scroll suave más lento que se sincroniza con la carga */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 140px;
+}
+
+/* Transición personalizada para scroll más lento */
+* {
+  scroll-behavior: smooth !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Scroll más lento para sincronizar con carga de página */
+  * {
+    scroll-behavior: smooth !important;
+  }
+}
 
 /* Additional classes found in HTML */
 .cursor-pointer { cursor: pointer; }
