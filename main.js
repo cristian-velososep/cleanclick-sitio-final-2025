@@ -1,8 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
-    document.body.style.opacity = '1';
+    // Asegurar que el body se muestre solo cuando todo esté listo
+    const showBody = () => {
+        document.body.classList.add('loaded');
+    };
+    
+    // Mostrar el body inmediatamente si Tailwind ya está cargado
+    if (window.tailwind) {
+        showBody();
+    } else {
+        // Esperar a que Tailwind se cargue o timeout de 1 segundo
+        let tailwindCheck = 0;
+        const checkTailwind = () => {
+            tailwindCheck++;
+            if (window.tailwind || tailwindCheck > 20) {
+                showBody();
+            } else {
+                setTimeout(checkTailwind, 50);
+            }
+        };
+        checkTailwind();
+    }
 
-    // Detectar dispositivo móvil para optimizaciones específicas
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    // Detectar dispositivo móvil usando solo window.innerWidth (más eficiente)
+    const isMobile = window.innerWidth <= 768;
 
     // Calcular altura del header pegajoso y aplicar como variable CSS
     const calculateHeaderHeight = () => {
@@ -31,42 +51,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatPopup = document.getElementById('chat-popup');
     const closePopupBtn = document.getElementById('close-popup');
 
-    const openPopup = () => { if (chatPopup) { chatPopup.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none'); } };
-    const closePopup = () => { if (chatPopup) { chatPopup.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none'); } };
-    const closeMenu = () => { if (mobileMenu) { mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible'); } };
-    const openMenu = () => { closePopup(); if (mobileMenu) { mobileMenu.classList.remove('opacity-0', 'scale-95', 'invisible'); } };
+    // Funciones optimizadas para popup y menú
+    const openPopup = () => chatPopup?.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+    const closePopup = () => chatPopup?.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+    const closeMenu = () => mobileMenu?.classList.add('opacity-0', 'scale-95', 'invisible');
+    const openMenu = () => { closePopup(); mobileMenu?.classList.remove('opacity-0', 'scale-95', 'invisible'); };
 
-    if (menuToggle) {
-        menuToggle.addEventListener('click', (e) => {
+    // Event listener optimizado para menú
+    menuToggle?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mobileMenu.classList.contains('invisible') ? openMenu() : closeMenu();
+    });
+
+    // Event listeners optimizados para popups
+    allPopupTriggers.forEach(button => {
+        button.addEventListener('click', (e) => {
             e.stopPropagation();
-            const isMenuOpen = !mobileMenu.classList.contains('invisible');
-            if (isMenuOpen) { closeMenu(); } else { openMenu(); }
+            const isPopupOpen = chatPopup && !chatPopup.classList.contains('opacity-0');
+            
+            if (button.id === 'cta-flotante' && isPopupOpen) {
+                closePopup();
+            } else {
+                if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
+                openPopup();
+                attachAutoCloseListeners();
+            }
         });
-    }
+    });
 
-    if (allPopupTriggers.length > 0) {
-        allPopupTriggers.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isPopupOpen = chatPopup && !chatPopup.classList.contains('opacity-0');
-                
-                if (button.id === 'cta-flotante' && isPopupOpen) {
-                    closePopup();
-                } else {
-                    if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
-                    openPopup();
-                    attachAutoCloseListeners();
-                }
-            });
-        });
-    }
-
-    if (closePopupBtn) { 
-        closePopupBtn.addEventListener('click', (e) => { 
-            e.stopPropagation(); 
-            closePopup(); 
-        }); 
-    }
+    // Event listener optimizado para cerrar popup
+    closePopupBtn?.addEventListener('click', (e) => { 
+        e.stopPropagation(); 
+        closePopup(); 
+    });
 
     document.addEventListener('click', (e) => {
         if (mobileMenu && !mobileMenu.classList.contains('invisible') && !mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) { closeMenu(); }
