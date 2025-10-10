@@ -1,31 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-T37SGWVK');</script>
-    <!-- End Google Tag Manager -->
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17323286248"></script>
+    <!-- Google Tag Manager - Optimizado para reducir reflows -->
     <script>
+      // Inicializar dataLayer inmediatamente para evitar errores
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'AW-17323286248');
+      
+      // Función optimizada para cargar GTM sin causar reflows
+      function loadGTMOptimized() {
+        // Usar requestIdleCallback para cargar en tiempo libre del navegador
+        if (window.requestIdleCallback) {
+          requestIdleCallback(function() {
+            loadGTMScripts();
+          }, { timeout: 2000 });
+        } else {
+          setTimeout(loadGTMScripts, 100);
+        }
+      }
+      
+      function loadGTMScripts() {
+        // Cargar GTM
+        (function(w,d,s,l,i){
+          w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+          var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+          j.async=true;j.defer=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+          f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-T37SGWVK');
+        
+        // Cargar gtag después de GTM
+        var gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.defer = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17323286248';
+        document.head.appendChild(gtagScript);
+        
+        gtagScript.onload = function() {
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-17323286248');
+        };
+      }
+      
+      // Cargar GTM después de la interacción del usuario o timeout
+      let gtmLoaded = false;
+      function loadGTMOnInteraction() {
+        if (!gtmLoaded) {
+          gtmLoaded = true;
+          loadGTMOptimized();
+          // Remover listeners después de cargar
+          document.removeEventListener('click', loadGTMOnInteraction);
+          document.removeEventListener('scroll', loadGTMOnInteraction);
+          document.removeEventListener('touchstart', loadGTMOnInteraction);
+        }
+      }
+      
+      // Cargar GTM en la primera interacción del usuario
+      document.addEventListener('click', loadGTMOnInteraction, { passive: true });
+      document.addEventListener('scroll', loadGTMOnInteraction, { passive: true });
+      document.addEventListener('touchstart', loadGTMOnInteraction, { passive: true });
+      
+      // Fallback: cargar después de 3 segundos si no hay interacción
+      setTimeout(function() {
+        if (!gtmLoaded) {
+          loadGTMOnInteraction();
+        }
+      }, 3000);
     </script>
     
-    <!-- MS Clarity -->
-    <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "tie7wvk0zd");
+    <!-- MS Clarity - Optimizado para reducir reflows -->
+    <script>
+      // Cargar Clarity de forma diferida para evitar reflows
+      function loadClarityOptimized() {
+        if (window.requestIdleCallback) {
+          requestIdleCallback(function() {
+            loadClarityScript();
+          }, { timeout: 3000 });
+        } else {
+          setTimeout(loadClarityScript, 200);
+        }
+      }
+      
+      function loadClarityScript() {
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.defer=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "tie7wvk0zd");
+      }
+      
+      // Cargar Clarity después de la interacción del usuario o timeout
+      let clarityLoaded = false;
+      function loadClarityOnInteraction() {
+        if (!clarityLoaded) {
+          clarityLoaded = true;
+          loadClarityOptimized();
+          // Remover listeners después de cargar
+          document.removeEventListener('click', loadClarityOnInteraction);
+          document.removeEventListener('scroll', loadClarityOnInteraction);
+          document.removeEventListener('touchstart', loadClarityOnInteraction);
+        }
+      }
+      
+      // Cargar Clarity en la primera interacción del usuario
+      document.addEventListener('click', loadClarityOnInteraction, { passive: true });
+      document.addEventListener('scroll', loadClarityOnInteraction, { passive: true });
+      document.addEventListener('touchstart', loadClarityOnInteraction, { passive: true });
+      
+      // Fallback: cargar después de 4 segundos si no hay interacción
+      setTimeout(function() {
+        if (!clarityLoaded) {
+          loadClarityOnInteraction();
+        }
+      }, 4000);
     </script>
     
     <meta charset="UTF-8" />
@@ -205,12 +291,133 @@
       .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
       .text-xs { font-size: 0.75rem; line-height: 1rem; }
       
-      /* Prevenir elementos gigantes */
-      img { max-width: 100%; height: auto; }
-      svg { max-width: 100%; height: auto; }
+      /* Prevenir elementos gigantes y asegurar dimensiones correctas */
+      img { max-width: 100%; height: auto; display: block; }
+      svg { max-width: 100%; height: auto; display: block; }
+      
+      /* CSS crítico para elementos esenciales */
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+      .flex { display: flex; }
+      .grid { display: grid; }
+      .hidden { display: none; }
+      .block { display: block; }
+      .inline-block { display: inline-block; }
+      .relative { position: relative; }
+      .absolute { position: absolute; }
+      .fixed { position: fixed; }
+      .sticky { position: sticky; }
+      .top-0 { top: 0; }
+      .bottom-0 { bottom: 0; }
+      .left-0 { left: 0; }
+      .right-0 { right: 0; }
+      .z-50 { z-index: 50; }
+      .w-full { width: 100%; }
+      .h-full { height: 100%; }
+      .w-6 { width: 1.5rem; }
+      .h-6 { height: 1.5rem; }
+      .w-8 { width: 2rem; }
+      .h-8 { height: 2rem; }
+      .w-12 { width: 3rem; }
+      .h-12 { height: 3rem; }
+      
+      /* Colores críticos para elementos importantes */
+      .bg-white { background-color: #ffffff; }
+      .bg-white\/95 { background-color: rgba(255, 255, 255, 0.95); }
+      .bg-slate-700 { background-color: #334155; }
+      .bg-blue-600 { background-color: #2563eb; }
+      .bg-brand-blue { background-color: #1e40af; }
+      .bg-brand-blue-dark { background-color: #1e3a8a; }
+      .bg-brand-cyan { background-color: #06b6d4; }
+      .text-white { color: #ffffff; }
+      .text-slate-700 { color: #334155; }
+      .text-slate-800 { color: #1e293b; }
+      .text-slate-900 { color: #0f172a; }
+      
+      /* Backdrop blur para header */
+      .backdrop-blur-sm { backdrop-filter: blur(4px); }
+      
+      /* Spacing crítico */
+      .p-2 { padding: 0.5rem; }
+      .p-3 { padding: 0.75rem; }
+      .p-4 { padding: 1rem; }
+      .px-4 { padding-left: 1rem; padding-right: 1rem; }
+      .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+      .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+      .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+      .m-0 { margin: 0; }
+      .mx-auto { margin-left: auto; margin-right: auto; }
+      
+      /* Border y border-radius críticos */
+      .border { border-width: 1px; border-style: solid; border-color: #e5e7eb; }
+      .rounded { border-radius: 0.25rem; }
+      .rounded-lg { border-radius: 0.5rem; }
+      .rounded-full { border-radius: 9999px; }
+      .rounded-xl { border-radius: 0.75rem; }
+      
+      /* Shadow críticos */
+      .shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+      .shadow { box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); }
+      .shadow-xl { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+      .shadow-2xl { box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
+      
+      /* Spacing adicional crítico */
+      .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+      .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+      .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+      .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+      .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+      .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+      .mt-4 { margin-top: 1rem; }
+      .mt-8 { margin-top: 2rem; }
+      .mt-12 { margin-top: 3rem; }
+      .mb-3 { margin-bottom: 0.75rem; }
+      .mb-8 { margin-bottom: 2rem; }
+      
+      /* Layout crítico adicional */
+      .justify-between { justify-content: space-between; }
+      .justify-center { justify-content: center; }
+      .items-center { align-items: center; }
+      .items-stretch { align-items: stretch; }
+      .text-center { text-align: center; }
+      .text-left { text-align: left; }
+      .space-x-6 > * + * { margin-left: 1.5rem; }
+      .space-x-3 > * + * { margin-left: 0.75rem; }
+      .space-y-2 > * + * { margin-top: 0.5rem; }
+      .gap-8 { gap: 2rem; }
+      .gap-3 { gap: 0.75rem; }
+      
+      /* Responsive crítico */
+      @media (min-width: 640px) {
+        .sm\:hidden { display: none; }
+        .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .sm\:p-3 { padding: 0.75rem; }
+        .sm\:space-x-3 > * + * { margin-left: 0.75rem; }
+        .sm\:text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+      }
+      
+      @media (min-width: 768px) {
+        .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .md\:text-left { text-align: left; }
+        .md\:border-r { border-right-width: 1px; }
+        .md\:border-slate-200 { border-color: #e2e8f0; }
+      }
+      
+      @media (min-width: 1024px) {
+        .lg\:flex { display: flex; }
+        .lg\:hidden { display: none; }
+        .lg\:inline-flex { display: inline-flex; }
+        .lg\:flex-row { flex-direction: row; }
+        .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+        .lg\:items-stretch { align-items: stretch; }
+        .lg\:text-left { text-align: left; }
+        .lg\:h-7 { height: 1.75rem; }
+      }
       
       /* Asegurar que el body no sea visible hasta que todo esté listo */
-      body { opacity: 0; transition: opacity 0.3s ease-in; }
+      body { opacity: 0; transition: opacity 0.4s ease-in; }
       body.loaded { opacity: 1; }
     </style>
   </head>
@@ -222,7 +429,8 @@
     
     <div class="sticky top-0 z-50">
       <div
-        class="bg-brand-blue-dark text-white text-center py-2 px-4 text-base font-medium"
+        class="text-white text-center py-2 px-4 text-base font-medium"
+        style="background-color: #0f172a;"
       >
         <div class="animated-banner-text">
           <p>Horario de atención: <u>7 de la mañana a 12 de la noche</u></p>
@@ -1234,8 +1442,121 @@
       ></div>
     </div>
 
-    <script src="https://cdn.tailwindcss.com" defer></script>
+    <!-- Tailwind CSS optimizado para reducir recursos -->
+    <script>
+      // Configuración optimizada de Tailwind CSS
+      window.tailwindConfig = {
+        theme: {
+          extend: {
+            colors: {
+              'brand-blue': '#1e40af',
+              'brand-blue-dark': '#1e3a8a',
+              'brand-blue-light': '#dbeafe',
+              'brand-cyan': '#06b6d4'
+            },
+            fontFamily: {
+              'sans': ['Inter', 'sans-serif']
+            },
+            animation: {
+              'pulse-brand-blue': 'brand-blue-bg-pulse 2s infinite',
+              'pulse-brand-cyan': 'brand-cyan-bg-pulse 2s infinite'
+            },
+            keyframes: {
+              'brand-blue-bg-pulse': {
+                '0%, 100%': { backgroundColor: '#1e40af' },
+                '50%': { backgroundColor: '#1e3a8a' }
+              },
+              'brand-cyan-bg-pulse': {
+                '0%, 100%': { backgroundColor: '#06b6d4' },
+                '50%': { backgroundColor: '#0891b2' }
+              }
+            }
+          }
+        },
+        corePlugins: {
+          // Deshabilitar plugins no utilizados para reducir tamaño
+          preflight: true,
+          container: true,
+          accessibility: false,
+          pointerEvents: true,
+          visibility: true,
+          position: true,
+          inset: true,
+          isolation: false,
+          zIndex: true,
+          order: true,
+          gridColumn: true,
+          gridColumnStart: true,
+          gridColumnEnd: true,
+          gridRow: true,
+          gridRowStart: true,
+          gridRowEnd: true,
+          float: false,
+          clear: false,
+          objectFit: true,
+          objectPosition: true,
+          overflow: true,
+          overscrollBehavior: false,
+          position: true,
+          inset: true,
+          visibility: true,
+          zIndex: true
+        }
+      };
+      
+      // Cargar Tailwind CSS de forma diferida
+      function loadTailwindOptimized() {
+        if (window.requestIdleCallback) {
+          requestIdleCallback(function() {
+            loadTailwindScript();
+          }, { timeout: 1000 });
+        } else {
+          setTimeout(loadTailwindScript, 50);
+        }
+      }
+      
+      function loadTailwindScript() {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.tailwindcss.com';
+        script.defer = true;
+        script.onload = function() {
+          // Aplicar configuración personalizada
+          if (window.tailwind && window.tailwindConfig) {
+            window.tailwind.config(window.tailwindConfig);
+          }
+        };
+        document.head.appendChild(script);
+      }
+      
+      // Cargar Tailwind después de la interacción del usuario o timeout
+      let tailwindLoaded = false;
+      function loadTailwindOnInteraction() {
+        if (!tailwindLoaded) {
+          tailwindLoaded = true;
+          loadTailwindOptimized();
+          // Remover listeners después de cargar
+          document.removeEventListener('click', loadTailwindOnInteraction);
+          document.removeEventListener('scroll', loadTailwindOnInteraction);
+          document.removeEventListener('touchstart', loadTailwindOnInteraction);
+        }
+      }
+      
+      // Cargar Tailwind en la primera interacción del usuario
+      document.addEventListener('click', loadTailwindOnInteraction, { passive: true });
+      document.addEventListener('scroll', loadTailwindOnInteraction, { passive: true });
+      document.addEventListener('touchstart', loadTailwindOnInteraction, { passive: true });
+      
+      // Fallback: cargar después de 1 segundo si no hay interacción
+      setTimeout(function() {
+        if (!tailwindLoaded) {
+          loadTailwindOnInteraction();
+        }
+      }, 1000);
+    </script>
     <!-- JavaScript optimizado para rendimiento -->
     <script src="main.js" defer></script>
   </body>
 </html>
+
+
+
