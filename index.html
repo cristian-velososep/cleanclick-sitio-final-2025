@@ -206,6 +206,25 @@
         animation: slideOutToLeft 0.5s ease-out forwards;
       }
 
+      /* CSS crítico para prevenir FOUT y elementos mal renderizados */
+      .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+      .md\:text-5xl { font-size: 3rem; line-height: 1; }
+      .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+      .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+      .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+      .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+      .text-base { font-size: 1rem; line-height: 1.5rem; }
+      .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+      .text-xs { font-size: 0.75rem; line-height: 1rem; }
+      
+      /* Prevenir elementos gigantes */
+      img { max-width: 100%; height: auto; }
+      svg { max-width: 100%; height: auto; }
+      
+      /* Asegurar que el body no sea visible hasta que todo esté listo */
+      body { opacity: 0; transition: opacity 0.3s ease-in; }
+      body.loaded { opacity: 1; }
+
     </style>
 
     <!-- Pre-carga definitiva de la imagen del LCP -->
@@ -1743,6 +1762,7 @@
       ></div>
     </div>
 
+    <!-- Tailwind CSS optimizado para evitar FOUT -->
     <script src="https://cdn.tailwindcss.com" defer></script>
     <!-- JavaScript optimizado para rendimiento -->
     <script src="main.js" defer></script>
