@@ -211,8 +211,14 @@
         75% { background-color: #06b6d4; }
         100% { background-color: #0e7490; }
       }
-      .pulse-brand-blue { animation: brand-blue-bg-pulse 3s ease-in-out infinite; }
-      .pulse-brand-cyan { animation: brand-cyan-bg-pulse 3s ease-in-out infinite; }
+      .pulse-brand-blue { 
+        animation: brand-blue-bg-pulse 3s ease-in-out infinite;
+        animation-delay: 0s; /* Sincronizado con el header */
+      }
+      .pulse-brand-cyan { 
+        animation: brand-cyan-bg-pulse 3s ease-in-out infinite;
+        animation-delay: 0s; /* Sincronizado con el header */
+      }
 
       @keyframes slideInFromRight {
         from {
