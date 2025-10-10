@@ -133,6 +133,17 @@
         background-color: #1d4ed8;
         transform: translateY(-2px);
       }
+
+      .btn-secondary {
+        background-color: #06b6d4; /* cyan de la paleta */
+        color: #ffffff;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+      .btn-secondary:hover {
+        background-color: #0891b2; /* tono más oscuro */
+        transform: translateY(-2px);
+      }
+
       .accordion-content {
         max-height: 0;
         overflow: hidden;
@@ -195,10 +206,67 @@
       .slide-out {
         animation: slideOutToLeft 0.5s ease-out forwards;
       }
+
+      /* Styles for YouTube Facade */
+      .youtube-fachada {
+        position: relative;
+        cursor: pointer;
+        overflow: hidden;
+        border-radius: 1rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        background-color: #e0e0e0;
+      }
+      .youtube-fachada img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        border: 0;
+      }
+      .youtube-fachada:hover img {
+        transform: scale(1.05);
+      }
+      .youtube-fachada::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70px;
+        height: 50px;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+        transition: background-color 0.3s ease;
+      }
+      .youtube-fachada::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-40%, -50%);
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 15px 0 15px 26px;
+        border-color: transparent transparent transparent white;
+      }
+      .youtube-fachada:hover::before {
+        background-color: rgba(255, 0, 0, 0.8);
+      }
+      .youtube-fachada.video-loaded::before,
+      .youtube-fachada.video-loaded::after {
+        display: none;
+      }
+      .youtube-fachada iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
     </style>
-    
-    <!-- Tailwind CSS Optimizado -->
-    <link rel="stylesheet" href="tailwind-optimized.css">
 
     <!-- Pre-carga definitiva de la imagen del LCP -->
     <link
@@ -223,9 +291,7 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Contenedor Sticky para Banner y Header -->
     <div class="sticky top-0 z-50">
-      <!-- Banner de Horario de Atención -->
       <div
         class="bg-brand-blue-dark text-white text-center py-2 px-4 text-base font-medium"
       >
@@ -236,9 +302,6 @@
           </p>
         </div>
       </div>
-      <!-- Fin del Banner -->
-
-      <!-- Header -->
       <header class="bg-white/95 backdrop-blur-sm shadow-sm">
         <div
           class="container mx-auto px-6 py-3 flex justify-between items-center"
