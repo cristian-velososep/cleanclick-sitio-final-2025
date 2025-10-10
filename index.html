@@ -1,22 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-T37SGWVK');</script>
-    <!-- End Google Tag Manager -->
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17323286248"></script>
+    <!-- Google Tag Manager - Optimizado con lazy loading -->
     <script>
+      // Inicializar dataLayer inmediatamente para evitar errores
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'AW-17323286248');
+      
+      // Función para cargar GTM de forma diferida
+      function loadGTM() {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-T37SGWVK');
+        
+        // Cargar gtag después de GTM
+        var gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17323286248';
+        document.head.appendChild(gtagScript);
+        
+        gtagScript.onload = function() {
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-17323286248');
+        };
+      }
+      
+      // Cargar GTM después de la interacción del usuario o timeout
+      let gtmLoaded = false;
+      function loadGTMOnInteraction() {
+        if (!gtmLoaded) {
+          gtmLoaded = true;
+          loadGTM();
+          // Remover listeners después de cargar
+          document.removeEventListener('click', loadGTMOnInteraction);
+          document.removeEventListener('scroll', loadGTMOnInteraction);
+          document.removeEventListener('touchstart', loadGTMOnInteraction);
+        }
+      }
+      
+      // Cargar GTM en la primera interacción del usuario
+      document.addEventListener('click', loadGTMOnInteraction, { passive: true });
+      document.addEventListener('scroll', loadGTMOnInteraction, { passive: true });
+      document.addEventListener('touchstart', loadGTMOnInteraction, { passive: true });
+      
+      // Fallback: cargar después de 3 segundos si no hay interacción
+      setTimeout(function() {
+        if (!gtmLoaded) {
+          loadGTMOnInteraction();
+        }
+      }, 3000);
     </script>
     
     <!-- MS Clarity -->
@@ -1289,7 +1323,7 @@
                   src="https://i.postimg.cc/P5RpNd0r/img-video3.webp"
                   id="miniatura-3"
                   alt="Miniatura del testimonio 3"
-                  loading="eager"
+                  loading="lazy"
                   width="364"
                   height="273"
                   fetchpriority="low"
@@ -1837,7 +1871,7 @@
       ></div>
     </div>
 
-    <script src="https://cdn.tailwindcss.com" defer></script>
+    <link rel="stylesheet" href="tailwind-optimized.css">
     <!-- JavaScript optimizado para rendimiento -->
     <script src="main.js" defer></script>
   </body>
