@@ -4,18 +4,18 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('loaded');
     };
     
-    // Mostrar el body inmediatamente si Tailwind ya está cargado
+    // Mostrar el body si Tailwind ya está cargado
     if (window.tailwind) {
         showBody();
     } else {
-        // Esperar a que Tailwind se cargue o timeout de 1 segundo
+        // Esperar a que Tailwind se cargue con timeout optimizado para Hostinger
         let tailwindCheck = 0;
         const checkTailwind = () => {
             tailwindCheck++;
-            if (window.tailwind || tailwindCheck > 20) {
+            if (window.tailwind || tailwindCheck > 10) {
                 showBody();
             } else {
-                setTimeout(checkTailwind, 50);
+                setTimeout(checkTailwind, 100);
             }
         };
         checkTailwind();
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Resize optimizado - solo recalcular cuando sea necesario
     let resizeTimeout;
     const debouncedResize = () => {
-        clearTimeout(resizeTimeout);
+            clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(calculateHeaderHeight, 150);
     };
     
@@ -71,19 +71,19 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (button.id === 'cta-flotante' && isPopupOpen) {
                 closePopup();
-            } else {
-                if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
-                openPopup();
-                attachAutoCloseListeners();
-            }
+                } else {
+                    if (mobileMenu && !mobileMenu.classList.contains('invisible')) { closeMenu(); }
+                    openPopup();
+                    attachAutoCloseListeners();
+                }
+            });
         });
-    });
 
     // Event listener optimizado para cerrar popup
     closePopupBtn?.addEventListener('click', (e) => { 
-        e.stopPropagation(); 
-        closePopup(); 
-    });
+            e.stopPropagation(); 
+            closePopup(); 
+        }); 
 
     document.addEventListener('click', (e) => {
         if (mobileMenu && !mobileMenu.classList.contains('invisible') && !mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) { closeMenu(); }
@@ -114,21 +114,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Smooth scroll simplificado y optimizado
     const handleSmoothScroll = (targetId, e) => {
-        const path = window.location.pathname;
-        const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
-        
+            const path = window.location.pathname;
+            const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
+
         // Cerrar menú móvil si está abierto
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenu && !mobileMenu.classList.contains('invisible')) {
-            mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
-        }
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu && !mobileMenu.classList.contains('invisible')) {
+                mobileMenu.classList.add('opacity-0', 'scale-95', 'invisible');
+            }
 
         if (!targetId || targetId.length <= 1) return;
 
-        const target = document.querySelector(targetId);
+                    const target = document.querySelector(targetId);
         if (!target) {
             if (!isIndexPage) {
-                e.preventDefault();
+                        e.preventDefault();
                 window.location.href = 'index.html' + targetId;
             }
             return;
@@ -140,12 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
         const offsetPosition = Math.max(0, target.offsetTop - headerHeight);
         
-        window.scrollTo({
+                                        window.scrollTo({
             top: offsetPosition,
-            behavior: 'smooth'
-        });
-    };
-
+                                            behavior: 'smooth'
+                                });
+                            };
+                            
     // Event listeners optimizados
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -215,25 +215,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const faqToggles = document.querySelectorAll('.accordion-toggle');
     faqToggles.forEach(button => {
         button.addEventListener('click', () => {
-            const accordionContent = button.nextElementSibling;
-            const icon = button.querySelector('svg');
-            const isActive = accordionContent.style.maxHeight && accordionContent.style.maxHeight !== '0px';
+        const accordionContent = button.nextElementSibling;
+        const icon = button.querySelector('svg');
+        const isActive = accordionContent.style.maxHeight && accordionContent.style.maxHeight !== '0px';
 
             // En móviles: cerrar cualquier otra abierta
             const isMobileView = window.innerWidth <= 767;
             if (isMobileView && !isActive) {
-                document.querySelectorAll('.accordion-content').forEach(content => {
-                    if (content !== accordionContent && content.style.maxHeight && content.style.maxHeight !== '0px') {
-                        content.style.maxHeight = '0px';
-                        const parentButton = content.previousElementSibling;
-                        const parentIcon = parentButton ? parentButton.querySelector('svg') : null;
-                        if (parentIcon) parentIcon.style.transform = '';
-                    }
-                });
-            }
+            document.querySelectorAll('.accordion-content').forEach(content => {
+                if (content !== accordionContent && content.style.maxHeight && content.style.maxHeight !== '0px') {
+                    content.style.maxHeight = '0px';
+                    const parentButton = content.previousElementSibling;
+                    const parentIcon = parentButton ? parentButton.querySelector('svg') : null;
+                    if (parentIcon) parentIcon.style.transform = '';
+                }
+            });
+        }
 
-            accordionContent.style.maxHeight = isActive ? '0px' : accordionContent.scrollHeight + 'px';
-            if (icon) { icon.style.transform = isActive ? '' : 'rotate(180deg)'; }
+        accordionContent.style.maxHeight = isActive ? '0px' : accordionContent.scrollHeight + 'px';
+        if (icon) { icon.style.transform = isActive ? '' : 'rotate(180deg)'; }
         });
     });
 
@@ -261,10 +261,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Manejo de hash simplificado
     const handleHashScroll = () => {
-        const path = window.location.pathname;
-        const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
-        
-        if (isIndexPage && window.location.hash) {
+    const path = window.location.pathname;
+    const isIndexPage = path.endsWith('/') || path.endsWith('index.html');
+    
+    if (isIndexPage && window.location.hash) {
             const target = document.querySelector(window.location.hash);
             if (target) {
                 const headerHeight = document.querySelector('.sticky')?.offsetHeight || 0;
