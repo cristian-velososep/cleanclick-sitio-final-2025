@@ -59,12 +59,12 @@
       document.addEventListener('scroll', loadGTMOnInteraction, { passive: true });
       document.addEventListener('touchstart', loadGTMOnInteraction, { passive: true });
       
-      // Fallback: cargar después de 3 segundos si no hay interacción
+      // Fallback más agresivo para Hostinger: cargar después de 2 segundos si no hay interacción
       setTimeout(function() {
         if (!gtmLoaded) {
           loadGTMOnInteraction();
         }
-      }, 3000);
+      }, 2000);
     </script>
     
     <!-- MS Clarity - Optimizado para reducir reflows -->
@@ -106,28 +106,26 @@
       document.addEventListener('scroll', loadClarityOnInteraction, { passive: true });
       document.addEventListener('touchstart', loadClarityOnInteraction, { passive: true });
       
-      // Fallback: cargar después de 4 segundos si no hay interacción
+      // Fallback más agresivo para Hostinger: cargar después de 2 segundos si no hay interacción
       setTimeout(function() {
         if (!clarityLoaded) {
           loadClarityOnInteraction();
         }
-      }, 4000);
+      }, 2000);
     </script>
     
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clean Click | Limpieza Profesional de Sillones a Vapor</title>
+    <title>Lavado y Limpieza de Alfombras a Domicilio | Clean Click</title>
     <meta
       name="description"
-      content="Servicio experto de limpieza de sillones, alfombras y colchones a vapor. Eliminamos manchas, ácaros y olores. ¡Cotiza tu servicio a domicilio hoy!"
+      content="Servicio de limpieza de alfombras a domicilio en Santiago. Expertos en lavado de alfombras muro a muro y decorativas. ¡Consulta nuestros precios!"
     />
 
-    <!-- Preconnect to required origins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://i.ytimg.com" />
-
-    <!-- Asynchronously load non-critical CSS -->
+    <!-- Enlace de las fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap"></noscript>
 
@@ -217,20 +215,8 @@
       }
       .btn-primary:hover {
         background-color: #1d4ed8;
-        transform: translateY(-2px);
+        transform: translateY(-px);
       }
-
-      .btn-secondary {
-        background-color: #06b6d4; /* Mismo color base que el botón flotante FAQ */
-        color: #ffffff;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-      }
-      .btn-secondary:hover {
-        background-color: #0891b2; /* Mismo hover que el botón flotante FAQ */
-        transform: translateY(-2px);
-      }
-
-
       .accordion-content {
         max-height: 0;
         overflow: hidden;
@@ -258,9 +244,11 @@
         100% { background-color: #1e3a8a; }
       }
       @keyframes brand-cyan-bg-pulse {
-        0% { background-color: #06b6d4; }
-        50% { background-color: #0891b2; }
-        100% { background-color: #06b6d4; }
+        0% { background-color: #0e7490; }
+        25% { background-color: #06b6d4; }
+        50% { background-color: #22d3ee; }
+        75% { background-color: #06b6d4; }
+        100% { background-color: #0e7490; }
       }
       .pulse-brand-blue { animation: brand-blue-bg-pulse 3s ease-in-out infinite; }
       .pulse-brand-cyan { animation: brand-cyan-bg-pulse 3s ease-in-out infinite; }
@@ -431,25 +419,7 @@
       /* Asegurar que el body no sea visible hasta que todo esté listo */
       body { opacity: 0; transition: opacity 0.4s ease-in; }
       body.loaded { opacity: 1; }
-
     </style>
-
-    <!-- Pre-carga definitiva de la imagen del LCP -->
-    <link
-      rel="preload"
-      as="image"
-      href="https://i.postimg.cc/ZRjwVtbR/clean-click-hero-360-mobile.webp"
-      media="(max-width: 639px)"
-      fetchpriority="high"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="https://i.postimg.cc/1tQ9PzXC/clean-click-hero-500.webp"
-      media="(min-width: 640px)"
-      fetchpriority="high"
-    />
-
   </head>
   <body class="text-slate-700">
     <!-- Google Tag Manager (noscript) -->
@@ -493,21 +463,19 @@
               >Home</a
             >
             <a
-              href="#porque-elegirnos"
+              href="index.html#porque-elegirnos"
               id="nav-beneficios"
               class="text-slate-600 hover:text-brand-blue font-medium"
               >Beneficios</a
             >
-            <!-- Dropdown de Servicios para Escritorio -->
             <div class="relative group">
-              <a
-                href="#servicios"
-                id="nav-servicios"
+              <span
                 class="text-slate-600 hover:text-brand-blue font-medium items-center inline-flex cursor-pointer"
+                id="nav-servicios"
               >
                 Servicios
                 <svg
-                  class="w-2.5 h-2.5 ml-2.5 transition-transform group-hover:rotate-180"
+                  class="w-2.5 h-2.5 ml-2 transition-transform group-hover:rotate-180"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 640 640"
@@ -517,7 +485,7 @@
                     d="M297.4 470.6C309.9 483.1 330.2 483.1 342.7 470.6L534.7 278.6C547.2 266.1 547.2 245.8 534.7 233.3C522.2 220.8 501.9 220.8 489.4 233.3L320 402.7L150.6 233.4C138.1 220.9 117.8 220.9 105.3 233.4C92.8 245.9 92.8 266.2 105.3 278.7L297.3 470.7z"
                   />
                 </svg>
-              </a>
+              </span>
               <div
                 class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-50 border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
               >
@@ -542,36 +510,35 @@
               </div>
             </div>
             <a
-              href="#proceso"
+              href="index.html#proceso"
               id="nav-proceso"
               class="text-slate-600 hover:text-brand-blue font-medium"
               >Proceso</a
             >
             <a
-              href="#testimonios"
+              href="index.html#testimonios"
               id="nav-testimonios"
               class="text-slate-600 hover:text-brand-blue font-medium"
               >Testimonios</a
             >
             <a
-              href="#faq"
+              href="#faq-alfombras"
               id="nav-preguntas"
               class="text-slate-600 hover:text-brand-blue font-medium"
               >Preguntas</a
             >
           </nav>
           <button
-            id="cta-header"
             class="open-chat-popup hidden lg:inline-flex flex-col items-center btn-primary font-bold py-2 px-6 rounded-full shadow-lg text-center"
+            id="cta-header-alfombras"
           >
-            <span id="cta-header">Contacta Aquí</span>
-            <span class="text-xs font-normal" id="cta-header">Atención 7am - 12am</span>
+            <span id="cta-header-alfombras">Contacta Aquí</span>
+            <span class="text-xs font-normal" id="cta-header-alfombras">Atención 7am - 12am</span>
           </button>
           <div class="lg:hidden">
             <button
               id="menu-toggle"
               class="text-slate-800 hover:text-brand-blue"
-              aria-label="Abrir menú de navegación"
             >
               <svg
                 class="w-6 h-6 pointer-events-none"
@@ -580,14 +547,13 @@
                 viewBox="0 0 640 640"
               >
                 <path
-                  fill="#1e293b"
+                  fill="currentColor"
                   d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z"
                 />
               </svg>
             </button>
           </div>
         </div>
-        <!-- Mobile Menu Pop-up -->
         <div
           id="mobile-menu"
           class="absolute top-full right-6 mt-2 w-72 origin-top-right rounded-xl bg-white p-2 shadow-lg ring-1 ring-slate-900/5 opacity-0 scale-95 invisible transition-all duration-200 ease-in-out z-50"
@@ -595,24 +561,20 @@
           <nav class="flex flex-col">
             <a
               href="index.html"
-              id="nav-home"
               class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
               >Home</a
             >
             <a
-              href="#porque-elegirnos"
-              id="nav-beneficios"
+              href="index.html#porque-elegirnos"
               class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
               >Beneficios</a
             >
-            <!-- Dropdown/Acordeón de Servicios para Móvil -->
             <div>
               <div
                 class="flex items-center justify-between hover:bg-blue-50 rounded-md"
               >
                 <a
-                  href="#servicios"
-                  id="nav-servicios"
+                  href="index.html#servicios"
                   class="mobile-link text-slate-700 hover:text-brand-blue p-3 font-medium flex-grow"
                   >Servicios</a
                 >
@@ -621,13 +583,13 @@
                   class="p-3 text-slate-700 hover:text-brand-blue"
                 >
                   <svg
-                    class="w-2.5 h-2.5 transition-transform pointer-events-none"
+                    class="w-2.5 h-2.5 transform transition-transform pointer-events-none"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 640 640"
                   >
                     <path
-                      fill="#334155"
+                      fill="currentColor"
                       d="M297.4 470.6C309.9 483.1 330.2 483.1 342.7 470.6L534.7 278.6C547.2 266.1 547.2 245.8 534.7 233.3C522.2 220.8 501.9 220.8 489.4 233.3L320 402.7L150.6 233.4C138.1 220.9 117.8 220.9 105.3 233.4C92.8 245.9 92.8 266.2 105.3 278.7L297.3 470.7z"
                     />
                   </svg>
@@ -639,1132 +601,650 @@
               >
                 <a
                   href="servicio-sillones.html"
-                  id="nav-sillones"
                   class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
                   >Sillones y Sofás</a
                 >
                 <a
                   href="servicio-alfombras.html"
-                  id="nav-alfombras"
                   class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
                   >Alfombras</a
                 >
                 <a
                   href="servicio-colchones.html"
-                  id="nav-colchones"
                   class="block text-slate-600 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
                   >Colchones</a
                 >
               </div>
             </div>
             <a
-              href="#proceso"
-              id="nav-proceso"
+              href="index.html#proceso"
               class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
               >Proceso</a
             >
             <a
-              href="#testimonios"
-              id="nav-testimonios"
+              href="index.html#testimonios"
               class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
               >Testimonios</a
             >
             <a
-              href="#faq"
-              id="nav-preguntas"
+              href="#faq-alfombras"
               class="mobile-link text-slate-700 hover:text-brand-blue hover:bg-blue-50 rounded-md p-3 font-medium"
               >Preguntas</a
             >
             <button
-              id="cta-mobile-menu"
               class="open-chat-popup mt-2 w-full btn-primary font-bold py-3 px-6 rounded-full shadow-lg inline-flex flex-col items-center"
+              id="cta-header-alfombras"
             >
-              <span id="cta-mobile-menu">Contacta Aquí</span>
-              <span class="text-xs font-normal mt-1" id="cta-mobile-menu">Atención 7am - 12am</span>
+              <span>Contacta Aquí</span>
+              <span class="text-xs font-normal mt-1">Atención 7am - 12am</span>
             </button>
           </nav>
         </div>
       </header>
     </div>
 
-    <!-- Hero Section -->
     <main>
-      <section class="bg-brand-blue-light">
-        <div class="container mx-auto px-6 py-16">
-          <div class="grid lg:grid-cols-2 gap-8 items-center">
-            <!-- Columna de Texto -->
-            <div class="text-center lg:text-left">
-              <h1
-                class="text-3xl md:text-4xl font-black text-slate-900 leading-tight"
-              >
-                Renueva tus Sillones, Sofás, Alfombras y Colchones con
-                <span class="text-brand-blue"
-                  >Limpieza a Vapor Profesional</span
-                >
-              </h1>
-              <p class="mt-4 text-lg text-slate-600">
-                Eliminamos suciedad profunda, manchas, ácaros y olores. Servicio
-                a domicilio rápido y garantizado.
-              </p>
-              <p class="mt-2 text-lg text-slate-600 font-medium">
-                Somos <strong class="text-brand-blue">Clean Click</strong>,
-                expertos en limpieza para tu hogar.
-              </p>
-              <div class="mt-8 flex flex-col items-center gap-3 lg:flex-row lg:items-stretch">
-                <button
-                  id="cta-hero"
-                  class="open-chat-popup inline-flex flex-col items-center btn-primary text-lg font-bold py-3 px-10 rounded-full shadow-xl transform hover:scale-105 transition-transform"
-                >
-                  <span id="cta-hero">Contáctanos Aquí</span>
-                  <span class="text-sm font-normal mt-1" id="cta-hero"
-                    >Atención 7am - 12am</span
-                  >
-                </button>
-                <a
-                  href="#faq"
-                  id="cta-hero-faq"
-                  class="inline-flex flex-col items-center btn-secondary text-lg font-bold py-3 px-10 rounded-full shadow-xl transform hover:scale-105 transition-transform text-center"
-                >
-                  <span>¿Tienes dudas?<br />Resuélvelas aquí</span>
-                </a>
-              </div>
-            </div>
-            <!-- Columna de Imagen -->
-            <div class="relative">
-              <picture>
-                <source
-                  media="(max-width: 639px)"
-                  srcset="
-                    https://i.postimg.cc/ZRjwVtbR/clean-click-hero-360-mobile.webp
-                  "
-                />
-                <source
-                  media="(min-width: 640px)"
-                  srcset="
-                    https://i.postimg.cc/1tQ9PzXC/clean-click-hero-500.webp
-                  "
-                />
-                <img
-                  src="https://i.postimg.cc/1tQ9PzXC/clean-click-hero-500.webp"
-                  alt="Primer plano de una máquina profesional limpiando un sillón a vapor"
-                  class="w-full h-auto rounded-xl shadow-lg"
-                  width="500"
-                  height="333"
-                  fetchpriority="high"
-                  loading="eager"
-                  decoding="async"
-                  onerror="this.onerror=null;this.src='https://placehold.co/500x333/EFF6FF/1E40AF?text=Limpieza+Profesional';"
-                />
-              </picture>
-              <div
-                class="absolute bottom-4 right-4 bg-white p-2 sm:p-3 rounded-2xl shadow-lg flex items-center space-x-2 sm:space-x-3 animate-pulse"
-              >
-                <div class="bg-blue-100 p-1 sm:p-2 rounded-full">
-                  <svg
-                    class="w-4 h-4 text-brand-blue"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 640"
-                  >
-                    <path
-                      fill="#1e40af"
-                      d="M317.4 66.9C313.2 65 308.7 64 304 64C299.3 64 294.8 65 290.6 66.9L102.3 146.8C80.3 156.1 63.9 177.8 64 204C64.5 303.2 105.3 484.7 277.6 567.2C294.3 575.2 313.7 575.2 330.4 567.2C502.8 484.7 543.6 303.2 544 204C544.1 177.8 527.7 156.1 505.7 146.8L317.4 66.9zM304 192C317.3 192 328 202.7 328 216C328 238.9 355.7 250.4 371.9 234.2C381.3 224.8 396.5 224.8 405.8 234.2C415.1 243.6 415.2 258.8 405.8 268.1C389.6 284.3 401.1 312 424 312C437.3 312 448 322.7 448 336C448 349.3 437.3 360 424 360C401.1 360 389.6 387.7 405.8 403.9C415.2 413.3 415.2 428.5 405.8 437.8C396.4 447.1 381.2 447.2 371.9 437.8C355.7 421.6 328 433.1 328 456C328 469.3 317.3 480 304 480C290.7 480 280 469.3 280 456C280 433.1 252.3 421.6 236.1 437.8C226.7 447.2 211.5 447.2 202.2 437.8C192.9 428.4 192.8 413.2 202.2 403.9C218.4 387.7 206.9 360 184 360C170.7 360 160 349.3 160 336C160 322.7 170.7 312 184 312C206.9 312 218.4 284.3 202.2 268.1C192.8 258.7 192.8 243.5 202.2 234.2C211.6 224.9 226.8 224.8 236.1 234.2C252.3 250.4 280 238.9 280 216C280 202.7 290.7 192 304 192zM272 328C285.3 328 296 317.3 296 304C296 290.7 285.3 280 272 280C258.7 280 248 290.7 248 304C248 317.3 258.7 328 272 328zM360 368C360 354.7 349.3 344 336 344C322.7 344 312 354.7 312 368C312 381.3 322.7 392 336 392C349.3 392 360 381.3 360 368z"
-                    />
-                  </svg>
-                </div>
-                <p class="text-xs sm:text-sm font-semibold text-slate-800">
-                  Eliminamos el 99.9% de los ácaros
-                </p>
-              </div>
-            </div>
-          </div>
+      <section class="bg-brand-blue-light py-20">
+        <div class="container mx-auto px-6 text-center">
+          <h1 class="text-4xl md:text-5xl font-black text-slate-900">
+            Servicio Especializado en Limpieza de Alfombras
+          </h1>
+          <p class="mt-4 text-xl text-slate-600 max-w-3xl mx-auto">
+            Devolvemos la vida, el color y la suavidad a tus alfombras con
+            nuestro
+            <strong class="text-brand-blue"
+              >lavado profesional a domicilio</strong
+            >.
+          </p>
         </div>
       </section>
 
-      <!-- Rotating Phrases Banner -->
       <section class="py-4" style="background-color: #0f172a;">
         <div class="max-w-5xl mx-auto px-2 sm:px-6 text-center">
           <div
-            id="rotating-text-container"#0f172a
+            id="rotating-text-container"
             class="relative h-14 lg:h-7 flex items-center justify-center overflow-hidden"
           ></div>
         </div>
       </section>
 
-      <!-- Stats / Authority Section -->
-      <section class="bg-white py-12">
-        <div class="container mx-auto px-6">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div class="md:border-r md:border-slate-200 px-4">
-              <svg
-                class="w-10 h-10 text-brand-blue mb-3 mx-auto"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 640 640"
-              >
-                <path
-                  fill="#1e40af"
-                  d="M320 80C377.4 80 424 126.6 424 184C424 241.4 377.4 288 320 288C262.6 288 216 241.4 216 184C216 126.6 262.6 80 320 80zM96 152C135.8 152 168 184.2 168 224C168 263.8 135.8 296 96 296C56.2 296 24 263.8 24 224C24 184.2 56.2 152 96 152zM0 480C0 409.3 57.3 352 128 352C140.8 352 153.2 353.9 164.9 357.4C132 394.2 112 442.8 112 496L112 512C112 523.4 114.4 534.2 118.7 544L32 544C14.3 544 0 529.7 0 512L0 480zM521.3 544C525.6 534.2 528 523.4 528 512L528 496C528 442.8 508 394.2 475.1 357.4C486.8 353.9 499.2 352 512 352C582.7 352 640 409.3 640 480L640 512C640 529.7 625.7 544 608 544L521.3 544zM472 224C472 184.2 504.2 152 544 152C583.8 152 616 184.2 616 224C616 263.8 583.8 296 544 296C504.2 296 472 263.8 472 224zM160 496C160 407.6 231.6 336 320 336C408.4 336 480 407.6 480 496L480 512C480 529.7 465.7 544 448 544L192 544C174.3 544 160 529.7 160 512L160 496z"
-                />
-              </svg>
-              <p class="text-4xl font-black text-brand-blue">+700</p>
-              <p class="mt-1 text-slate-600 text-lg">Clientes por año</p>
-            </div>
-            <div class="md:border-r md:border-slate-200 px-4">
-              <svg
-                class="w-10 h-10 text-brand-blue mb-3 mx-auto"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 640 640"
-              >
-                <path
-                  fill="#1e40af"
-                  d="M320 576C178.6 576 64 461.4 64 320C64 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320C576 461.4 461.4 576 320 576zM438 209.7C427.3 201.9 412.3 204.3 404.5 215L285.1 379.2L233 327.1C223.6 317.7 208.4 317.7 199.1 327.1C189.8 336.5 189.7 351.7 199.1 361L271.1 433C276.1 438 282.9 440.5 289.9 440C296.9 439.5 303.3 435.9 307.4 430.2L443.3 243.2C451.1 232.5 448.7 217.5 438 209.7z"
-                />
-              </svg>
-              <p class="text-4xl font-black text-brand-blue">+1000</p>
-              <p class="mt-1 text-slate-600 text-lg">Servicios por año</p>
-            </div>
-            <div class="px-4">
-              <svg
-                class="w-10 h-10 text-brand-blue mb-3 mx-auto"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 640 640"
-              >
-                <path
-                  fill="#1e40af"
-                  d="M320.3 205C256.8 204.8 205.2 256.2 205 319.7C204.8 383.2 256.2 434.8 319.7 435C383.2 435.2 434.8 383.8 435 320.3C435.2 256.8 383.8 205.2 320.3 205zM319.7 245.4C360.9 245.2 394.4 278.5 394.6 319.7C394.8 360.9 361.5 394.4 320.3 394.6C279.1 394.8 245.6 361.5 245.4 320.3C245.2 279.1 278.5 245.6 319.7 245.4zM413.1 200.3C413.1 185.5 425.1 173.5 439.9 173.5C454.7 173.5 466.7 185.5 466.7 200.3C466.7 215.1 454.7 227.1 439.9 227.1C425.1 227.1 413.1 215.1 413.1 200.3zM542.8 227.5C541.1 191.6 532.9 159.8 506.6 133.6C480.4 107.4 448.6 99.2 412.7 97.4C375.7 95.3 264.8 95.3 227.8 97.4C192 99.1 160.2 107.3 133.9 133.5C107.6 159.7 99.5 191.5 97.7 227.4C95.6 264.4 95.6 375.3 97.7 412.3C99.4 448.2 107.6 480 133.9 506.2C160.2 532.4 191.9 540.6 227.8 542.4C264.8 544.5 375.7 544.5 412.7 542.4C448.6 540.7 480.4 532.5 506.6 506.2C532.8 480 541 448.2 542.8 412.3C544.9 375.3 544.9 264.5 542.8 227.5zM495 452C487.2 471.6 472.1 486.7 452.4 494.6C422.9 506.3 352.9 503.6 320.3 503.6C287.7 503.6 217.6 506.2 188.2 494.6C168.6 486.8 153.5 471.7 145.6 452C133.9 422.5 136.6 352.5 136.6 319.9C136.6 287.3 134 217.2 145.6 187.8C153.4 168.2 168.5 153.1 188.2 145.2C217.7 133.5 287.7 136.2 320.3 136.2C352.9 136.2 423 133.6 452.4 145.2C472 153 487.1 168.1 495 187.8C506.7 217.3 504 287.3 504 319.9C504 352.5 506.7 422.6 495 452z"
-                />
-              </svg>
-              <p class="text-4xl font-black text-brand-blue">+37 mil</p>
-              <p class="mt-1 text-slate-600 text-lg">Seguidores en Instagram</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Por qué elegirnos Section -->
-      <section id="porque-elegirnos" class="py-16 bg-brand-blue-light">
-        <div class="container mx-auto px-6 text-center">
-          <h2 class="text-3xl font-bold text-slate-900">¿Por qué Elegirnos?</h2>
-          <p class="mt-2 text-slate-600 max-w-2xl mx-auto">
-            Te ofrecemos un servicio de confianza, con resultados garantizados y
-            un equipo profesional comprometido con la limpieza de tu hogar.
-          </p>
-          <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="flex flex-col items-center">
-              <div
-                class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow"
-              >
-                <svg
-                  class="w-6 h-6"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 640 640"
-                >
-                  <path
-                    fill="#1e40af"
-                    d="M341.9 38.1C328.5 29.9 311.6 29.9 298.2 38.1C273.8 53 258.7 57 230.1 56.4C214.4 56 199.8 64.5 192.2 78.3C178.5 103.4 167.4 114.5 142.3 128.2C128.5 135.7 120.1 150.4 120.4 166.1C121.1 194.7 117 209.8 102.1 234.2C93.9 247.6 93.9 264.5 102.1 277.9C117 302.3 121 317.4 120.4 346C120 361.7 128.5 376.3 142.3 383.9C164.4 396 175.6 406 187.4 425.4L138.7 522.5C132.8 534.4 137.6 548.8 149.4 554.7L235.4 597.7C246.9 603.4 260.9 599.1 267.1 587.9L319.9 492.8L372.7 587.9C378.9 599.1 392.9 603.5 404.4 597.7L490.4 554.7C502.3 548.8 507.1 534.4 501.1 522.5L452.5 425.3C464.2 405.9 475.5 395.9 497.6 383.8C511.4 376.3 519.8 361.6 519.5 345.9C518.8 317.3 522.9 302.2 537.8 277.8C546 264.4 546 247.5 537.8 234.1C522.9 209.7 518.9 194.6 519.5 166C519.9 150.3 511.4 135.7 497.6 128.1C472.5 114.4 461.4 103.3 447.7 78.2C440.2 64.4 425.5 56 409.8 56.3C381.2 57 366.1 52.9 341.7 38zM320 160C373 160 416 203 416 256C416 309 373 352 320 352C267 352 224 309 224 256C224 203 267 160 320 160z"
-                  />
-                </svg>
-              </div>
-              <h3 class="mt-4 text-lg font-bold text-slate-800">
-                Satisfacción Garantizada
-              </h3>
-              <p class="mt-1 text-slate-600">
-                Garantía de 7 días en todos nuestros servicios.
-              </p>
-            </div>
-            <div class="flex flex-col items-center">
-              <div
-                class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow"
-              >
-                <svg
-                  class="w-6 h-6"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 640 640"
-                >
-                  <path
-                    fill="#1e40af"
-                    d="M535.3 70.7C541.7 64.6 551 62.4 559.6 65.2C569.4 68.5 576 77.7 576 88L576 274.9C576 406.1 467.9 512 337.2 512C260.2 512 193.8 462.5 169.7 393.3C134.3 424.1 112 469.4 112 520C112 533.3 101.3 544 88 544C74.7 544 64 533.3 64 520C64 445.1 102.2 379.1 160.1 340.3C195.4 316.7 237.5 304 280 304L360 304C373.3 304 384 293.3 384 280C384 266.7 373.3 256 360 256L280 256C240.3 256 202.7 264.8 169 280.5C192.3 210.5 258.2 160 336 160C402.4 160 451.8 137.9 484.7 116C503.9 103.2 520.2 87.9 535.4 70.7z"
-                  />
-                </svg>
-              </div>
-              <h3 class="mt-4 text-lg font-bold text-slate-800">
-                Productos Ecológicos
-              </h3>
-              <p class="mt-1 text-slate-600">
-                Seguros para tu familia, mascotas y el planeta.
-              </p>
-            </div>
-            <div class="flex flex-col items-center">
-              <div
-                class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow"
-              >
-                <svg
-                  class="w-6 h-6"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 640 640"
-                >
-                  <path
-                    fill="#1e40af"
-                    d="M434.8 54.1C446.7 62.7 451.1 78.3 445.7 91.9L367.3 288L512 288C525.5 288 537.5 296.4 542.1 309.1C546.7 321.8 542.8 336 532.5 344.6L244.5 584.6C233.2 594 217.1 594.5 205.2 585.9C193.3 577.3 188.9 561.7 194.3 548.1L272.7 352L128 352C114.5 352 102.5 343.6 97.9 330.9C93.3 318.2 97.2 304 107.5 295.4L395.5 55.4C406.8 46 422.9 45.5 434.8 54.1z"
-                  />
-                </svg>
-              </div>
-              <h3 class="mt-4 text-lg font-bold text-slate-800">
-                Servicio Rápido
-              </h3>
-              <p class="mt-1 text-slate-600">
-                Agendamos tu visita en tiempo récord.
-              </p>
-            </div>
-            <div class="flex flex-col items-center">
-              <div
-                class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-white rounded-full text-brand-blue text-xl shadow"
-              >
-                <svg
-                  class="w-6 h-6"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 640 640"
-                >
-                  <path
-                    fill="#1e40af"
-                    d="M256 312C322.3 312 376 258.3 376 192C376 125.7 322.3 72 256 72C189.7 72 136 125.7 136 192C136 258.3 189.7 312 256 312zM226.3 368C127.8 368 48 447.8 48 546.3C48 562.7 61.3 576 77.7 576L329.2 576C293 533.4 272 478.5 272 420.4L272 389.3C272 382 273 374.8 274.9 368L226.3 368zM477.3 552.5L464 558.8L464 370.7L560 402.7L560 422.3C560 478.1 527.8 528.8 477.3 552.6zM453.9 323.5L341.9 360.8C328.8 365.2 320 377.4 320 391.2L320 422.3C320 496.7 363 564.4 430.2 596L448.7 604.7C453.5 606.9 458.7 608.1 463.9 608.1C469.1 608.1 474.4 606.9 479.1 604.7L497.6 596C565 564.3 608 496.6 608 422.2L608 391.1C608 377.3 599.2 365.1 586.1 360.7L474.1 323.4C467.5 321.2 460.4 321.2 453.9 323.4z"
-                  />
-                </svg>
-              </div>
-              <h3 class="mt-4 text-lg font-bold text-slate-800">
-                Técnicos Expertos
-              </h3>
-              <p class="mt-1 text-slate-600">
-                Personal calificado y de total confianza.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Beneficios Section -->
-      <section id="beneficios" class="py-20 bg-white">
-        <div class="container mx-auto px-6 text-center">
-          <h2 class="text-3xl font-bold text-slate-900">
-            Resultados que transforman tu hogar
-          </h2>
-          <p class="mt-2 text-slate-600 max-w-2xl mx-auto">
-            Más que una limpieza, es una renovación completa para tus espacios.
-          </p>
-          <div class="mt-12 grid md:grid-cols-3 gap-8">
-            <div
-              class="bg-slate-50 p-8 rounded-2xl border border-slate-200 text-center transform hover:-translate-y-2 transition-transform"
-            >
-              <svg
-                class="w-10 h-10 text-brand-cyan mx-auto"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 640 640"
-              >
-                <path
-                  fill="#06b6d4"
-                  d="M576 320C576 320.9 576 321.8 576 322.7C575.6 359.2 542.4 384 505.9 384L408 384C381.5 384 360 405.5 360 432C360 435.4 360.4 438.7 361 441.9C363.1 452.1 367.5 461.9 371.8 471.8C377.9 485.6 383.9 499.3 383.9 513.8C383.9 545.6 362.3 574.5 330.5 575.8C327 575.9 323.5 576 319.9 576C178.5 576 63.9 461.4 63.9 320C63.9 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320zM192 352C192 334.3 177.7 320 160 320C142.3 320 128 334.3 128 352C128 369.7 142.3 384 160 384C177.7 384 192 369.7 192 352zM192 256C209.7 256 224 241.7 224 224C224 206.3 209.7 192 192 192C174.3 192 160 206.3 160 224C160 241.7 174.3 256 192 256zM352 160C352 142.3 337.7 128 320 128C302.3 128 288 142.3 288 160C288 177.7 302.3 192 320 192C337.7 192 352 177.7 352 160zM448 256C465.7 256 480 241.7 480 224C480 206.3 465.7 192 448 192C430.3 192 416 206.3 416 224C416 241.7 430.3 256 448 256z"
-                />
-              </svg>
-              <h3 class="text-xl font-bold mt-4 text-slate-800">
-                Colores más Vivos
-              </h3>
-              <p class="mt-2 text-slate-600">
-                El vapor de alta potencia reaviva los colores originales de la
-                tela, dejándola como nueva.
-              </p>
-            </div>
-            <div
-              class="bg-slate-50 p-8 rounded-2xl border border-slate-200 text-center transform hover:-translate-y-2 transition-transform"
-            >
-              <svg
-                class="w-10 h-10 text-brand-cyan mx-auto"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 640 640"
-              >
-                <path
-                  fill="#06b6d4"
-                  d="M317.4 66.9C313.2 65 308.7 64 304 64C299.3 64 294.8 65 290.6 66.9L102.3 146.8C80.3 156.1 63.9 177.8 64 204C64.5 303.2 105.3 484.7 277.6 567.2C294.3 575.2 313.7 575.2 330.4 567.2C502.8 484.7 543.6 303.2 544 204C544.1 177.8 527.7 156.1 505.7 146.8L317.4 66.9zM304 192C317.3 192 328 202.7 328 216C328 238.9 355.7 250.4 371.9 234.2C381.3 224.8 396.5 224.8 405.8 234.2C415.1 243.6 415.2 258.8 405.8 268.1C389.6 284.3 401.1 312 424 312C437.3 312 448 322.7 448 336C448 349.3 437.3 360 424 360C401.1 360 389.6 387.7 405.8 403.9C415.2 413.3 415.2 428.5 405.8 437.8C396.4 447.1 381.2 447.2 371.9 437.8C355.7 421.6 328 433.1 328 456C328 469.3 317.3 480 304 480C290.7 480 280 469.3 280 456C280 433.1 252.3 421.6 236.1 437.8C226.7 447.2 211.5 447.2 202.2 437.8C192.9 428.4 192.8 413.2 202.2 403.9C218.4 387.7 206.9 360 184 360C170.7 360 160 349.3 160 336C160 322.7 170.7 312 184 312C206.9 312 218.4 284.3 202.2 268.1C192.8 258.7 192.8 243.5 202.2 234.2C211.6 224.9 226.8 224.8 236.1 234.2C252.3 250.4 280 238.9 280 216C280 202.7 290.7 192 304 192zM272 328C285.3 328 296 317.3 296 304C296 290.7 285.3 280 272 280C258.7 280 248 290.7 248 304C248 317.3 258.7 328 272 328zM360 368C360 354.7 349.3 344 336 344C322.7 344 312 354.7 312 368C312 381.3 322.7 392 336 392C349.3 392 360 381.3 360 368z"
-                />
-              </svg>
-              <h3 class="text-xl font-bold mt-4 text-slate-800">
-                Hogar Desinfectado
-              </h3>
-              <p class="mt-2 text-slate-600">
-                Elimina el 99.9% de virus, bacterias y ácaros, creando un
-                ambiente más saludable.
-              </p>
-            </div>
-            <div
-              class="bg-slate-50 p-8 rounded-2xl border border-slate-200 text-center transform hover:-translate-y-2 transition-transform"
-            >
-              <svg
-                class="w-10 h-10 text-brand-cyan mx-auto"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 640 640"
-              >
-                <path
-                  fill="#06b6d4"
-                  d="M352 96C352 113.7 366.3 128 384 128L424 128C437.3 128 448 138.7 448 152C448 165.3 437.3 176 424 176L96 176C78.3 176 64 190.3 64 208C64 225.7 78.3 240 96 240L424 240C472.6 240 512 200.6 512 152C512 103.4 472.6 64 424 64L384 64C366.3 64 352 78.3 352 96zM416 448C416 465.7 430.3 480 448 480L480 480C533 480 576 437 576 384C576 331 533 288 480 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L480 352C497.7 352 512 366.3 512 384C512 401.7 497.7 416 480 416L448 416C430.3 416 416 430.3 416 448zM192 576L232 576C280.6 576 320 536.6 320 488C320 439.4 280.6 400 232 400L96 400C78.3 400 64 414.3 64 432C64 449.7 78.3 464 96 464L232 464C245.3 464 256 474.7 256 488C256 501.3 245.3 512 232 512L192 512C174.3 512 160 526.3 160 544C160 561.7 174.3 576 192 576z"
-                />
-              </svg>
-              <h3 class="text-xl font-bold mt-4 text-slate-800">
-                Adiós a los Malos Olores
-              </h3>
-              <p class="mt-2 text-slate-600">
-                Neutralizamos olores de raíz, dejando una sensación de frescura
-                y limpieza duradera.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Nuestros Servicios Section -->
-      <section id="servicios" class="py-20 bg-brand-blue-light">
-        <div class="container mx-auto px-6 text-center">
-          <h2 class="text-3xl font-bold text-slate-900">
-            Nuestros Servicios Especializados
-          </h2>
-          <p class="mt-2 text-slate-600 max-w-2xl mx-auto">
-            Utilizamos la misma tecnología de vapor profesional para renovar
-            cada rincón de tu hogar.
-          </p>
-          <div class="mt-12 grid md:grid-cols-3 gap-8 text-left">
-            <!-- Servicio 1: Sillones -->
-            <a
-              href="servicio-sillones.html"
-              id="nav-sillones"
-              class="block bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-brand-blue hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col"
-            >
-              <div
-                class="flex-shrink-0 w-16 h-16 mx-auto flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-3xl"
-              >
-                <svg
-                  class="w-8 h-8"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 640 640"
-                >
-                  <path
-                    fill="#1e40af"
-                    d="M144 336C144 288.7 109.8 249.4 64.8 241.5C72 177.6 126.2 128 192 128L448 128C513.8 128 568 177.6 575.2 241.5C530.2 249.5 496 288.7 496 336L496 368L144 368L144 336zM0 448L0 336C0 309.5 21.5 288 48 288C74.5 288 96 309.5 96 336L96 416L544 416L544 336C544 309.5 565.5 288 592 288C618.5 288 640 309.5 640 336L640 448C640 483.3 611.3 512 576 512L64 512C28.7 512 0 483.3 0 448z"
-                  />
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold mt-6 text-slate-800 text-center">
-                Limpieza de Sillones y Sofás
-              </h3>
-              <p class="mt-2 text-slate-600 text-center">
-                Devolvemos la vida a tus muebles, eliminando manchas, polvo y
-                alérgenos.
-              </p>
-              <div class="mt-4 text-slate-600 flex-grow">
-                <p class="font-semibold text-slate-700">Nos ocupamos de tus:</p>
-                <ul class="list-disc list-inside mt-2 space-y-1">
-                  <li>Sillones y sofás de todo tipo</li>
-                  <li>Sillas de comedor tapizadas</li>
-                  <li>Banqueta y sitiales</li>
-                </ul>
-              </div>
-            </a>
-            <!-- Servicio 2: Alfombras -->
-            <a
-              href="servicio-alfombras.html"
-              id="nav-alfombras"
-              class="block bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-brand-blue hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col"
-            >
-              <div
-                class="flex-shrink-0 w-16 h-16 mx-auto flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-3xl"
-              >
-                <svg
-                  class="w-8 h-8"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 640 640"
-                >
-                  <path
-                    fill="#1e40af"
-                    d="M296.5 69.2C311.4 62.3 328.6 62.3 343.5 69.2L562.1 170.2C570.6 174.1 576 182.6 576 192C576 201.4 570.6 209.9 562.1 213.8L343.5 314.8C328.6 321.7 311.4 321.7 296.5 314.8L77.9 213.8C69.4 209.8 64 201.3 64 192C64 182.7 69.4 174.1 77.9 170.2L296.5 69.2zM112.1 282.4L276.4 358.3C304.1 371.1 336 371.1 363.7 358.3L528 282.4L562.1 298.2C570.6 302.1 576 310.6 576 320C576 329.4 570.6 337.9 562.1 341.8L343.5 442.8C328.6 449.7 311.4 449.7 296.5 442.8L77.9 341.8C69.4 337.8 64 329.3 64 320C64 310.7 69.4 302.1 77.9 298.2L112 282.4zM77.9 426.2L112 410.4L276.3 486.3C304 499.1 335.9 499.1 363.6 486.3L527.9 410.4L562 426.2C570.5 430.1 575.9 438.6 575.9 448C575.9 457.4 570.5 465.9 562 469.8L343.4 570.8C328.5 577.7 311.3 577.7 296.4 570.8L77.9 469.8C69.4 465.8 64 457.3 64 448C64 438.7 69.4 430.1 77.9 426.2z"
-                  />
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold mt-6 text-slate-800 text-center">
-                Limpieza de Alfombras
-              </h3>
-              <p class="mt-2 text-slate-600 text-center">
-                Reavivamos los colores y la textura de tus alfombras, eliminando
-                suciedad y olores.
-              </p>
-              <div class="mt-4 text-slate-600 flex-grow">
-                <p class="font-semibold text-slate-700">
-                  Disfrutamos limpiando tus:
-                </p>
-                <ul class="list-disc list-inside mt-2 space-y-1">
-                  <li>Alfombras decorativas (persa, modernas, etc.)</li>
-                  <li>Alfombras muro a muro</li>
-                  <li>Cubrepisos</li>
-                </ul>
-              </div>
-            </a>
-            <!-- Servicio 3: Colchones -->
-            <a
-              href="servicio-colchones.html"
-              id="nav-colchones"
-              class="block bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-brand-blue hover:shadow-lg transform hover:-translate-y-2 transition-all duration-300 flex flex-col"
-            >
-              <div
-                class="flex-shrink-0 w-16 h-16 mx-auto flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-3xl"
-              >
-                <svg
-                  class="w-8 h-8"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 640 640"
-                >
-                  <path
-                    fill="#1e40af"
-                    d="M64 96C81.7 96 96 110.3 96 128L96 352L320 352L320 224C320 206.3 334.3 192 352 192L512 192C565 192 608 235 608 288L608 512C608 529.7 593.7 544 576 544C558.3 544 544 529.7 544 512L544 448L96 448L96 512C96 529.7 81.7 544 64 544C46.3 544 32 529.7 32 512L32 128C32 110.3 46.3 96 64 96zM144 256C144 220.7 172.7 192 208 192C243.3 192 272 220.7 272 256C272 291.3 243.3 320 208 320C172.7 320 144 291.3 144 256z"
-                  />
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold mt-6 text-slate-800 text-center">
-                Limpieza de Colchones
-              </h3>
-              <p class="mt-2 text-slate-600 text-center">
-                Higienizamos tu colchón para un descanso saludable y libre de
-                alérgenos.
-              </p>
-              <div class="mt-4 text-slate-600 flex-grow">
-                <p class="font-semibold text-slate-700">
-                  Ideal para tu descanso:
-                </p>
-                <ul class="list-disc list-inside mt-2 space-y-1">
-                  <li>Colchones de todo tamaño</li>
-                  <li>Respaldos de cama tapizados</li>
-                  <li>Bases de cama tapizadas</li>
-                </ul>
-              </div>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Cómo Funciona (Proceso) -->
-      <section id="proceso" class="bg-white py-20">
-        <div class="container mx-auto px-6 text-center">
-          <h2 class="text-3xl font-bold text-slate-900">
-            Nuestro Proceso en 3 Simples Pasos
-          </h2>
-
-          <!-- Desktop Process -->
-          <div class="mt-16 hidden md:grid md:grid-cols-3 gap-8 relative">
-            <div class="absolute top-10 left-0 w-full">
-              <svg width="100%" height="20" class="overflow-visible">
-                <line
-                  x1="16.66%"
-                  y1="10"
-                  x2="83.33%"
-                  y2="10"
-                  stroke="#94A3B8"
-                  stroke-width="2"
-                  stroke-dasharray="8 8"
-                />
-                <circle cx="16.66%" cy="10" r="8" fill="#1E40AF" />
-                <circle cx="50%" cy="10" r="8" fill="#1E40AF" />
-                <circle cx="83.33%" cy="10" r="8" fill="#1E40AF" />
-              </svg>
-            </div>
-            <div class="relative flex flex-col items-center">
-              <div class="h-20"></div>
-              <h3 class="text-xl font-bold mt-4">¡Escríbenos!</h3>
-              <p class="mt-2 text-slate-600">
-                Cuéntanos que necesitas limpiar y te entregaremos un presuesto
-                apropiado para ti.
-              </p>
-            </div>
-            <div class="relative flex flex-col items-center">
-              <div class="h-20"></div>
-              <h3 class="text-xl font-bold mt-4">Agenda tu Cita</h3>
-              <p class="mt-2 text-slate-600">
-                Coordinamos el día y la hora que más te acomode.
-              </p>
-            </div>
-            <div class="relative flex flex-col items-center">
-              <div class="h-20"></div>
-              <h3 class="text-xl font-bold mt-4">Disfruta el Resultado</h3>
-              <p class="mt-2 text-slate-600">
-                Llegamos a tu domicilio y dejamos tu sillón, alfombra y colchón
-                como nuevos.
-              </p>
-            </div>
-          </div>
-
-          <!-- Mobile Process -->
-          <div
-            class="mt-12 md:hidden relative flex flex-col items-start max-w-sm mx-auto"
-          >
-            <div
-              class="absolute left-5 top-2 bottom-2 w-0.5 bg-slate-200"
-            ></div>
-            <div class="relative w-full pl-14 pb-12">
-              <div
-                class="absolute left-0 top-0 w-10 h-10 flex items-center justify-center bg-brand-blue text-white rounded-full font-bold text-lg z-10"
-              >
-                1
-              </div>
-              <h3 class="text-xl font-bold text-left">¡Escríbenos!</h3>
-              <p class="mt-1 text-slate-600 text-left">
-                Cuéntanos que necesitas limpiar y te entregaremos un presuesto
-                apropiado para ti.
-              </p>
-            </div>
-            <div class="relative w-full pl-14 pb-12">
-              <div
-                class="absolute left-0 top-0 w-10 h-10 flex items-center justify-center bg-brand-blue text-white rounded-full font-bold text-lg z-10"
-              >
-                2
-              </div>
-              <h3 class="text-xl font-bold text-left">Agenda tu Cita</h3>
-              <p class="mt-1 text-slate-600 text-left">
-                Coordinamos el día y la hora que más te acomode.
-              </p>
-            </div>
-            <div class="relative w-full pl-14">
-              <div
-                class="absolute left-0 top-0 w-10 h-10 flex items-center justify-center bg-brand-blue text-white rounded-full font-bold text-lg z-10"
-              >
-                3
-              </div>
-              <h3 class="text-xl font-bold text-left">Disfruta el Resultado</h3>
-              <p class="mt-1 text-slate-600 text-left">
-                Llegamos a tu domicilio y dejamos tu sillón, alfombra y colchón
-                como nuevos.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Testimonios -->
-      <section id="testimonios" class="bg-brand-blue-light pt-10 pb-10 md:pt-20 md:pb-20">
-        <div class="container mx-auto px-6 text-center">
-          <h2 class="text-3xl font-bold text-slate-900">
-            Clientes Satisfechos con Nuestro Trabajo
-          </h2>
-          <p class="mt-2 text-slate-600">
-            La confianza de nuestros clientes es nuestro mejor aval.
-          </p>
-
-          <!-- Grilla de Testimonios (Imágenes) -->
-          <div
-            class="mt-12 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
+      <section class="pt-10 pb-10 md:pt-20 md:pb-20 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl">
+          <div class="text-slate-700 space-y-6">
             <div>
-              <picture>
-                <source
-                  media="(max-width: 639px)"
-                  srcset="
-                    https://i.postimg.cc/Vk2fGg8c/clean-click-testimonio-01-400.webp
-                  "
-                />
-                <source
-                  media="(min-width: 640px)"
-                  srcset="
-                    https://i.postimg.cc/0j5PMHp7/clean-click-testimonio-01-450.webp
-                  "
-                />
-                <img
-                  src="https://i.postimg.cc/0j5PMHp7/clean-click-testimonio-01-450.webp"
-                  alt="Testimonio de cliente 1"
-                  class="w-full h-auto rounded-2xl shadow-lg"
-                  loading="eager"
-                  decoding="async"
-                  width="450"
-                  height="800"
-                />
-              </picture>
+              <h2 class="text-3xl font-bold text-slate-800">
+                Una Alfombra Limpia Transforma tu Espacio
+              </h2>
+              <p class="mt-4 text-lg">
+                Las alfombras no solo aportan calidez, sino que también actúan
+                como un filtro, atrapando polvo y suciedad. Un
+                <strong>lavado de alfombras</strong> periódico es esencial para
+                mantener un ambiente saludable. Ofrecemos un
+                <strong>servicio de limpieza de alfombras a domicilio</strong>
+                en toda la <strong>Región Metropolitana</strong>, incluyendo
+                comunas como Las Condes, Providencia, Ñuñoa y Santiago Centro.
+              </p>
             </div>
-            <div>
-              <picture>
-                <source
-                  media="(max-width: 639px)"
-                  srcset="
-                    https://i.postimg.cc/C1swKVfF/clean-click-testimonio-02-400.webp
-                  "
-                />
-                <source
-                  media="(min-width: 640px)"
-                  srcset="
-                    https://i.postimg.cc/SRZqW7r3/clean-click-testimonio-02-450.webp
-                  "
-                />
-                <img
-                  src="https://i.postimg.cc/SRZqW7r3/clean-click-testimonio-02-450.webp"
-                  alt="Testimonio de cliente 2"
-                  class="w-full h-auto rounded-2xl shadow-lg"
-                  loading="eager"
-                  decoding="async"
-                  width="450"
-                  height="800"
-                />
-              </picture>
-            </div>
-            <div>
-              <picture>
-                <source
-                  media="(max-width: 639px)"
-                  srcset="
-                    https://i.postimg.cc/RCGM54Bd/clean-click-testimonio-03-400.webp
-                  "
-                />
-                <source
-                  media="(min-width: 640px)"
-                  srcset="
-                    https://i.postimg.cc/htQgdm7Z/clean-click-testimonio-03-450.webp
-                  "
-                />
-                <img
-                  src="https://i.postimg.cc/htQgdm7Z/clean-click-testimonio-03-450.webp"
-                  alt="Testimonio de cliente 3"
-                  class="w-full h-auto rounded-2xl shadow-lg"
-                  loading="eager"
-                  decoding="async"
-                  width="450"
-                  height="800"
-                />
-              </picture>
-            </div>
-            <div>
-              <picture>
-                <source
-                  media="(max-width: 639px)"
-                  srcset="
-                    https://i.postimg.cc/MKTzzNZS/clean-click-testimonio-04-400.webp
-                  "
-                />
-                <source
-                  media="(min-width: 640px)"
-                  srcset="
-                    https://i.postimg.cc/yYbsxjWS/clean-click-testimonio-04-450.webp
-                  "
-                />
-                <img
-                  src="https://i.postimg.cc/yYbsxjWS/clean-click-testimonio-04-450.webp"
-                  alt="Testimonio de cliente 4"
-                  class="w-full h-auto rounded-2xl shadow-lg"
-                  loading="eager"
-                  decoding="async"
-                  width="450"
-                  height="800"
-                />
-              </picture>
-            </div>
-          </div>
 
-          <!-- Grilla de Testimonios (Videos con Fachada) -->
-          <div class="mt-12 grid md:grid-cols-3 gap-8">
-            <div
-              class="youtube-fachada aspect-video"
-              data-videoid="pHdzZYcw5Gc"
-              aria-label="Reproducir testimonio en video 1"
-            >
-              <picture>
-                <source media="(max-width: 639px)" srcset="https://i.postimg.cc/y6cF53tJ/img-video1.webp" width="280" height="210">
-                <img
-                  src="https://i.postimg.cc/y6cF53tJ/img-video1.webp"
-                  id="miniatura-1"
-                  alt="Miniatura del testimonio 1"
-                  loading="eager"
-                  width="364"
-                  height="273"
-                  fetchpriority="low"
-                  decoding="async"
-                />
-              </picture>
+            <div>
+              <h3 class="text-2xl font-bold text-slate-800 mt-12">
+                Nuestra Técnica: Limpieza Profunda y Cuidadosa
+              </h3>
+              <p class="mt-4 text-lg">
+                Combinamos maquinaria de última generación con productos
+                ecológicos para garantizar una limpieza profunda. Ya sea que
+                necesites una
+                <strong>limpieza de alfombra muro a muro</strong> o el lavado de
+                una <strong>alfombra decorativa</strong>, tenemos la solución.
+              </p>
+              <ul class="mt-6 space-y-6">
+                <li class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 640 640"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M480 272C480 317.9 465.1 360.3 440 394.7L566.6 521.4C579.1 533.9 579.1 554.2 566.6 566.7C554.1 579.2 533.8 579.2 521.3 566.7L394.7 440C360.3 465.1 317.9 480 272 480C157.1 480 64 386.9 64 272C64 157.1 157.1 64 272 64C386.9 64 480 157.1 480 272zM272 176C258.7 176 248 186.7 248 200L248 248L200 248C186.7 248 176 258.7 176 272C176 285.3 186.7 296 200 296L248 296L248 344C248 357.3 258.7 368 272 368C285.3 368 296 357.3 296 344L296 296L344 296C357.3 296 368 285.3 368 272C368 258.7 357.3 248 344 248L296 248L296 200C296 186.7 285.3 176 272 176z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-lg font-bold text-slate-800">
+                      Diagnóstico Inicial en tu casa
+                    </h4>
+                    <p class="mt-1">
+                      Evaluamos el tipo de fibra y el nivel de suciedad para
+                      aplicar el tratamiento más adecuado.
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 640 640"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M210.5 480L333.5 480L398.8 414.7L225.3 241.2L98.6 367.9L210.6 479.9zM256 544L210.5 544C193.5 544 177.2 537.3 165.2 525.3L49 409C38.1 398.1 32 383.4 32 368C32 352.6 38.1 337.9 49 327L295 81C305.9 70.1 320.6 64 336 64C351.4 64 366.1 70.1 377 81L559 263C569.9 273.9 576 288.6 576 304C576 319.4 569.9 334.1 559 345L424 480L544 480C561.7 480 576 494.3 576 512C576 529.7 561.7 544 544 544L256 544z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-lg font-bold text-slate-800">
+                      Eliminación de Manchas
+                    </h4>
+                    <p class="mt-1">
+                      Aplicamos desmanchadores específicos para tratar y
+                      eliminar manchas difíciles, devolviendo la uniformidad al
+                      color.
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 640 640"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M474.6 188.1C495.3 203.7 520.6 218.8 548.8 222.6C561.9 224.4 574 215.1 575.8 202C577.6 188.9 568.3 176.8 555.2 175C539.3 172.9 522 163.7 503.5 149.8C465.1 120.8 413 120.8 374.5 149.8C350.5 167.9 333.8 176.1 320 176.1C306.2 176.1 289.5 167.9 265.5 149.8C227.1 120.8 175 120.8 136.5 149.8C118 163.7 100.7 172.9 84.8 175C71.7 176.8 62.4 188.8 64.2 202C66 215.2 78 224.4 91.2 222.6C119.4 218.8 144.8 203.7 165.4 188.1C186.7 172 215.3 172 236.6 188.1C260.8 206.4 288.9 224 320 224C351.1 224 379.1 206.3 403.4 188.1C424.7 172 453.3 172 474.6 188.1zM474.6 332.1C495.3 347.7 520.6 362.8 548.8 366.6C561.9 368.4 574 359.1 575.8 346C577.6 332.9 568.3 320.8 555.2 319C539.3 316.9 522 307.7 503.5 293.8C465.1 264.8 413 264.8 374.5 293.8C350.5 311.9 333.8 320.1 320 320.1C306.2 320.1 289.5 311.9 265.5 293.8C227.1 264.8 175 264.8 136.5 293.8C118 307.7 100.7 316.9 84.8 319C71.7 320.7 62.4 332.8 64.2 346C66 359.2 78 368.4 91.2 366.6C119.4 362.8 144.8 347.7 165.4 332.1C186.7 316 215.3 316 236.6 332.1C260.8 350.4 288.9 368 320 368C351.1 368 379.1 350.3 403.4 332.1C424.7 316 453.3 316 474.6 332.1zM403.4 476.1C424.7 460 453.3 460 474.6 476.1C495.3 491.7 520.6 506.8 548.8 510.6C561.9 512.4 574 503.1 575.8 490C577.6 476.9 568.3 464.8 555.2 463C539.3 460.9 522 451.7 503.5 437.8C465.1 408.8 413 408.8 374.5 437.8C350.5 455.9 333.8 464.1 320 464.1C306.2 464.1 289.5 455.9 265.5 437.8C227.1 408.8 175 408.8 136.5 437.8C118 451.7 100.7 460.9 84.8 463C71.7 464.8 62.4 476.8 64.2 490C66 503.2 78 512.4 91.2 510.6C119.4 506.8 144.8 491.7 165.4 476.1C186.7 460 215.3 460 236.6 476.1C260.8 494.4 288.9 512 320 512C351.1 512 379.1 494.3 403.4 476.1z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-lg font-bold text-slate-800">
+                      Lavado y Enjuague Profundo
+                    </h4>
+                    <p class="mt-1">
+                      Nuestro sistema de inyección y extracción elimina la
+                      suciedad desde la base de la alfombra, sin dejar residuos
+                      pegajosos.
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 640 640"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M576 320C576 320.9 576 321.8 576 322.7C575.6 359.2 542.4 384 505.9 384L408 384C381.5 384 360 405.5 360 432C360 435.4 360.4 438.7 361 441.9C363.1 452.1 367.5 461.9 371.8 471.8C377.9 485.6 383.9 499.3 383.9 513.8C383.9 545.6 362.3 574.5 330.5 575.8C327 575.9 323.5 576 319.9 576C178.5 576 63.9 461.4 63.9 320C63.9 178.6 178.6 64 320 64C461.4 64 576 178.6 576 320zM192 352C192 334.3 177.7 320 160 320C142.3 320 128 334.3 128 352C128 369.7 142.3 384 160 384C177.7 384 192 369.7 192 352zM192 256C209.7 256 224 241.7 224 224C224 206.3 209.7 192 192 192C174.3 192 160 206.3 160 224C160 241.7 174.3 256 192 256zM352 160C352 142.3 337.7 128 320 128C302.3 128 288 142.3 288 160C288 177.7 302.3 192 320 192C337.7 192 352 177.7 352 160zM448 256C465.7 256 480 241.7 480 224C480 206.3 465.7 192 448 192C430.3 192 416 206.3 416 224C416 241.7 430.3 256 448 256z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-lg font-bold text-slate-800">
+                      Colores Revitalizados
+                    </h4>
+                    <p class="mt-1">
+                      Nuestro proceso reaviva los colores originales, haciendo
+                      que tu alfombra luzca como nueva.
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start">
+                  <div
+                    class="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full text-brand-blue text-lg"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 640 640"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M96.5 160L96.5 309.5C96.5 326.5 103.2 342.8 115.2 354.8L307.2 546.8C332.2 571.8 372.7 571.8 397.7 546.8L547.2 397.3C572.2 372.3 572.2 331.8 547.2 306.8L355.2 114.8C343.2 102.7 327 96 310 96L160.5 96C125.2 96 96.5 124.7 96.5 160zM208.5 176C226.2 176 240.5 190.3 240.5 208C240.5 225.7 226.2 240 208.5 240C190.8 240 176.5 225.7 176.5 208C176.5 190.3 190.8 176 208.5 176z"
+                      />
+                    </svg>
+                  </div>
+                  <div class="ml-4">
+                    <h4 class="text-lg font-bold text-slate-800">
+                      Precios Transparentes
+                    </h4>
+                    <p class="mt-1">
+                      Ofrecemos
+                      <strong>precios de lavado de alfombras</strong> claros y
+                      competitivos. Solicita tu cotización sin compromiso.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-bold text-slate-800 mt-12">
+                Servicios para Todo Tipo de Alfombras
+              </h3>
+              <p class="mt-4 text-lg">
+                Nuestro equipo está capacitado para limpiar cualquier tipo de
+                alfombra, adaptando el proceso para proteger su integridad y
+                textura.
+              </p>
+              <ul class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-blue mr-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"
+                    />
+                  </svg>
+                  Limpieza de alfombras muro a muro.
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-blue mr-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"
+                    />
+                  </svg>
+                  Lavado de alfombras decorativas.
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-blue mr-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"
+                    />
+                  </svg>
+                  Limpieza de cubrepisos.
+                </li>
+                <li class="flex items-center">
+                  <svg
+                    class="w-4 h-4 text-brand-blue mr-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 640 640"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"
+                    />
+                  </svg>
+                  Escaleras alfombradas.
+                </li>
+              </ul>
             </div>
             <div
-              class="youtube-fachada aspect-video"
-              data-videoid="Yx4lKEeCwss"
-              aria-label="Reproducir testimonio en video 2"
+              class="!mt-12 bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-lg shadow-sm"
             >
-              <picture>
-                <source media="(max-width: 639px)" srcset="https://i.postimg.cc/tRWhfnwV/img-video2.webp" width="280" height="210">
-                <img
-                  src="https://i.postimg.cc/tRWhfnwV/img-video2.webp"
-                  id="miniatura-2"
-                  alt="Miniatura del testimonio 2"
-                  loading="eager"
-                  width="364"
-                  height="273"
-                  fetchpriority="low"
-                  decoding="async"
-                />
-              </picture>
-            </div>
-            <div
-              class="youtube-fachada aspect-video"
-              data-videoid="gtggraD_N_w"
-              aria-label="Reproducir testimonio en video 3"
-            >
-              <picture>
-                <source media="(max-width: 639px)" srcset="https://i.postimg.cc/P5RpNd0r/img-video3.webp" width="280" height="210">
-                <img
-                  src="https://i.postimg.cc/P5RpNd0r/img-video3.webp"
-                  id="miniatura-3"
-                  alt="Miniatura del testimonio 3"
-                  loading="lazy"
-                  width="364"
-                  height="273"
-                  fetchpriority="low"
-                  decoding="async"
-                />
-              </picture>
+              <p class="text-lg">
+                Si buscas un servicio para
+                <strong>lavar alfombras a domicilio</strong> eficiente y de
+                confianza en Santiago, Clean Click es tu mejor aliado.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       <!-- FAQ Section -->
-      <section id="faq" class="bg-white pt-10 pb-20 md:pt-20 md:pb-20">
-        <div class="container mx-auto px-6">
-          <h2 class="text-3xl font-bold text-center text-slate-900">
-            Resolvemos tus Dudas
-          </h2>
-          <div
-            class="mt-12 max-w-4xl mx-auto grid md:grid-cols-2 gap-x-8 gap-y-4"
-          >
-            <!-- Columna Izquierda -->
-            <div class="space-y-4">
-              <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                <button
+    <section id="faq-alfombras" class="bg-brand-blue-light pt-10 pb-20 md:pt-20 md:pb-20">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center text-slate-900">
+          Resolvemos tus Dudas
+        </h2>
+        <div
+          class="mt-12 max-w-4xl mx-auto grid md:grid-cols-2 gap-x-8 gap-y-4"
+        >
+          <!-- Columna Izquierda -->
+          <div class="space-y-4">
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-1"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-1">¿Cuál es el área de cobertura?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
                   id="faq-1"
-                  class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span id="faq-1">¿Cuál es el área de cobertura?</span>
-                  <svg
-                    class="w-4 h-4 transition-transform shrink-0"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 640"
+                  <path
+                    fill="#1e293b"
                     id="faq-1"
-                  >
-                    <path
-                      fill="#1e293b"
-                      id="faq-1"
-                      d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
-                    />
-                  </svg>
-                </button>
-                <div class="accordion-content">
-                  <p class="text-slate-600 px-5 pt-0 pb-5">
-                    Actualmente cubrimos la Región Metropolitana completamente.
-                    Adicionalmente, llegamos a Algarrobo, El Quisco, Papudo y
-                    Zapallar.
-                  </p>
-                </div>
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  Actualmente cubrimos la Región Metropolitana completamente.
+                  Adicionalmente, llegamos a Algarrobo, El Quisco, Papudo y
+                  Zapallar.
+                </p>
               </div>
-              <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                <button
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-2"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-2">¿Cuánto demora la limpieza?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
                   id="faq-2"
-                  class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span id="faq-2">¿Cuánto demora la limpieza?</span>
-                  <svg
-                    class="w-4 h-4 transition-transform shrink-0"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 640"
+                  <path
+                    fill="#1e293b"
                     id="faq-2"
-                  >
-                    <path
-                      fill="#1e293b"
-                      id="faq-2"
-                      d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
-                    />
-                  </svg>
-                </button>
-                <div class="accordion-content">
-                  <p class="text-slate-600 px-5 pt-0 pb-5">
-                    En promedio, la limpieza de un sillón puede tardar 45
-                    minutos.
-                  </p>
-                </div>
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  En promedio, la limpieza de una alfombra puede tardar 45
+                  minutos.
+                </p>
               </div>
-              <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                <button
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-3"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-3">¿Qué tan rápido puedo agendar?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
                   id="faq-3"
-                  class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span id="faq-3">¿Qué tan rápido puedo agendar?</span>
-                  <svg
-                    class="w-4 h-4 transition-transform shrink-0"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 640"
+                  <path
+                    fill="#1e293b"
                     id="faq-3"
-                  >
-                    <path
-                      fill="#1e293b"
-                      id="faq-3"
-                      d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
-                    />
-                  </svg>
-                </button>
-                <div class="accordion-content">
-                  <p class="text-slate-600 px-5 pt-0 pb-5">
-                    Nuestro equipo de atención está siempre disponible. El
-                    tiempo de respuesta promedio para coordinar tu servicio es
-                    de solo 5 minutos.
-                  </p>
-                </div>
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  Nuestro equipo de atención está siempre disponible. El
+                  tiempo de respuesta promedio para coordinar tu servicio es
+                  de solo 5 minutos.
+                </p>
               </div>
-              <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                <button
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-4"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-4">Si escribo hoy, ¿cuándo pueden venir?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
                   id="faq-4"
-                  class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span id="faq-4">Si escribo hoy, ¿cuándo pueden venir?</span>
-                  <svg
-                    class="w-4 h-4 transition-transform shrink-0"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 640"
+                  <path
+                    fill="#1e293b"
                     id="faq-4"
-                  >
-                    <path
-                      fill="#1e293b"
-                      id="faq-4"
-                      d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
-                    />
-                  </svg>
-                </button>
-                <div class="accordion-content">
-                  <p class="text-slate-600 px-5 pt-0 pb-5">
-                    Normalmente agendamos con dos días hábiles de anticipación.
-                    Si agendas hoy, lo más probable es que te visitemos pasado
-                    mañana.
-                  </p>
-                </div>
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  Normalmente agendamos con dos días hábiles de anticipación.
+                  Si agendas hoy, lo más probable es que te visitemos pasado
+                  mañana.
+                </p>
               </div>
-              <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                <button
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-5"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-5">¿Se eliminan todas las manchas?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
                   id="faq-5"
-                  class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span id="faq-5">¿Se eliminan todas las manchas?</span>
-                  <svg
-                    class="w-4 h-4 transition-transform shrink-0"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 640"
+                  <path
+                    fill="#1e293b"
                     id="faq-5"
-                  >
-                    <path
-                      fill="#1e293b"
-                      id="faq-5"
-                      d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
-                    />
-                  </svg>
-                </button>
-                <div class="accordion-content">
-                  <p class="text-slate-600 px-5 pt-0 pb-5">
-                    No todas las manchas logran salir, ya que el resultado
-                    depende de la antigüedad y del tipo de mancha. Damos nuestro
-                    mejor esfuerzo, pero algunas son muy difíciles de eliminar
-                    por completo.
-                  </p>
-                </div>
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  No todas las manchas logran salir, ya que el resultado
+                  depende de la antigüedad y del tipo de mancha. Damos nuestro
+                  mejor esfuerzo, pero algunas son muy difíciles de eliminar
+                  por completo.
+                </p>
               </div>
             </div>
-            <!-- Columna Derecha -->
-            <div class="space-y-4">
-              <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                <button
+          </div>
+          <!-- Columna Derecha -->
+          <div class="space-y-4">
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-6"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-6">¿El servicio tiene garantía?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
                   id="faq-6"
-                  class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span id="faq-6">¿El servicio tiene garantía?</span>
-                  <svg
-                    class="w-4 h-4 transition-transform shrink-0"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 640"
+                  <path
+                    fill="#1e293b"
                     id="faq-6"
-                  >
-                    <path
-                      fill="#1e293b"
-                      id="faq-6"
-                      d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
-                    />
-                  </svg>
-                </button>
-                <div class="accordion-content">
-                  <p class="text-slate-600 px-5 pt-0 pb-5">
-                    Sí, nuestra garantía se aplica hasta por 7 días después de
-                    realizado el servicio. En caso de ser necesario, agendaremos
-                    una nueva visita dentro de los siguientes 7 días para
-                    revisar el trabajo.
-                  </p>
-                </div>
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  Sí, nuestra garantía se aplica hasta por 7 días después de
+                  realizado el servicio. En caso de ser necesario, agendaremos
+                  una nueva visita dentro de los siguientes 7 días para
+                  revisar el trabajo.
+                </p>
               </div>
-              <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                <button
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-7"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-7">¿Cuáles son los tiempos de secado?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
                   id="faq-7"
-                  class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span id="faq-7">¿Cuáles son los tiempos de secado?</span>
-                  <svg
-                    class="w-4 h-4 transition-transform shrink-0"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 640"
+                  <path
+                    fill="#1e293b"
                     id="faq-7"
-                  >
-                    <path
-                      fill="#1e293b"
-                      id="faq-7"
-                      d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
-                    />
-                  </svg>
-                </button>
-                <div class="accordion-content">
-                  <p class="text-slate-600 px-5 pt-0 pb-5">
-                    Los tiempos promedio son: sillones y sofás, 7 horas;
-                    colchones, 5 horas; y alfombras, 12 horas.
-                  </p>
-                </div>
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  Los tiempos promedio son: sillones y sofás, 7 horas;
+                  colchones, 5 horas; y alfombras, 12 horas.
+                </p>
               </div>
-              <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                <button
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-8"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-8">¿Qué otros tapices limpian?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
                   id="faq-8"
-                  class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span id="faq-8">¿Qué otros tapices limpian?</span>
-                  <svg
-                    class="w-4 h-4 transition-transform shrink-0"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 640"
+                  <path
+                    fill="#1e293b"
                     id="faq-8"
-                  >
-                    <path
-                      fill="#1e293b"
-                      id="faq-8"
-                      d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
-                    />
-                  </svg>
-                </button>
-                <div class="accordion-content">
-                  <p class="text-slate-600 px-5 pt-0 pb-5">
-                    Además de sillones, nos especializamos en alfombras y
-                    colchones. Para colchones, recomendamos agendar el servicio
-                    temprano para asegurar un secado eficiente durante el día.
-                  </p>
-                </div>
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  Además de alfombras, nos especializamos en sillones y
+                  colchones. Para alfombras, recomendamos agendar el servicio
+                  temprano para asegurar un secado eficiente durante el día.
+                </p>
               </div>
-              <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                <button
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-9"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-9">¿Cómo puedo pagar?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
                   id="faq-9"
-                  class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span id="faq-9">¿Cómo puedo pagar?</span>
-                  <svg
-                    class="w-4 h-4 transition-transform shrink-0"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 640"
+                  <path
+                    fill="#1e293b"
                     id="faq-9"
-                  >
-                    <path
-                      fill="#1e293b"
-                      id="faq-9"
-                      d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
-                    />
-                  </svg>
-                </button>
-                <div class="accordion-content">
-                  <p class="text-slate-600 px-5 pt-0 pb-5">
-                    Aceptamos todos los medios de pago: efectivo, transferencia,
-                    débito y tarjeta de crédito.
-                  </p>
-                </div>
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <p class="text-slate-600 px-5 pt-0 pb-5">
+                  Aceptamos todos los medios de pago: efectivo, transferencia,
+                  débito y tarjeta de crédito.
+                </p>
               </div>
-              <!-- Pregunta de precios (faq-10) ubicada como décima pregunta -->
-              <div class="bg-slate-50 border border-slate-200 rounded-lg">
-                <button
+            </div>
+            <!-- Pregunta de precios (faq-10) ubicada como décima pregunta -->
+            <div class="bg-slate-50 border border-slate-200 rounded-lg">
+              <button
+                id="faq-10"
+                class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
+              >
+                <span id="faq-10">¿Cuánto cuesta el servicio de limpieza a vapor?</span>
+                <svg
+                  class="w-4 h-4 transition-transform shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 640 640"
                   id="faq-10"
-                  class="accordion-toggle w-full text-left p-5 font-semibold flex justify-between items-center text-slate-800"
                 >
-                  <span id="faq-10">¿Cuánto cuesta el servicio de limpieza a vapor?</span>
-                  <svg
-                    class="w-4 h-4 transition-transform shrink-0"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 640"
+                  <path
+                    fill="#1e293b"
                     id="faq-10"
-                  >
-                    <path
-                      fill="#1e293b"
-                      id="faq-10"
-                      d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
-                    />
-                  </svg>
-                </button>
-                <div class="accordion-content">
-                  <div class="text-slate-600 px-5 pt-0 pb-5">
-                    <p>A continuación te entregamos algunos precios de referencia:</p>
-                    <ul class="list-disc list-inside mt-2 space-y-1">
-                      <li>Colchón dos plazas $24.990</li>
-                      <li>Sofá dos puestos $29.990</li>
-                      <li>Alfombra mediana $26.990</li>
-                      <li>Sofá seccional desde $39.990</li>
-                    </ul>
-                    <p class="mt-3">Se debe considerar que el precio mínimo de visita en la región metropolitana es de $29.990. Si tienes dudas, no te preocupes, escríbenos y te entregaremos una cotización rápidamente.</p>
-                  </div>
+                    d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                  />
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <div class="text-slate-600 px-5 pt-0 pb-5">
+                  <p>A continuación te entregamos algunos precios de referencia:</p>
+                  <ul class="list-disc list-inside mt-2 space-y-1">
+                    <li>Colchón dos plazas $24.990</li>
+                    <li>Sofá dos puestos $29.990</li>
+                    <li>Alfombra mediana $26.990</li>
+                    <li>Sofá seccional desde $39.990</li>
+                  </ul>
+                  <p class="mt-3">Se debe considerar que el precio mínimo de visita en la región metropolitana es de $29.990. Si tienes dudas, no te preocupes, escríbenos y te entregaremos una cotización rápidamente.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Final CTA -->
-      <section class="bg-brand-blue-light">
-        <div class="container mx-auto px-6 py-20 text-center">
-          <h2 class="text-4xl font-extrabold text-slate-900">
-            ¿Listo para renovar tus espacios?
-          </h2>
-          <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
-            Dale a tus tapices y muebles el cuidado profesional que merecen.
-            Contáctanos y recibe tu cotización sin compromiso.
-          </p>
-          <div class="mt-8">
-            <button
-              id="cta-final"
-              class="open-chat-popup inline-flex flex-col items-center bg-white text-brand-blue text-xl font-bold py-3 px-12 rounded-full shadow-xl transform hover:scale-105 transition-transform"
-            >
-              <span id="cta-final">¡Sí, Quiero Contactarme Ahora!</span>
-              <span class="text-sm font-normal mt-1" id="cta-final">Atención 7am - 12am</span>
-            </button>
-          </div>
+    <!-- Final CTA -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6 py-20 text-center">
+        <h2 class="text-4xl font-extrabold text-slate-900">
+          ¿Listo para una alfombra como nueva?
+        </h2>
+        <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+          Recupera la belleza y frescura de tus alfombras hoy mismo.
+          Contáctanos, uno de nuestros expertos te asesorará
+        </p>
+        <div class="mt-8">
+          <button
+            class="open-chat-popup inline-flex flex-col items-center bg-brand-blue-light text-brand-blue text-xl font-bold py-3 px-12 rounded-full shadow-xl transform hover:scale-105 transition-transform"
+            id="cta-final-alfombras"
+          >
+            <span id="cta-final-alfombras">¡Sí, Quiero Contactarme Ahora!</span>
+            <span class="text-sm font-normal mt-1" id="cta-final-alfombras">Atención 7am - 12am</span>
+          </button>
         </div>
-      </section>
+      </div>
+    </section>
     </main>
-    <!-- Footer -->
+
     <footer class="text-slate-300" style="background-color: #0f172a;">
       <div class="container mx-auto px-6 pt-16 pb-8">
         <div class="grid md:grid-cols-3 gap-12 text-center md:text-left">
-          <!-- Columna 1: Logo y Marca -->
           <div>
             <a href="index.html" class="inline-block">
               <img
@@ -1787,9 +1267,8 @@
               <a
                 href="https://www.instagram.com/cleanclick.aromaalimpio/"
                 target="_blank"
-                id="cta-instagram-footer"
                 class="text-2xl hover:text-white transition-colors"
-                aria-label="Visítanos en Instagram"
+                id="cta-instagram-footer"
               >
                 <svg
                   class="w-6 h-6"
@@ -1799,7 +1278,7 @@
                   id="cta-instagram-footer"
                 >
                   <path
-                    fill="#d1d5db"
+                    fill="currentColor"
                     d="M320.3 205C256.8 204.8 205.2 256.2 205 319.7C204.8 383.2 256.2 434.8 319.7 435C383.2 435.2 434.8 383.8 435 320.3C435.2 256.8 383.8 205.2 320.3 205zM319.7 245.4C360.9 245.2 394.4 278.5 394.6 319.7C394.8 360.9 361.5 394.4 320.3 394.6C279.1 394.8 245.6 361.5 245.4 320.3C245.2 279.1 278.5 245.6 319.7 245.4zM413.1 200.3C413.1 185.5 425.1 173.5 439.9 173.5C454.7 173.5 466.7 185.5 466.7 200.3C466.7 215.1 454.7 227.1 439.9 227.1C425.1 227.1 413.1 215.1 413.1 200.3zM542.8 227.5C541.1 191.6 532.9 159.8 506.6 133.6C480.4 107.4 448.6 99.2 412.7 97.4C375.7 95.3 264.8 95.3 227.8 97.4C192 99.1 160.2 107.3 133.9 133.5C107.6 159.7 99.5 191.5 97.7 227.4C95.6 264.4 95.6 375.3 97.7 412.3C99.4 448.2 107.6 480 133.9 506.2C160.2 532.4 191.9 540.6 227.8 542.4C264.8 544.5 375.7 544.5 412.7 542.4C448.6 540.7 480.4 532.5 506.6 506.2C532.8 480 541 448.2 542.8 412.3C544.9 375.3 544.9 264.5 542.8 227.5zM495 452C487.2 471.6 472.1 486.7 452.4 494.6C422.9 506.3 352.9 503.6 320.3 503.6C287.7 503.6 217.6 506.2 188.2 494.6C168.6 486.8 153.5 471.7 145.6 452C133.9 422.5 136.6 352.5 136.6 319.9C136.6 287.3 134 217.2 145.6 187.8C153.4 168.2 168.5 153.1 188.2 145.2C217.7 133.5 287.7 136.2 320.3 136.2C352.9 136.2 423 133.6 452.4 145.2C472 153 487.1 168.1 495 187.8C506.7 217.3 504 287.3 504 319.9C504 352.5 506.7 422.6 495 452z"
                   />
                 </svg>
@@ -1807,40 +1286,37 @@
             </div>
           </div>
 
-          <!-- Columna 2: Navegación -->
           <div>
             <h3 class="font-bold text-white tracking-wider uppercase">
               Navegación
             </h3>
             <nav class="mt-4 flex flex-col space-y-2">
               <a
-              href="index.html"
-              id="nav-home"
-              class="hover:text-white transition-colors"
-              >Home</a
-            >
-              <a
-                href="#porque-elegirnos"
+                href="index.html#porque-elegirnos"
                 id="nav-beneficios"
                 class="hover:text-white transition-colors"
                 >Beneficios</a
               >
-              <a href="#servicios" 
+              <a
+                href="index.html#servicios"
                 id="nav-servicios"
                 class="hover:text-white transition-colors"
                 >Servicios</a
               >
-              <a href="#proceso" 
+              <a
+                href="index.html#proceso"
                 id="nav-proceso"
                 class="hover:text-white transition-colors"
                 >Proceso</a
               >
-              <a href="#testimonios" 
+              <a
+                href="index.html#testimonios"
                 id="nav-testimonios"
                 class="hover:text-white transition-colors"
                 >Testimonios</a
               >
-              <a href="#faq"
+              <a
+                href="#faq-alfombras"
                 id="nav-preguntas"
                 class="hover:text-white transition-colors"
                 >Preguntas Frecuentes</a
@@ -1848,7 +1324,6 @@
             </nav>
           </div>
 
-          <!-- Columna 3: Contacto -->
           <div>
             <h3 class="font-bold text-white tracking-wider uppercase">
               Contáctanos
@@ -1864,7 +1339,6 @@
           </div>
         </div>
         <hr class="my-8 border-slate-700/50" />
-        <!-- Barra Inferior -->
         <div class="text-center text-slate-400 text-sm">
           <p>&copy; 2025 Clean Click. Todos los derechos reservados.</p>
           <p class="mt-1">
@@ -1882,11 +1356,9 @@
       </div>
     </footer>
 
-    <!-- Floating Chat Button -->
     <button
-      id="cta-flotante"
+      id="cta-flotante-alfombras"
       class="open-chat-popup fixed bottom-5 right-5 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50 pulse-brand-blue"
-      aria-label="Abrir chat de contacto"
     >
       <svg
         class="w-8 h-8 pointer-events-none"
@@ -1895,7 +1367,7 @@
         viewBox="0 0 640 640"
       >
         <path
-          fill="#ffffff"
+          fill="currentColor"
           d="M320 544C461.4 544 576 436.5 576 304C576 171.5 461.4 64 320 64C178.6 64 64 171.5 64 304C64 358.3 83.2 408.3 115.6 448.5L66.8 540.8C62 549.8 63.5 560.8 70.4 568.3C77.3 575.8 88.2 578.1 97.5 574.1L215.9 523.4C247.7 536.6 282.9 544 320 544zM192 272C209.7 272 224 286.3 224 304C224 321.7 209.7 336 192 336C174.3 336 160 321.7 160 304C160 286.3 174.3 272 192 272zM320 272C337.7 272 352 286.3 352 304C352 321.7 337.7 336 320 336C302.3 336 288 321.7 288 304C288 286.3 302.3 272 320 272zM416 304C416 286.3 430.3 272 448 272C465.7 272 480 286.3 480 304C480 321.7 465.7 336 448 336C430.3 336 416 321.7 416 304z"
         />
       </svg>
@@ -1903,20 +1375,18 @@
 
     <!-- Floating FAQ Button -->
     <a
-      href="#faq"
-      id="cta-faq-flotante"
+                href="#faq-alfombras"
+      id="cta-faq-flotante-alfombras"
       class="fixed bottom-5 left-5 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-50 pulse-brand-cyan"
       aria-label="Ir a preguntas frecuentes"
     >
       <span class="text-2xl font-black">?</span>
     </a>
 
-    <!-- Pop-up de Chat -->
     <div
       id="chat-popup"
       class="fixed bottom-24 right-5 max-w-sm w-[calc(100%-2.5rem)] bg-white rounded-2xl shadow-xl text-left opacity-0 transform translate-y-4 pointer-events-none transition-all duration-300 ease-in-out z-40 overflow-hidden"
     >
-      <!-- Header del Pop-up -->
       <div
         class="flex justify-between items-center p-4 bg-slate-50 border-b border-slate-200"
       >
@@ -1935,12 +1405,10 @@
         <button
           id="close-popup"
           class="text-slate-400 hover:text-slate-800 text-3xl font-light leading-none"
-          aria-label="Cerrar chat"
         >
           &times;
         </button>
       </div>
-      <!-- Contenido del Mensaje -->
       <div class="p-6">
         <div class="bg-slate-50 border border-slate-200 rounded-lg p-4">
           <p class="text-slate-600 mb-4">Gracias por estar aquí.</p>
@@ -1956,15 +1424,13 @@
             <a
               href="https://wa.me/+56950107753?text=Hola,%20quiero%20tener%20más%20información%20de%20sus%20servicios%20de%20limpieza"
               target="_blank"
-              id="cta-popup"
+              id="cta-popup-alfombras"
               class="inline-block btn-primary font-bold py-2 px-8 rounded-full shadow-md"
+              >Escríbenos</a
             >
-              Escríbenos
-            </a>
           </div>
         </div>
       </div>
-      <!-- Cola de la burbuja de chat -->
       <div
         class="absolute bottom-[-10px] right-6 w-0 h-0 border-x-transparent border-x-[10px] border-t-[10px] border-t-white"
       ></div>
@@ -2037,7 +1503,7 @@
         if (window.requestIdleCallback) {
           requestIdleCallback(function() {
             loadTailwindScript();
-          }, { timeout: 1000 });
+          }, { timeout: 500 });
         } else {
           setTimeout(loadTailwindScript, 50);
         }
@@ -2074,12 +1540,12 @@
       document.addEventListener('scroll', loadTailwindOnInteraction, { passive: true });
       document.addEventListener('touchstart', loadTailwindOnInteraction, { passive: true });
       
-      // Fallback: cargar después de 1 segundo si no hay interacción
+      // Fallback más agresivo para Hostinger: cargar después de 500ms si no hay interacción
       setTimeout(function() {
         if (!tailwindLoaded) {
           loadTailwindOnInteraction();
         }
-      }, 1000);
+      }, 500);
     </script>
     <!-- JavaScript optimizado para rendimiento -->
     <script src="main.js" defer></script>
