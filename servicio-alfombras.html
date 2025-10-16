@@ -59,12 +59,12 @@
       document.addEventListener('scroll', loadGTMOnInteraction, { passive: true });
       document.addEventListener('touchstart', loadGTMOnInteraction, { passive: true });
       
-      // Fallback: cargar después de 3 segundos si no hay interacción
+      // Fallback más agresivo para Hostinger: cargar después de 2 segundos si no hay interacción
       setTimeout(function() {
         if (!gtmLoaded) {
           loadGTMOnInteraction();
         }
-      }, 3000);
+      }, 2000);
     </script>
     
     <!-- MS Clarity - Optimizado para reducir reflows -->
@@ -106,12 +106,12 @@
       document.addEventListener('scroll', loadClarityOnInteraction, { passive: true });
       document.addEventListener('touchstart', loadClarityOnInteraction, { passive: true });
       
-      // Fallback: cargar después de 4 segundos si no hay interacción
+      // Fallback más agresivo para Hostinger: cargar después de 2 segundos si no hay interacción
       setTimeout(function() {
         if (!clarityLoaded) {
           loadClarityOnInteraction();
         }
-      }, 4000);
+      }, 2000);
     </script>
     
     <meta charset="UTF-8" />
@@ -1231,7 +1231,7 @@
         </p>
         <div class="mt-8">
           <button
-            class="open-chat-popup inline-flex flex-col items-center bg-white text-brand-blue text-xl font-bold py-3 px-12 rounded-full shadow-xl transform hover:scale-105 transition-transform"
+            class="open-chat-popup inline-flex flex-col items-center bg-brand-blue-light text-brand-blue text-xl font-bold py-3 px-12 rounded-full shadow-xl transform hover:scale-105 transition-transform"
             id="cta-final-alfombras"
           >
             <span id="cta-final-alfombras">¡Sí, Quiero Contactarme Ahora!</span>
@@ -1503,7 +1503,7 @@
         if (window.requestIdleCallback) {
           requestIdleCallback(function() {
             loadTailwindScript();
-          }, { timeout: 1000 });
+          }, { timeout: 500 });
         } else {
           setTimeout(loadTailwindScript, 50);
         }
@@ -1540,12 +1540,12 @@
       document.addEventListener('scroll', loadTailwindOnInteraction, { passive: true });
       document.addEventListener('touchstart', loadTailwindOnInteraction, { passive: true });
       
-      // Fallback: cargar después de 1 segundo si no hay interacción
+      // Fallback más agresivo para Hostinger: cargar después de 500ms si no hay interacción
       setTimeout(function() {
         if (!tailwindLoaded) {
           loadTailwindOnInteraction();
         }
-      }, 1000);
+      }, 500);
     </script>
     <!-- JavaScript optimizado para rendimiento -->
     <script src="main.js" defer></script>
